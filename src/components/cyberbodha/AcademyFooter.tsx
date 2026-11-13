@@ -9,7 +9,11 @@ export function AcademyFooter() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="academy-brand cursor-pointer inline-flex items-center gap-3" aria-label="CyberBodha home">
+            <Link
+              to="/"
+              className="academy-brand cursor-pointer inline-flex items-center gap-3"
+              aria-label="CyberBodha home"
+            >
               <span className="brand-mark h-10 w-10">
                 <img src={cyberbodhaLogo} alt="CyberBodha Logo" />
               </span>
@@ -18,7 +22,9 @@ export function AcademyFooter() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-              CyberBodha is a premier cybersecurity learning academy and practical cyber range. We bridge technical curiosity and enterprise capability through hands-on virtual labs, realistic threat simulations, and structured career pathways.
+              CyberBodha is a premier cybersecurity learning academy and practical cyber range. We
+              bridge technical curiosity and enterprise capability through hands-on virtual labs,
+              realistic threat simulations, and structured career pathways.
             </p>
             <div className="flex flex-col space-y-2 text-xs text-muted-foreground pt-2">
               <div className="flex items-center gap-2">
@@ -41,27 +47,47 @@ export function AcademyFooter() {
             </h4>
             <ul className="space-y-2.5 text-xs text-muted-foreground">
               <li>
-                <Link to="/programs/$slug" params={{ slug: "soc-analyst" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/programs/$slug"
+                  params={{ slug: "soc-analyst" }}
+                  className="hover:text-primary transition-colors"
+                >
                   SOC & Blue Team
                 </Link>
               </li>
               <li>
-                <Link to="/programs/$slug" params={{ slug: "ethical-hacking" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/programs/$slug"
+                  params={{ slug: "ethical-hacking" }}
+                  className="hover:text-primary transition-colors"
+                >
                   Ethical Hacking & VAPT
                 </Link>
               </li>
               <li>
-                <Link to="/programs/$slug" params={{ slug: "vapt" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/programs/$slug"
+                  params={{ slug: "vapt" }}
+                  className="hover:text-primary transition-colors"
+                >
                   VAPT Professional
                 </Link>
               </li>
               <li>
-                <Link to="/programs/$slug" params={{ slug: "cybersecurity-career" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/programs/$slug"
+                  params={{ slug: "cybersecurity-career" }}
+                  className="hover:text-primary transition-colors"
+                >
                   Career Accelerator
                 </Link>
               </li>
               <li>
-                <Link to="/programs/$slug" params={{ slug: "cloud-security" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/programs/$slug"
+                  params={{ slug: "cloud-security" }}
+                  className="hover:text-primary transition-colors"
+                >
                   Cloud Security & DevSecOps
                 </Link>
               </li>
@@ -80,27 +106,47 @@ export function AcademyFooter() {
             </h4>
             <ul className="space-y-2.5 text-xs text-muted-foreground">
               <li>
-                <Link to="/courses/$slug" params={{ slug: "soc-analyst-professional" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/courses/$slug"
+                  params={{ slug: "soc-analyst-professional" }}
+                  className="hover:text-primary transition-colors"
+                >
                   SOC Analyst Professional
                 </Link>
               </li>
               <li>
-                <Link to="/courses/$slug" params={{ slug: "ceh-v13-ai-ethical-hacking" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/courses/$slug"
+                  params={{ slug: "ceh-v13-ai-ethical-hacking" }}
+                  className="hover:text-primary transition-colors"
+                >
                   CEH v13 AI Ethical Hacking
                 </Link>
               </li>
               <li>
-                <Link to="/courses/$slug" params={{ slug: "vapt-professional" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/courses/$slug"
+                  params={{ slug: "vapt-professional" }}
+                  className="hover:text-primary transition-colors"
+                >
                   VAPT Professional
                 </Link>
               </li>
               <li>
-                <Link to="/courses/$slug" params={{ slug: "siem-engineering-operations" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/courses/$slug"
+                  params={{ slug: "siem-engineering-operations" }}
+                  className="hover:text-primary transition-colors"
+                >
                   SIEM Engineering
                 </Link>
               </li>
               <li>
-                <Link to="/courses/$slug" params={{ slug: "linux-networking-cybersecurity" }} className="hover:text-primary transition-colors">
+                <Link
+                  to="/courses/$slug"
+                  params={{ slug: "linux-networking-cybersecurity" }}
+                  className="hover:text-primary transition-colors"
+                >
                   Linux & Networking
                 </Link>
               </li>
@@ -149,7 +195,10 @@ export function AcademyFooter() {
                 </Link>
               </li>
               <li className="pt-2 border-t border-border/60">
-                <Link to="/student" className="inline-flex items-center gap-1.5 font-medium text-foreground hover:text-primary">
+                <Link
+                  to="/student"
+                  className="inline-flex items-center gap-1.5 font-medium text-foreground hover:text-primary"
+                >
                   <Shield className="h-3 w-3 text-primary" />
                   <span>Learner Workspace</span>
                 </Link>
@@ -162,8 +211,15 @@ export function AcademyFooter() {
         <div className="mt-12 border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} CyberBodha Learning Academy. All rights reserved.</p>
           <div className="flex items-center space-x-6">
-            <Link to="/about" className="hover:text-foreground">Methodology</Link>
-            <Link to="/contact" className="hover:text-foreground">Admissions Support</Link>
+            <Link to="/about" className="hover:text-foreground">
+              Methodology
+            </Link>
+            <Link to="/contact" className="hover:text-foreground">
+              Admissions Support
+            </Link>
+            <Link to="/privacy" className="hover:text-foreground">
+              Privacy Policy
+            </Link>
             <span>Learn. Practice. Simulate. Certify.</span>
           </div>
         </div>

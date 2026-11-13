@@ -2,6 +2,9 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { COURSES } from "@/data/courses";
+import { submitLead } from "@/lib/lead-submit";
+import { trackLead } from "@/lib/analytics";
+import { WHATSAPP_URL } from "@/lib/site";
 
 export interface EnquiryFormProps {
   defaultCourseSlug?: string;
@@ -49,6 +52,7 @@ export function EnquiryForm({
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [delivered, setDelivered] = useState(true);
 
   const validate = (): boolean => {
     const nextErrors: FormErrors = {};
@@ -107,21 +111,29 @@ export function EnquiryForm({
         submittedAt: new Date().toISOString(),
       };
 
-      try {
-        const stored = JSON.parse(sessionStorage.getItem("cb_enquiries") || "[]");
-        stored.push(enquiryPayload);
-        sessionStorage.setItem("cb_enquiries", JSON.stringify(stored));
-      } catch {
-        // Non-blocking storage fallback
+      // Keep a local copy so a network failure never loses the enquiry silently.
+      const result = await submitLead(enquiryPayload);
+
+      // Only count a conversion when the lead actually reached a server,
+      // otherwise Meta and GA optimise towards enquiries nobody received.
+      if (result.delivered) {
+        trackLead({
+          course: enquiryPayload.courseSlug,
+          format: enquiryPayload.preferredFormat,
+          source: sourceContext,
+        });
       }
 
+      setDelivered(result.delivered);
       setIsSubmitted(true);
       if (onSuccess) {
         onSuccess();
       }
     } catch (err) {
       console.error("Enquiry submission issue:", err);
-      setErrors({ form: "We encountered a temporary issue. Please reach out to admissions directly at admissions@cyberbodha.com." });
+      setErrors({
+        form: "We encountered a temporary issue. Please reach out to admissions directly at admissions@cyberbodha.com.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -134,16 +146,51 @@ export function EnquiryForm({
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/15 text-primary">
           <CheckCircle2 className="h-8 w-8" />
         </div>
-        <h3 className="mt-4 text-xl font-bold text-foreground">Enquiry Received</h3>
+        <h3 className="mt-4 text-xl font-bold text-foreground">
+          {delivered ? "Enquiry Received" : "Almost there"}
+        </h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          Thank you, <strong>{formData.fullName}</strong>. Your enquiry for{" "}
-          <strong>{selectedCourse ? selectedCourse.title : "CyberBodha programs"}</strong> has been received.
+          Thank you, <strong>{formData.fullName}</strong>.{" "}
+          {delivered ? (
+            <>
+              Your enquiry for{" "}
+              <strong>{selectedCourse ? selectedCourse.title : "CyberBodha programs"}</strong> has
+              been received.
+            </>
+          ) : (
+            <>
+              Your details for{" "}
+              <strong>{selectedCourse ? selectedCourse.title : "CyberBodha programs"}</strong> are
+              ready — send them on WhatsApp so an advisor picks this up today.
+            </>
+          )}
         </p>
+        {!delivered && (
+          <div className="mt-4 rounded-lg border border-primary/30 bg-primary/10 p-4 text-left text-xs">
+            <p className="font-semibold text-foreground">One more step to reach us today</p>
+            <p className="mt-1 text-muted-foreground">
+              Our enquiry inbox is being connected. To make sure an advisor sees your details right
+              away, send us the same message on WhatsApp.
+            </p>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex font-semibold text-primary underline"
+            >
+              Message CyberBodha on WhatsApp
+            </a>
+          </div>
+        )}
+
         <div className="mt-4 rounded-lg border border-border bg-card p-4 text-left text-xs text-muted-foreground">
           <p className="font-semibold text-foreground">What happens next?</p>
           <ul className="mt-2 list-inside list-disc space-y-1">
             <li>Our training advisors will review your learning objectives.</li>
-            <li>We will email detailed curriculum and batch schedules to <strong>{formData.email}</strong>.</li>
+            <li>
+              We will email detailed curriculum and batch schedules to{" "}
+              <strong>{formData.email}</strong>.
+            </li>
             <li>Response timeframe: typically within 1 business day.</li>
           </ul>
         </div>
@@ -296,7 +343,10 @@ export function EnquiryForm({
         </div>
 
         <div>
-          <label htmlFor="learningObjective" className="block text-xs font-semibold text-foreground mb-1">
+          <label
+            htmlFor="learningObjective"
+            className="block text-xs font-semibold text-foreground mb-1"
+          >
             Primary Learning Goal
           </label>
           <select
@@ -305,17 +355,30 @@ export function EnquiryForm({
             onChange={(e) => setFormData({ ...formData, learningObjective: e.target.value })}
             className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           >
-            <option value="Career Transition into Cybersecurity">Career Transition into Cybersecurity</option>
-            <option value="Upskilling for Current IT/Security Role">Upskilling for Current IT/Security Role</option>
-            <option value="Academic Student Building Practical Skills">Academic Student Building Practical Skills</option>
-            <option value="Corporate / Enterprise Team Training">Corporate / Enterprise Team Training</option>
-            <option value="University Lab & Curriculum Integration">University Lab & Curriculum Integration</option>
+            <option value="Career Transition into Cybersecurity">
+              Career Transition into Cybersecurity
+            </option>
+            <option value="Upskilling for Current IT/Security Role">
+              Upskilling for Current IT/Security Role
+            </option>
+            <option value="Academic Student Building Practical Skills">
+              Academic Student Building Practical Skills
+            </option>
+            <option value="Corporate / Enterprise Team Training">
+              Corporate / Enterprise Team Training
+            </option>
+            <option value="University Lab & Curriculum Integration">
+              University Lab & Curriculum Integration
+            </option>
           </select>
         </div>
       </div>
 
       <div>
-        <label htmlFor="preferredFormat" className="block text-xs font-semibold text-foreground mb-1">
+        <label
+          htmlFor="preferredFormat"
+          className="block text-xs font-semibold text-foreground mb-1"
+        >
           Preferred Training Format
         </label>
         <select
@@ -333,7 +396,8 @@ export function EnquiryForm({
 
       <div>
         <label htmlFor="message" className="block text-xs font-semibold text-foreground mb-1">
-          Specific Questions or Goals <span className="text-muted-foreground font-normal">(Optional)</span>
+          Specific Questions or Goals{" "}
+          <span className="text-muted-foreground font-normal">(Optional)</span>
         </label>
         <textarea
           id="message"

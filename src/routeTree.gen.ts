@@ -17,6 +17,7 @@ import { Route as CorporateTrainingRouteImport } from './routes/corporate-traini
 import { Route as CourseCatalogRouteImport } from './routes/course-catalog'
 import { Route as CyberRangeRouteImport } from './routes/cyber-range'
 import { Route as InstructorRouteImport } from './routes/instructor'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as UniversityProgramsRouteImport } from './routes/university-programs'
@@ -65,6 +66,11 @@ const InstructorRoute = InstructorRouteImport.update({
   path: '/instructor',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/course-catalog': typeof CourseCatalogRoute
   '/cyber-range': typeof CyberRangeRoute
   '/instructor': typeof InstructorRoute
+  '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
   '/student': typeof StudentRoute
   '/university-programs': typeof UniversityProgramsRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/course-catalog': typeof CourseCatalogRoute
   '/cyber-range': typeof CyberRangeRoute
   '/instructor': typeof InstructorRoute
+  '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
   '/student': typeof StudentRoute
   '/university-programs': typeof UniversityProgramsRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/course-catalog': typeof CourseCatalogRoute
   '/cyber-range': typeof CyberRangeRoute
   '/instructor': typeof InstructorRoute
+  '/privacy': typeof PrivacyRoute
   '/reviews': typeof ReviewsRoute
   '/student': typeof StudentRoute
   '/university-programs': typeof UniversityProgramsRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
     | '/course-catalog'
     | '/cyber-range'
     | '/instructor'
+    | '/privacy'
     | '/reviews'
     | '/student'
     | '/university-programs'
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/course-catalog'
     | '/cyber-range'
     | '/instructor'
+    | '/privacy'
     | '/reviews'
     | '/student'
     | '/university-programs'
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/course-catalog'
     | '/cyber-range'
     | '/instructor'
+    | '/privacy'
     | '/reviews'
     | '/student'
     | '/university-programs'
@@ -216,6 +228,7 @@ export interface RootRouteChildren {
   CourseCatalogRoute: typeof CourseCatalogRoute
   CyberRangeRoute: typeof CyberRangeRoute
   InstructorRoute: typeof InstructorRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReviewsRoute: typeof ReviewsRoute
   StudentRoute: typeof StudentRoute
   UniversityProgramsRoute: typeof UniversityProgramsRoute
@@ -283,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InstructorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reviews': {
       id: '/reviews'
       path: '/reviews'
@@ -344,6 +364,7 @@ const rootRouteChildren: RootRouteChildren = {
   CourseCatalogRoute: CourseCatalogRoute,
   CyberRangeRoute: CyberRangeRoute,
   InstructorRoute: InstructorRoute,
+  PrivacyRoute: PrivacyRoute,
   ReviewsRoute: ReviewsRoute,
   StudentRoute: StudentRoute,
   UniversityProgramsRoute: UniversityProgramsRoute,

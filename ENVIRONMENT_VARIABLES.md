@@ -88,3 +88,33 @@ For local testing with Wrangler, secrets are stored in `.dev.vars` in the worksp
   ```env
   APP_URL=http://localhost:3000
   ```
+
+---
+
+## 3. Lead Capture & Marketing Tags
+
+### 3.1 Enquiry storage (server side, never exposed)
+
+Enquiries are handled by a TanStack server function (`src/lib/lead-actions.ts`) that runs inside the
+same Cloudflare Worker. It uses the first source that is configured:
+
+| Priority | Binding / Variable | Type | Setup |
+| :--- | :--- | :--- | :--- |
+| 1 | `DB` | D1 binding | `npx wrangler d1 create cyberbodha-leads`, then apply `migrations/0001_leads.sql` |
+| 2 | `LEADS` | KV binding | `npx wrangler kv namespace create LEADS` |
+| 3 | `LEAD_WEBHOOK_URL` | Worker var | Any HTTPS endpoint that accepts a JSON POST (n8n, Make, CRM intake) |
+
+With none configured the form does not claim success — it shows a WhatsApp fallback and no conversion
+event is sent.
+
+### 3.2 Public build-time variables
+
+These are baked into the client bundle at build time. In GitHub Actions they are read from repository
+**Variables** (Settings → Secrets and variables → Actions → Variables), not Secrets.
+
+| Variable | Required | Purpose |
+| :--- | :--- | :--- |
+| `VITE_META_PIXEL_ID` | For Meta ads | Loads the Meta Pixel and enables `Lead` / `PageView` events |
+| `VITE_GA_MEASUREMENT_ID` | Optional | Loads GA4 with SPA pageview tracking |
+| `VITE_LEAD_ENDPOINT` | Optional | Overrides the built-in server function with an external form endpoint |
+| `VITE_FACEBOOK_DOMAIN_VERIFICATION` | Optional | Overrides the domain verification meta tag value |

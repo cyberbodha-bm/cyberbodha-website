@@ -1,4 +1,14 @@
 {
+  // Lead storage (optional). Create the resource, then uncomment the matching line and redeploy:
+  //   npx wrangler d1 create cyberbodha-leads
+  //   npx wrangler kv namespace create LEADS
+  //
+  // "d1_databases": [
+  //   { "binding": "DB", "database_name": "cyberbodha-leads", "database_id": "<paste id>" }
+  // ],
+  // "kv_namespaces": [{ "binding": "LEADS", "id": "<paste id>" }],
+  // "vars": { "LEAD_WEBHOOK_URL": "https://example.com/webhook" }
+
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "cyberbodha-learning-academy",
   "compatibility_date": "2026-11-12",

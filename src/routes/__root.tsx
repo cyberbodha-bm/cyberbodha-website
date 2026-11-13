@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AnalyticsScripts } from "../components/analytics/AnalyticsScripts";
+import { StructuredData } from "../components/seo/StructuredData";
 
 function NotFoundComponent() {
   return (
@@ -83,8 +85,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "CyberBodha | Cybersecurity Learning" },
       { name: "description", content: "Learn, practice, simulate, and certify with CyberBodha." },
       { name: "author", content: "CyberBodha" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "theme-color", content: "#0f172a" },
+      {
+        name: "facebook-domain-verification",
+        content:
+          import.meta.env.VITE_FACEBOOK_DOMAIN_VERIFICATION || "bw8kt1ra8r5rgrm22lh6t387o8j031",
+      },
+      { property: "og:site_name", content: "CyberBodha" },
+      { property: "og:locale", content: "en_IN" },
       { property: "og:title", content: "CyberBodha | Cybersecurity Learning" },
-      { property: "og:description", content: "Learn, practice, simulate, and certify with CyberBodha." },
+      {
+        property: "og:description",
+        content: "Learn, practice, simulate, and certify with CyberBodha.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/cyberbodha-logo.png" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -121,6 +135,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <StructuredData />
         <Scripts />
       </body>
     </html>
@@ -132,6 +147,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AnalyticsScripts />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
