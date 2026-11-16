@@ -14,15 +14,23 @@ Ad account **1503896524973147** · Portfolio **1457794117413274** · Page **Cybe
 | SEO | Technical SEO complete: canonicals, unique titles/descriptions, Open Graph images, JSON-LD, sitemap, robots |
 | Lead capture | Form → Cloudflare D1 table `leads`, consent required, Meta `Lead` event fired on delivery; WhatsApp button fires `Contact` |
 | Campaign 1 — Warm-Up | Switched off — not part of the launch (kept, not deleted) |
-| Campaign 2 — Leads (instant form) | Draft — **₹250/day**, Hyderabad +25 km, 21–40, interests set; ad needs posters, text and form |
+| Campaign 2 — Leads (instant form) | Draft, ready — **₹250/day**, ad `CB / Leads / CEH v13 / Tracks detailed v2` with poster, launch-offer text and form "CEH v13 — Hyderabad — v1" |
 | Campaign 3 — Retarget | Switched off until the warm audience reaches ~2,000 |
-| Campaign 4 — WhatsApp | Draft — **₹350/day**, ad set done; the ad must be recreated with poster and copy |
+| Campaign 4 — WhatsApp | Draft, ready — **₹350/day**, new ad `CB / WA / CEH v13 / DM details v2` with poster, copy and chat template; old ad switched off |
 | Payment method | **Missing** — blocks all publishing |
 | Business verification | **Unverified** — needed for WhatsApp display name and full ad review |
 
 **The launch runs two campaigns at ₹600/day: WhatsApp ₹350 and instant form ₹250.** Warm-Up, Retarget and the stray Enquiries draft are switched off, not deleted. Section 4 explains each; the click-by-click setup is `docs/META_CAMPAIGN_SETUP_CEH.md`.
 
 ---
+
+**Built on 16 Nov 2026 (drafts):**
+
+- WhatsApp ad `CB / WA / CEH v13 / DM details v2`: poster `ceh-v13-dm-details-v2.jpg`, launch-offer primary text, headline "CEH v13 + Exam Voucher · ₹45,000 Launch Offer", button Send WhatsApp message, chat template "CB CEH v13 WA chat - Nov 2026" (welcome message with fees and the voucher; pre-filled "Hi CyberBodha, I'd like the CEH v13 fees and next batch date."). This welcome message replaces the WhatsApp Business app greeting for chats started from the ad.
+- Leads ad `CB / Leads / CEH v13 / Tracks detailed v2`: poster `ceh-v13-tracks-detailed-v2.jpg`, launch-offer text, headline as above, button Apply now, form "CEH v13 — Hyderabad — v1" (greeting, 3 multiple-choice questions, email/name/phone, privacy URL, Meta's SMS verification and contact confirmation allowed, ending button Chat on WhatsApp).
+- All Advantage+ creative enhancements (music, overlays, text rewrites, touch-ups, animation) are off on both ads; AI-generated images not used.
+- `ceh-v13-tracks-comparison-v2.jpg` is uploaded but not used yet: this ad type takes one image. Run it later as a second Leads ad to compare.
+- Left for the client: payment method, then **Review and publish** with only campaigns 2 and 4 on.
 
 ## 1. The website
 
