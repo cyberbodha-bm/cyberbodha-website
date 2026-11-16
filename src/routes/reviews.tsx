@@ -15,6 +15,7 @@ import { CourseEnquiryModal } from "@/components/cyberbodha/CourseEnquiryModal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { REVIEWS, REVIEWS_AGGREGATE } from "@/data/reviews";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({
@@ -33,7 +34,9 @@ export const Route = createFileRoute("/reviews")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: absoluteUrl("/reviews") },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/reviews") }],
   }),
   component: ReviewsPage,
 });
@@ -71,14 +74,19 @@ function ReviewsPage() {
           <div className="mx-auto max-w-7xl">
             {/* Breadcrumb */}
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-              <Link to="/" className="hover:text-foreground">Home</Link>
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
               <ChevronRight className="h-3.5 w-3.5" />
               <span className="text-foreground font-medium">Reviews</span>
             </div>
 
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
               <div className="lg:col-span-7 space-y-4">
-                <Badge variant="outline" className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold">
+                <Badge
+                  variant="outline"
+                  className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold"
+                >
                   <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
                   AUTHENTIC STUDENT FEEDBACK
                 </Badge>
@@ -88,7 +96,8 @@ function ReviewsPage() {
                 </h1>
 
                 <p className="text-base text-muted-foreground leading-relaxed">
-                  Discover what learners say about their CyberBodha training experience, from hands-on practical exercises to patient, real-world mentorship.
+                  Discover what learners say about their CyberBodha training experience, from
+                  hands-on practical exercises to patient, real-world mentorship.
                 </p>
 
                 <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
@@ -126,13 +135,15 @@ function ReviewsPage() {
                     <div>
                       <StarRating rating={5} />
                       <span className="text-xs text-muted-foreground mt-1 block">
-                        Based on <strong>{REVIEWS_AGGREGATE.totalReviewsReported} reviews</strong> on {REVIEWS_AGGREGATE.sourceName}
+                        Based on <strong>{REVIEWS_AGGREGATE.totalReviewsReported} reviews</strong>{" "}
+                        on {REVIEWS_AGGREGATE.sourceName}
                       </span>
                     </div>
                   </div>
 
                   <p className="text-xs text-muted-foreground leading-relaxed pt-2 border-t border-border/80">
-                    {REVIEWS_AGGREGATE.sourceNote} The excerpts below reflect verified student submissions.
+                    {REVIEWS_AGGREGATE.sourceNote} The excerpts below reflect verified student
+                    submissions.
                   </p>
                 </div>
               </div>
@@ -190,11 +201,18 @@ function ReviewsPage() {
                         {getInitials(review.studentName)}
                       </div>
                       <div>
-                        <h3 className="text-xs font-bold text-foreground leading-snug">{review.studentName}</h3>
-                        <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">{review.course}</p>
+                        <h3 className="text-xs font-bold text-foreground leading-snug">
+                          {review.studentName}
+                        </h3>
+                        <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">
+                          {review.course}
+                        </p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="text-[10px] text-muted-foreground border-border/80 shrink-0">
+                    <Badge
+                      variant="outline"
+                      className="text-[10px] text-muted-foreground border-border/80 shrink-0"
+                    >
                       via {review.source}
                     </Badge>
                   </div>
@@ -212,16 +230,24 @@ function ReviewsPage() {
                 How CyberBodha Manages Student Reviews
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                We believe in complete transparency. CyberBodha does not fabricate testimonials, generate artificial ratings, or solicit incentivized reviews. The reviews showcased on this page are verbatim submissions from learners registered through our profile on UrbanPro (120 total reviews, 5.0/5 average rating). As additional batches complete their practical examinations, new verified reviews are added with full attribution.
+                We believe in complete transparency. CyberBodha does not fabricate testimonials,
+                generate artificial ratings, or solicit incentivized reviews. The reviews showcased
+                on this page are verbatim submissions from learners registered through our profile
+                on UrbanPro (120 total reviews, 5.0/5 average rating). As additional batches
+                complete their practical examinations, new verified reviews are added with full
+                attribution.
               </p>
             </div>
 
             {/* Bottom Call to Action */}
             <div className="rounded-2xl border border-primary/20 bg-gradient-to-r from-card via-card to-primary/5 p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="space-y-2 max-w-xl">
-                <h3 className="text-xl font-bold text-foreground">Ready to start your cybersecurity learning journey?</h3>
+                <h3 className="text-xl font-bold text-foreground">
+                  Ready to start your cybersecurity learning journey?
+                </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Join a community of learners mastering SOC operations, threat intelligence, ethical hacking, and practical cyber range defense.
+                  Join a community of learners mastering SOC operations, threat intelligence,
+                  ethical hacking, and practical cyber range defense.
                 </p>
               </div>
               <div className="flex shrink-0 flex-wrap gap-3">
@@ -233,11 +259,7 @@ function ReviewsPage() {
                 </Button>
                 <CourseEnquiryModal
                   sourceContext="Reviews Page Bottom CTA"
-                  trigger={
-                    <Button variant="outline">
-                      Enquire About Training
-                    </Button>
-                  }
+                  trigger={<Button variant="outline">Enquire About Training</Button>}
                 />
               </div>
             </div>

@@ -6,17 +6,27 @@ import { CourseEnquiryModal } from "@/components/cyberbodha/CourseEnquiryModal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PROGRAMS } from "@/data/programs";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/programs/")({
   head: () => ({
     meta: [
       { title: "Cybersecurity Programs & Learning Pathways | CyberBodha" },
-      { name: "description", content: "Explore structured cybersecurity career tracks designed for aspiring SOC Analysts, Ethical Hackers, VAPT Specialists, and Cloud Security Engineers." },
+      {
+        name: "description",
+        content:
+          "Explore structured cybersecurity career tracks designed for aspiring SOC Analysts, Ethical Hackers, VAPT Specialists, and Cloud Security Engineers.",
+      },
       { property: "og:title", content: "Cybersecurity Programs & Learning Pathways | CyberBodha" },
-      { property: "og:description", content: "Structured cybersecurity pathways with hands-on cyber range labs." },
+      {
+        property: "og:description",
+        content: "Structured cybersecurity pathways with hands-on cyber range labs.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: absoluteUrl("/programs") },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/programs") }],
   }),
   component: ProgramsOverviewPage,
 });
@@ -32,7 +42,9 @@ function ProgramsOverviewPage() {
           <div className="mx-auto max-w-7xl">
             {/* Breadcrumb */}
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-              <Link to="/" className="hover:text-foreground">Home</Link>
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
               <ChevronRight className="h-3.5 w-3.5" />
               <span className="text-foreground font-medium">Programs</span>
             </div>
@@ -46,7 +58,9 @@ function ProgramsOverviewPage() {
                 Structured Cybersecurity Programs
               </h1>
               <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-                Whether you are starting from zero or sharpening specialized enterprise skills, our career tracks connect foundational systems knowledge to high-stakes cyber range defense.
+                Whether you are starting from zero or sharpening specialized enterprise skills, our
+                career tracks connect foundational systems knowledge to high-stakes cyber range
+                defense.
               </p>
             </div>
           </div>
@@ -63,7 +77,10 @@ function ProgramsOverviewPage() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <Badge variant="outline" className="text-[11px] font-semibold border-primary/20 text-primary bg-primary/5">
+                      <Badge
+                        variant="outline"
+                        className="text-[11px] font-semibold border-primary/20 text-primary bg-primary/5"
+                      >
                         {program.category}
                       </Badge>
                       <Badge variant="secondary" className="text-[10px]">
@@ -77,9 +94,7 @@ function ProgramsOverviewPage() {
                       </Link>
                     </h2>
 
-                    <p className="text-xs font-medium text-primary">
-                      {program.subtitle}
-                    </p>
+                    <p className="text-xs font-medium text-primary">{program.subtitle}</p>
 
                     <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
                       {program.overview}
@@ -104,7 +119,12 @@ function ProgramsOverviewPage() {
                   </div>
 
                   <div className="mt-8 pt-4 border-t border-border/70 flex items-center justify-between">
-                    <Button asChild variant="ghost" size="sm" className="gap-1.5 text-xs text-primary hover:text-primary hover:bg-primary/10 -ml-2">
+                    <Button
+                      asChild
+                      variant="ghost"
+                      size="sm"
+                      className="gap-1.5 text-xs text-primary hover:text-primary hover:bg-primary/10 -ml-2"
+                    >
                       <Link to="/programs/$slug" params={{ slug: program.slug }}>
                         <span>Explore Program Track</span>
                         <ArrowRight className="h-3.5 w-3.5" />
@@ -134,7 +154,9 @@ function ProgramsOverviewPage() {
                   Experience Real Threat Telemetry Before Your First Job Shift
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Every CyberBodha program is powered by our proprietary virtual Cyber Range. Learners analyze real attack traffic, correlate events in Wazuh/Splunk, and defend active directory infrastructures.
+                  Every CyberBodha program is powered by our proprietary virtual Cyber Range.
+                  Learners analyze real attack traffic, correlate events in Wazuh/Splunk, and defend
+                  active directory infrastructures.
                 </p>
               </div>
               <div className="flex shrink-0 flex-wrap gap-3">
@@ -143,11 +165,7 @@ function ProgramsOverviewPage() {
                 </Button>
                 <CourseEnquiryModal
                   sourceContext="Programs Bottom Consultation"
-                  trigger={
-                    <Button variant="outline">
-                      Schedule Consultation
-                    </Button>
-                  }
+                  trigger={<Button variant="outline">Schedule Consultation</Button>}
                 />
               </div>
             </div>

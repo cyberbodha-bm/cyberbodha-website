@@ -22,6 +22,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getProgramBySlug, type Program } from "@/data/programs";
 import { getCourseBySlug, type Course } from "@/data/courses";
+import { ProgramSchema } from "@/components/seo/ProgramSchema";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/programs/$slug")({
   loader: ({ params }) => {
@@ -41,8 +43,17 @@ export const Route = createFileRoute("/programs/$slug")({
         { property: "og:title", content: `${program.title} | CyberBodha Programs` },
         { property: "og:description", content: program.overview },
         { property: "og:type", content: "website" },
+        { property: "og:url", content: absoluteUrl(`/programs/${program.slug}`) },
+        {
+          property: "og:image",
+          content:
+            program.slug === "ethical-hacking"
+              ? absoluteUrl("/og/ceh-v13-og.png")
+              : absoluteUrl("/og/cyberbodha-og.png"),
+        },
         { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/programs/${program.slug}`) }],
     };
   },
   notFoundComponent: ProgramNotFound,
@@ -85,6 +96,7 @@ function ProgramDetailPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <ProgramSchema program={program} />
       <AcademyHeader />
 
       <main className="flex-1 pb-20">

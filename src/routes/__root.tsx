@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AnalyticsScripts } from "../components/analytics/AnalyticsScripts";
 import { StructuredData } from "../components/seo/StructuredData";
+import { SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -100,10 +101,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Learn, practice, simulate, and certify with CyberBodha.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/cyberbodha-logo.png" },
+      { property: "og:image", content: `${SITE_URL}/og/cyberbodha-og.png` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@CyberBodha" },
-      { name: "twitter:image", content: "/cyberbodha-logo.png" },
+      { name: "twitter:image", content: `${SITE_URL}/og/cyberbodha-og.png` },
     ],
     links: [
       {

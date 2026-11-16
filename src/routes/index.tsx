@@ -34,6 +34,7 @@ import { Button } from "@/components/ui/button";
 import { COURSES, COURSE_CATEGORIES, getFeaturedCourses } from "@/data/courses";
 import { RANGE_LABS } from "@/data/cyber-range";
 import { REVIEWS } from "@/data/reviews";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,7 +53,9 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: absoluteUrl("/") },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: AcademyHome,
 });
@@ -66,10 +69,23 @@ export function AcademyHome() {
       title: "Start Your Cybersecurity Career",
       badge: "Foundations Track",
       audience: "Complete beginners, students, and IT professionals transitioning to security.",
-      skills: ["Linux System Administration", "TCP/IP & Packet Analysis", "Windows Defense", "Security Foundations"],
+      skills: [
+        "Linux System Administration",
+        "TCP/IP & Packet Analysis",
+        "Windows Defense",
+        "Security Foundations",
+      ],
       recommendedCourses: [
-        { title: "Linux & Networking for Cybersecurity", to: "/courses/$slug" as const, params: { slug: "linux-networking-cybersecurity" } },
-        { title: "Cybersecurity Career Accelerator", to: "/courses/$slug" as const, params: { slug: "cybersecurity-career-accelerator" } },
+        {
+          title: "Linux & Networking for Cybersecurity",
+          to: "/courses/$slug" as const,
+          params: { slug: "linux-networking-cybersecurity" },
+        },
+        {
+          title: "Cybersecurity Career Accelerator",
+          to: "/courses/$slug" as const,
+          params: { slug: "cybersecurity-career-accelerator" },
+        },
       ],
       progression: "Prepares you for entry-level Junior Security Analyst or Junior SOC roles.",
       to: "/programs/$slug" as const,
@@ -81,12 +97,26 @@ export function AcademyHome() {
       title: "Become a SOC Analyst",
       badge: "Blue Team Track",
       audience: "Aspiring security analysts, Tier 1/2 operators, and network administrators.",
-      skills: ["Alert Triage & Prioritization", "SIEM Investigation (Wazuh/Splunk)", "Sysmon Endpoint Telemetry", "MITRE ATT&CK Mapping"],
-      recommendedCourses: [
-        { title: "SOC Analyst Professional Program", to: "/courses/$slug" as const, params: { slug: "soc-analyst-professional" } },
-        { title: "SIEM Engineering & Operations", to: "/courses/$slug" as const, params: { slug: "siem-engineering-operations" } },
+      skills: [
+        "Alert Triage & Prioritization",
+        "SIEM Investigation (Wazuh/Splunk)",
+        "Sysmon Endpoint Telemetry",
+        "MITRE ATT&CK Mapping",
       ],
-      progression: "Prepares you for Tier 1 / Tier 2 SOC Analyst and Incident Response specialist roles.",
+      recommendedCourses: [
+        {
+          title: "SOC Analyst Professional Program",
+          to: "/courses/$slug" as const,
+          params: { slug: "soc-analyst-professional" },
+        },
+        {
+          title: "SIEM Engineering & Operations",
+          to: "/courses/$slug" as const,
+          params: { slug: "siem-engineering-operations" },
+        },
+      ],
+      progression:
+        "Prepares you for Tier 1 / Tier 2 SOC Analyst and Incident Response specialist roles.",
       to: "/programs/$slug" as const,
       params: { slug: "soc-analyst" },
       icon: ShieldCheck,
@@ -96,10 +126,23 @@ export function AcademyHome() {
       title: "Master Ethical Hacking & VAPT",
       badge: "Offensive Track",
       audience: "Penetration testers, security auditors, and developers building secure systems.",
-      skills: ["Authorized Reconnaissance & OSINT", "Vulnerability Validation", "OWASP Web Security", "Audit-Ready VAPT Reporting"],
+      skills: [
+        "Authorized Reconnaissance & OSINT",
+        "Vulnerability Validation",
+        "OWASP Web Security",
+        "Audit-Ready VAPT Reporting",
+      ],
       recommendedCourses: [
-        { title: "CEH v13 AI Ethical Hacking", to: "/courses/$slug" as const, params: { slug: "ceh-v13-ai-ethical-hacking" } },
-        { title: "VAPT Professional Program", to: "/courses/$slug" as const, params: { slug: "vapt-professional" } },
+        {
+          title: "CEH v13 AI Ethical Hacking",
+          to: "/courses/$slug" as const,
+          params: { slug: "ceh-v13-ai-ethical-hacking" },
+        },
+        {
+          title: "VAPT Professional Program",
+          to: "/courses/$slug" as const,
+          params: { slug: "vapt-professional" },
+        },
       ],
       progression: "Prepares you for Ethical Hacker, Junior Penetration Tester, and AppSec roles.",
       to: "/programs/$slug" as const,
@@ -111,12 +154,26 @@ export function AcademyHome() {
       title: "Advance into Security Engineering",
       badge: "Engineering Track",
       audience: "Experienced analysts, infrastructure engineers, and systems architects.",
-      skills: ["SIEM Pipeline Ingestion", "Detection as Code with Sigma", "Log Normalization & CIM", "Cloud Security Telemetry"],
-      recommendedCourses: [
-        { title: "SIEM Engineering & Detection Operations", to: "/courses/$slug" as const, params: { slug: "siem-engineering-operations" } },
-        { title: "SOC Analyst Professional Program", to: "/courses/$slug" as const, params: { slug: "soc-analyst-professional" } },
+      skills: [
+        "SIEM Pipeline Ingestion",
+        "Detection as Code with Sigma",
+        "Log Normalization & CIM",
+        "Cloud Security Telemetry",
       ],
-      progression: "Prepares you for Detection Engineer, SIEM Administrator, and Cloud Security roles.",
+      recommendedCourses: [
+        {
+          title: "SIEM Engineering & Detection Operations",
+          to: "/courses/$slug" as const,
+          params: { slug: "siem-engineering-operations" },
+        },
+        {
+          title: "SOC Analyst Professional Program",
+          to: "/courses/$slug" as const,
+          params: { slug: "soc-analyst-professional" },
+        },
+      ],
+      progression:
+        "Prepares you for Detection Engineer, SIEM Administrator, and Cloud Security roles.",
       to: "/courses/$slug" as const,
       params: { slug: "siem-engineering-operations" },
       icon: Cpu,
@@ -157,12 +214,36 @@ export function AcademyHome() {
   ];
 
   const learningSteps = [
-    { step: "01", title: "Explore", desc: "Identify your target security role and diagnostic prerequisites." },
-    { step: "02", title: "Learn", desc: "Absorb core protocols, frameworks, and architectural principles." },
-    { step: "03", title: "Practice", desc: "Execute guided exercises inside virtual lab environments." },
-    { step: "04", title: "Assess", desc: "Solve unassisted scenarios under simulated shift conditions." },
-    { step: "05", title: "Build Skills", desc: "Document findings, compile incident reports, and refine detections." },
-    { step: "06", title: "Advance", desc: "Showcase verified capability to employers with a technical portfolio." },
+    {
+      step: "01",
+      title: "Explore",
+      desc: "Identify your target security role and diagnostic prerequisites.",
+    },
+    {
+      step: "02",
+      title: "Learn",
+      desc: "Absorb core protocols, frameworks, and architectural principles.",
+    },
+    {
+      step: "03",
+      title: "Practice",
+      desc: "Execute guided exercises inside virtual lab environments.",
+    },
+    {
+      step: "04",
+      title: "Assess",
+      desc: "Solve unassisted scenarios under simulated shift conditions.",
+    },
+    {
+      step: "05",
+      title: "Build Skills",
+      desc: "Document findings, compile incident reports, and refine detections.",
+    },
+    {
+      step: "06",
+      title: "Advance",
+      desc: "Showcase verified capability to employers with a technical portfolio.",
+    },
   ];
 
   return (
@@ -187,7 +268,8 @@ export function AcademyHome() {
                 </h1>
 
                 <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                  Build real cybersecurity capabilities through expert-led training, practical labs, industry scenarios, and structured learning pathways.
+                  Build real cybersecurity capabilities through expert-led training, practical labs,
+                  industry scenarios, and structured learning pathways.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -197,7 +279,12 @@ export function AcademyHome() {
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="h-12 px-6 gap-2 text-sm font-semibold">
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="h-12 px-6 gap-2 text-sm font-semibold"
+                  >
                     <Link to="/cyber-range">
                       <span>Explore Cyber Range</span>
                       <ArrowUpRight className="h-4 w-4" />
@@ -239,10 +326,15 @@ export function AcademyHome() {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-foreground">Interactive Cyber Range</p>
-                        <span className="text-[11px] text-muted-foreground">Simulated SOC triage & VAPT environments</span>
+                        <span className="text-[11px] text-muted-foreground">
+                          Simulated SOC triage & VAPT environments
+                        </span>
                       </div>
                     </div>
-                    <Badge variant="secondary" className="text-[10px] bg-primary/10 text-primary border-primary/20 shrink-0">
+                    <Badge
+                      variant="secondary"
+                      className="text-[10px] bg-primary/10 text-primary border-primary/20 shrink-0"
+                    >
                       LIVE LABS
                     </Badge>
                   </div>
@@ -264,7 +356,8 @@ export function AcademyHome() {
                   Find Your Path from Curiosity to Capability
                 </h2>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Four proven learning sequences designed to build role-specific capability step-by-step.
+                  Four proven learning sequences designed to build role-specific capability
+                  step-by-step.
                 </p>
               </div>
               <Button asChild variant="outline" size="sm">
@@ -301,15 +394,22 @@ export function AcademyHome() {
                       </div>
 
                       <div className="space-y-1 text-xs">
-                        <span className="font-semibold text-foreground text-[11px] block">Target Audience:</span>
+                        <span className="font-semibold text-foreground text-[11px] block">
+                          Target Audience:
+                        </span>
                         <p className="text-muted-foreground leading-relaxed">{path.audience}</p>
                       </div>
 
                       <div className="space-y-1.5 pt-2 border-t border-border/80 text-xs">
-                        <span className="font-semibold text-foreground text-[11px] block">Skills Developed:</span>
+                        <span className="font-semibold text-foreground text-[11px] block">
+                          Skills Developed:
+                        </span>
                         <div className="flex flex-wrap gap-1">
                           {path.skills.map((s) => (
-                            <span key={s} className="rounded bg-secondary px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                            <span
+                              key={s}
+                              className="rounded bg-secondary px-1.5 py-0.5 text-[10px] text-muted-foreground"
+                            >
                               {s}
                             </span>
                           ))}
@@ -317,13 +417,22 @@ export function AcademyHome() {
                       </div>
 
                       <div className="space-y-1 pt-2 border-t border-border/80 text-xs">
-                        <span className="font-semibold text-foreground text-[11px] block">Progression Direction:</span>
-                        <p className="text-muted-foreground leading-relaxed text-[11px]">{path.progression}</p>
+                        <span className="font-semibold text-foreground text-[11px] block">
+                          Progression Direction:
+                        </span>
+                        <p className="text-muted-foreground leading-relaxed text-[11px]">
+                          {path.progression}
+                        </p>
                       </div>
                     </div>
 
                     <div className="pt-6 border-t border-border/80 mt-6">
-                      <Button asChild variant="ghost" size="sm" className="w-full justify-between text-xs text-primary hover:text-primary hover:bg-primary/10 px-2">
+                      <Button
+                        asChild
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-between text-xs text-primary hover:text-primary hover:bg-primary/10 px-2"
+                      >
                         <Link to={path.to} params={path.params}>
                           <span>Explore Pathway</span>
                           <ArrowRight className="h-3.5 w-3.5" />
@@ -338,7 +447,10 @@ export function AcademyHome() {
         </section>
 
         {/* Section 4: Featured Courses */}
-        <section className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border bg-card/40" id="catalog">
+        <section
+          className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border bg-card/40"
+          id="catalog"
+        >
           <div className="mx-auto max-w-7xl space-y-10">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div className="max-w-2xl space-y-2">
@@ -349,7 +461,8 @@ export function AcademyHome() {
                   Flagship Cybersecurity Courses
                 </h2>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Rigorous, instructor-led technical offerings with live virtual range lab environments.
+                  Rigorous, instructor-led technical offerings with live virtual range lab
+                  environments.
                 </p>
               </div>
               <Button asChild className="gap-2">
@@ -372,10 +485,15 @@ export function AcademyHome() {
         <section className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border">
           <div className="mx-auto max-w-7xl space-y-12">
             <div className="text-center max-w-2xl mx-auto space-y-3">
-              <p className="text-xs font-bold uppercase tracking-wider text-primary">THE CYBERBODHA METHODOLOGY</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Why Learn with CyberBodha</h2>
+              <p className="text-xs font-bold uppercase tracking-wider text-primary">
+                THE CYBERBODHA METHODOLOGY
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+                Why Learn with CyberBodha
+              </h2>
               <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                We believe security capability is proven in the terminal, not in multiple-choice memory drills.
+                We believe security capability is proven in the terminal, not in multiple-choice
+                memory drills.
               </p>
             </div>
 
@@ -383,7 +501,10 @@ export function AcademyHome() {
               {methodologyPoints.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="rounded-2xl border border-border bg-card p-6 space-y-3 hover:border-primary/50 transition-colors">
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-border bg-card p-6 space-y-3 hover:border-primary/50 transition-colors"
+                  >
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
@@ -436,12 +557,17 @@ export function AcademyHome() {
                   >
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1 text-amber-500" aria-label={`${review.rating} out of 5 stars`}>
+                        <div
+                          className="flex items-center gap-1 text-amber-500"
+                          aria-label={`${review.rating} out of 5 stars`}
+                        >
                           {Array.from({ length: 5 }).map((_, i) => (
                             <Star
                               key={i}
                               className={`h-3.5 w-3.5 ${
-                                i < review.rating ? "fill-amber-400 text-amber-400" : "text-muted-foreground/30"
+                                i < review.rating
+                                  ? "fill-amber-400 text-amber-400"
+                                  : "text-muted-foreground/30"
                               }`}
                             />
                           ))}
@@ -466,11 +592,18 @@ export function AcademyHome() {
                           {initials}
                         </div>
                         <div>
-                          <h3 className="text-xs font-bold text-foreground leading-tight">{review.studentName}</h3>
-                          <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">{review.course}</p>
+                          <h3 className="text-xs font-bold text-foreground leading-tight">
+                            {review.studentName}
+                          </h3>
+                          <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">
+                            {review.course}
+                          </p>
                         </div>
                       </div>
-                      <Badge variant="outline" className="text-[10px] text-muted-foreground border-border/80">
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] text-muted-foreground border-border/80"
+                      >
                         via {review.source}
                       </Badge>
                     </div>
@@ -482,16 +615,22 @@ export function AcademyHome() {
         </section>
 
         {/* Section 6: Cyber Range Preview */}
-        <section className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border bg-gradient-to-b from-card to-background" id="cyber-range">
+        <section
+          className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border bg-gradient-to-b from-card to-background"
+          id="cyber-range"
+        >
           <div className="mx-auto max-w-7xl space-y-10">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div className="max-w-2xl space-y-2">
-                <p className="text-xs font-bold uppercase tracking-wider text-primary">VIRTUAL CYBER RANGE</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-primary">
+                  VIRTUAL CYBER RANGE
+                </p>
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
                   Simulated Environments. Real Adversarial Telemetry.
                 </h2>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Step into realistic corporate networks, analyze multi-stage intrusions, and isolate threats under simulated operational conditions.
+                  Step into realistic corporate networks, analyze multi-stage intrusions, and
+                  isolate threats under simulated operational conditions.
                 </p>
               </div>
               <Button asChild variant="outline" className="gap-2">
@@ -504,12 +643,20 @@ export function AcademyHome() {
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {RANGE_LABS.slice(0, 3).map((lab) => (
-                <div key={lab.id} className="rounded-2xl border border-border bg-card p-6 space-y-4 shadow-sm">
+                <div
+                  key={lab.id}
+                  className="rounded-2xl border border-border bg-card p-6 space-y-4 shadow-sm"
+                >
                   <div className="flex items-center justify-between">
-                    <Badge variant="outline" className="text-[11px] font-semibold border-primary/20 text-primary bg-primary/5">
+                    <Badge
+                      variant="outline"
+                      className="text-[11px] font-semibold border-primary/20 text-primary bg-primary/5"
+                    >
                       {lab.category}
                     </Badge>
-                    <span className="text-[11px] text-muted-foreground">{lab.estimatedMinutes} min</span>
+                    <span className="text-[11px] text-muted-foreground">
+                      {lab.estimatedMinutes} min
+                    </span>
                   </div>
                   <h3 className="text-base font-bold text-foreground">{lab.title}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
@@ -517,7 +664,10 @@ export function AcademyHome() {
                   </p>
                   <div className="pt-2 border-t border-border flex flex-wrap gap-1.5">
                     {lab.toolsUsed.slice(0, 3).map((tool) => (
-                      <span key={tool} className="rounded bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground font-medium">
+                      <span
+                        key={tool}
+                        className="rounded bg-secondary px-2 py-0.5 text-[10px] text-secondary-foreground font-medium"
+                      >
                         {tool}
                       </span>
                     ))}
@@ -527,7 +677,8 @@ export function AcademyHome() {
             </div>
 
             <div className="rounded-xl border border-border/80 bg-background/50 p-4 text-center text-xs text-muted-foreground">
-              Note: Cyber Range environments are educational simulation sandboxes isolated from production systems.
+              Note: Cyber Range environments are educational simulation sandboxes isolated from
+              production systems.
             </div>
           </div>
         </section>
@@ -536,10 +687,15 @@ export function AcademyHome() {
         <section className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border" id="training">
           <div className="mx-auto max-w-7xl space-y-12">
             <div className="text-center max-w-2xl mx-auto space-y-2">
-              <p className="text-xs font-bold uppercase tracking-wider text-primary">FOR EVERY CYBERSECURITY STAKEHOLDER</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Programs Built for Real Audiences</h2>
+              <p className="text-xs font-bold uppercase tracking-wider text-primary">
+                FOR EVERY CYBERSECURITY STAKEHOLDER
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+                Programs Built for Real Audiences
+              </h2>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                Tailored delivery models for career aspirants, academic institutions, and corporate security teams.
+                Tailored delivery models for career aspirants, academic institutions, and corporate
+                security teams.
               </p>
             </div>
 
@@ -550,14 +706,23 @@ export function AcademyHome() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                     <Users className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground">Individuals & Career Aspirants</h3>
+                  <h3 className="text-lg font-bold text-foreground">
+                    Individuals & Career Aspirants
+                  </h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Build job-ready capabilities in SOC analysis, ethical hacking, and systems defense through instructor-led weekend batches and cyber range access.
+                    Build job-ready capabilities in SOC analysis, ethical hacking, and systems
+                    defense through instructor-led weekend batches and cyber range access.
                   </p>
                   <ul className="space-y-1.5 text-xs text-foreground/90 pt-2">
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Live instructor mentorship</li>
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Hands-on virtual labs</li>
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Interview & portfolio guidance</li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Live instructor mentorship
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Hands-on virtual labs
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Interview & portfolio guidance
+                    </li>
                   </ul>
                 </div>
                 <Button asChild className="w-full justify-center text-xs">
@@ -566,19 +731,29 @@ export function AcademyHome() {
               </div>
 
               {/* Universities */}
-              <div className="flex flex-col justify-between rounded-2xl border border-primary/30 bg-primary/5 p-7 space-y-6" id="universities">
+              <div
+                className="flex flex-col justify-between rounded-2xl border border-primary/30 bg-primary/5 p-7 space-y-6"
+                id="universities"
+              >
                 <div className="space-y-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                     <GraduationCap className="h-5 w-5" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground">Universities & Colleges</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Integrate practical Cyber Range laboratories, semester curriculum modules, and faculty enablement into engineering and computer science programs.
+                    Integrate practical Cyber Range laboratories, semester curriculum modules, and
+                    faculty enablement into engineering and computer science programs.
                   </p>
                   <ul className="space-y-1.5 text-xs text-foreground/90 pt-2">
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Turn-key cloud lab pods</li>
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Semester-aligned curriculum</li>
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Faculty enablement workshops</li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Turn-key cloud lab pods
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Semester-aligned curriculum
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Faculty enablement workshops
+                    </li>
                   </ul>
                 </div>
                 <Button asChild variant="outline" className="w-full justify-center text-xs">
@@ -592,14 +767,23 @@ export function AcademyHome() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                     <Building2 className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground">Corporate Teams & Enterprises</h3>
+                  <h3 className="text-lg font-bold text-foreground">
+                    Corporate Teams & Enterprises
+                  </h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">
-                    Upskill your security operations center, SIEM engineering, and penetration testing staff with customized cohort tracks and diagnostic benchmarking.
+                    Upskill your security operations center, SIEM engineering, and penetration
+                    testing staff with customized cohort tracks and diagnostic benchmarking.
                   </p>
                   <ul className="space-y-1.5 text-xs text-foreground/90 pt-2">
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Custom tool alignment</li>
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Pre/post skill gap audits</li>
-                    <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-primary" /> Dedicated private cohorts</li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Custom tool alignment
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Pre/post skill gap audits
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-3.5 w-3.5 text-primary" /> Dedicated private cohorts
+                    </li>
                   </ul>
                 </div>
                 <Button asChild variant="outline" className="w-full justify-center text-xs">
@@ -614,7 +798,9 @@ export function AcademyHome() {
         <section className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border bg-card/30">
           <div className="mx-auto max-w-7xl space-y-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-primary">BROWSE BY DOMAIN</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-primary">
+                BROWSE BY DOMAIN
+              </p>
               <h2 className="text-2xl font-bold text-foreground mt-1">Course Categories</h2>
             </div>
 
@@ -644,16 +830,24 @@ export function AcademyHome() {
         <section className="px-4 py-16 sm:px-6 lg:px-8 border-b border-border">
           <div className="mx-auto max-w-7xl space-y-12">
             <div className="text-center max-w-2xl mx-auto space-y-2">
-              <p className="text-xs font-bold uppercase tracking-wider text-primary">PROVEN METHODOLOGY</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Your Learning Journey</h2>
+              <p className="text-xs font-bold uppercase tracking-wider text-primary">
+                PROVEN METHODOLOGY
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+                Your Learning Journey
+              </h2>
               <p className="text-xs sm:text-sm text-muted-foreground">
-                How our students progress from concept understanding to verified operational readiness.
+                How our students progress from concept understanding to verified operational
+                readiness.
               </p>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {learningSteps.map((step) => (
-                <div key={step.step} className="rounded-xl border border-border bg-card p-4 space-y-2 text-center">
+                <div
+                  key={step.step}
+                  className="rounded-xl border border-border bg-card p-4 space-y-2 text-center"
+                >
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
                     {step.step}
                   </span>
@@ -666,35 +860,61 @@ export function AcademyHome() {
         </section>
 
         {/* Section: Role Portals Demo Access */}
-        <section className="px-4 py-14 sm:px-6 lg:px-8 border-b border-border bg-card/20" id="about">
+        <section
+          className="px-4 py-14 sm:px-6 lg:px-8 border-b border-border bg-card/20"
+          id="about"
+        >
           <div className="mx-auto max-w-7xl space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <span className="text-xs font-bold text-primary uppercase tracking-wider">LEARNING PLATFORM ENTRY</span>
-                <h2 className="text-xl font-bold text-foreground mt-0.5">Role-Based Learning Workspaces</h2>
+                <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                  LEARNING PLATFORM ENTRY
+                </span>
+                <h2 className="text-xl font-bold text-foreground mt-0.5">
+                  Role-Based Learning Workspaces
+                </h2>
               </div>
               <span className="text-xs text-muted-foreground">Preview illustrative dashboards</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Link to="/student" className="rounded-xl border border-border bg-card p-5 hover:border-primary/50 transition-colors flex items-center justify-between">
+              <Link
+                to="/student"
+                className="rounded-xl border border-border bg-card p-5 hover:border-primary/50 transition-colors flex items-center justify-between"
+              >
                 <div>
-                  <strong className="text-sm font-bold text-foreground block">Student Portal</strong>
-                  <span className="text-xs text-muted-foreground">Active learning, courses & range labs</span>
+                  <strong className="text-sm font-bold text-foreground block">
+                    Student Portal
+                  </strong>
+                  <span className="text-xs text-muted-foreground">
+                    Active learning, courses & range labs
+                  </span>
                 </div>
                 <ArrowUpRight className="h-4 w-4 text-primary shrink-0" />
               </Link>
-              <Link to="/instructor" className="rounded-xl border border-border bg-card p-5 hover:border-primary/50 transition-colors flex items-center justify-between">
+              <Link
+                to="/instructor"
+                className="rounded-xl border border-border bg-card p-5 hover:border-primary/50 transition-colors flex items-center justify-between"
+              >
                 <div>
-                  <strong className="text-sm font-bold text-foreground block">Instructor Portal</strong>
-                  <span className="text-xs text-muted-foreground">Curriculum, batches & grading</span>
+                  <strong className="text-sm font-bold text-foreground block">
+                    Instructor Portal
+                  </strong>
+                  <span className="text-xs text-muted-foreground">
+                    Curriculum, batches & grading
+                  </span>
                 </div>
                 <ArrowUpRight className="h-4 w-4 text-primary shrink-0" />
               </Link>
-              <Link to="/admin" className="rounded-xl border border-border bg-card p-5 hover:border-primary/50 transition-colors flex items-center justify-between">
+              <Link
+                to="/admin"
+                className="rounded-xl border border-border bg-card p-5 hover:border-primary/50 transition-colors flex items-center justify-between"
+              >
                 <div>
                   <strong className="text-sm font-bold text-foreground block">Admin Portal</strong>
-                  <span className="text-xs text-muted-foreground">Cohorts, learners & platform settings</span>
+                  <span className="text-xs text-muted-foreground">
+                    Cohorts, learners & platform settings
+                  </span>
                 </div>
                 <ArrowUpRight className="h-4 w-4 text-primary shrink-0" />
               </Link>
@@ -703,13 +923,17 @@ export function AcademyHome() {
         </section>
 
         {/* Section 10: Call to Action */}
-        <section className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-card to-background text-center" id="contact">
+        <section
+          className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-card to-background text-center"
+          id="contact"
+        >
           <div className="mx-auto max-w-3xl space-y-6">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
               Your cybersecurity journey starts here.
             </h2>
             <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Build the confidence to meet today’s security challenges with expert guidance, hands-on practice, and verified skills.
+              Build the confidence to meet today’s security challenges with expert guidance,
+              hands-on practice, and verified skills.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
               <Button asChild size="lg" className="h-11 px-6 text-sm font-semibold">

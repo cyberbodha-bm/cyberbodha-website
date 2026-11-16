@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { absoluteUrl } from "@/lib/site";
 import {
   ArrowRight,
   BookOpen,
@@ -49,8 +50,10 @@ export const Route = createFileRoute("/courses/$slug")({
         { property: "og:title", content: `${course.title} | CyberBodha Academy` },
         { property: "og:description", content: course.shortDescription },
         { property: "og:type", content: "website" },
+        { property: "og:url", content: absoluteUrl(`/courses/${course.slug}`) },
         { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/courses/${course.slug}`) }],
     };
   },
   notFoundComponent: CourseNotFound,

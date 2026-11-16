@@ -16,6 +16,7 @@ import { CourseEnquiryModal } from "@/components/cyberbodha/CourseEnquiryModal";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { COURSES, COURSE_CATEGORIES, type CourseCategory, type CourseLevel } from "@/data/courses";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/courses/")({
   head: () => ({
@@ -34,7 +35,9 @@ export const Route = createFileRoute("/courses/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: absoluteUrl("/courses") },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/courses") }],
   }),
   component: CourseCatalogPage,
 });

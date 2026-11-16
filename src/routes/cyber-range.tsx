@@ -21,17 +21,28 @@ import { CourseEnquiryModal } from "@/components/cyberbodha/CourseEnquiryModal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { RANGE_LABS, type RangeLab } from "@/data/cyber-range";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/cyber-range")({
   head: () => ({
     meta: [
       { title: "Virtual Cyber Range Showcase | CyberBodha" },
-      { name: "description", content: "Explore CyberBodha's virtual Cyber Range labs. Practice SOC alert triage, SIEM investigation, VAPT, Active Directory defense, and incident response." },
+      {
+        name: "description",
+        content:
+          "Explore CyberBodha's virtual Cyber Range labs. Practice SOC alert triage, SIEM investigation, VAPT, Active Directory defense, and incident response.",
+      },
       { property: "og:title", content: "Virtual Cyber Range Showcase | CyberBodha" },
-      { property: "og:description", content: "Interactive virtual labs for SOC analysts, penetration testers, and security engineers." },
+      {
+        property: "og:description",
+        content:
+          "Interactive virtual labs for SOC analysts, penetration testers, and security engineers.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: absoluteUrl("/cyber-range") },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/cyber-range") }],
   }),
   component: CyberRangePage,
 });
@@ -56,13 +67,18 @@ function CyberRangePage() {
           <div className="mx-auto max-w-7xl">
             {/* Breadcrumb */}
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-              <Link to="/" className="hover:text-foreground">Home</Link>
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
               <ChevronRight className="h-3.5 w-3.5" />
               <span className="text-foreground font-medium">Cyber Range</span>
             </div>
 
             <div className="max-w-3xl space-y-4">
-              <Badge variant="outline" className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold">
+              <Badge
+                variant="outline"
+                className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold"
+              >
                 <Terminal className="mr-1.5 h-3.5 w-3.5" />
                 HANDS-ON VIRTUAL CYBER RANGE
               </Badge>
@@ -72,7 +88,9 @@ function CyberRangePage() {
               </h1>
 
               <p className="text-base text-muted-foreground leading-relaxed">
-                Reading about security concepts is not enough. CyberBodha’s Cyber Range puts you inside controlled, realistic lab networks with active log generators, SIEM dashboards, and vulnerable target systems.
+                Reading about security concepts is not enough. CyberBodha’s Cyber Range puts you
+                inside controlled, realistic lab networks with active log generators, SIEM
+                dashboards, and vulnerable target systems.
               </p>
 
               <div className="flex flex-wrap gap-3 pt-2">
@@ -84,11 +102,7 @@ function CyberRangePage() {
                 </Button>
                 <CourseEnquiryModal
                   sourceContext="Cyber Range Top Demo Request"
-                  trigger={
-                    <Button variant="outline">
-                      Request Range Walkthrough
-                    </Button>
-                  }
+                  trigger={<Button variant="outline">Request Range Walkthrough</Button>}
                 />
               </div>
             </div>
@@ -101,7 +115,8 @@ function CyberRangePage() {
                 </div>
                 <h3 className="text-sm font-bold text-foreground">Safe Isolated Sandboxes</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Execute exploits and analyze malware artifacts safely inside strictly segregated virtual boundaries.
+                  Execute exploits and analyze malware artifacts safely inside strictly segregated
+                  virtual boundaries.
                 </p>
               </div>
 
@@ -111,7 +126,8 @@ function CyberRangePage() {
                 </div>
                 <h3 className="text-sm font-bold text-foreground">Heterogeneous Telemetry</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Ingest real Windows Security Event IDs, Linux Syslog/Auditd, Sysmon process graphs, and network PCAPs.
+                  Ingest real Windows Security Event IDs, Linux Syslog/Auditd, Sysmon process
+                  graphs, and network PCAPs.
                 </p>
               </div>
 
@@ -121,7 +137,8 @@ function CyberRangePage() {
                 </div>
                 <h3 className="text-sm font-bold text-foreground">Multi-Stage Scenarios</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  From initial phishing delivery to lateral movement and Active Directory Kerberoasting.
+                  From initial phishing delivery to lateral movement and Active Directory
+                  Kerberoasting.
                 </p>
               </div>
 
@@ -131,7 +148,8 @@ function CyberRangePage() {
                 </div>
                 <h3 className="text-sm font-bold text-foreground">Actionable Outcomes</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Every lab culminates in authentic evidence collection, remediation tickets, and faculty feedback.
+                  Every lab culminates in authentic evidence collection, remediation tickets, and
+                  faculty feedback.
                 </p>
               </div>
             </div>
@@ -143,9 +161,12 @@ function CyberRangePage() {
           <div className="mx-auto max-w-7xl space-y-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-foreground">Featured Cyber Range Scenarios</h2>
+                <h2 className="text-2xl font-bold text-foreground">
+                  Featured Cyber Range Scenarios
+                </h2>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Showing <strong>{filteredLabs.length}</strong> active scenario modules across defensive and offensive tracks.
+                  Showing <strong>{filteredLabs.length}</strong> active scenario modules across
+                  defensive and offensive tracks.
                 </p>
               </div>
 
@@ -177,7 +198,10 @@ function CyberRangePage() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="outline" className="text-[11px] font-semibold border-primary/20 text-primary bg-primary/5">
+                        <Badge
+                          variant="outline"
+                          className="text-[11px] font-semibold border-primary/20 text-primary bg-primary/5"
+                        >
                           {lab.category}
                         </Badge>
                         <Badge variant="secondary" className="text-[10px]">
@@ -199,9 +223,7 @@ function CyberRangePage() {
                     <span className="font-bold text-primary uppercase text-[10px] tracking-wider block">
                       SCENARIO BRIEF:
                     </span>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {lab.scenario}
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">{lab.scenario}</p>
                   </div>
 
                   {/* Objective & Learner Task */}
@@ -227,16 +249,24 @@ function CyberRangePage() {
                     <div className="flex flex-wrap items-center gap-1.5">
                       <span className="text-[11px] font-semibold text-foreground mr-1">Tools:</span>
                       {lab.toolsUsed.map((tool) => (
-                        <span key={tool} className="rounded bg-secondary px-2 py-0.5 text-[10px] text-foreground font-medium">
+                        <span
+                          key={tool}
+                          className="rounded bg-secondary px-2 py-0.5 text-[10px] text-foreground font-medium"
+                        >
                           {tool}
                         </span>
                       ))}
                     </div>
 
                     <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                      <span className="text-[11px] font-semibold text-foreground mr-1">Skills:</span>
+                      <span className="text-[11px] font-semibold text-foreground mr-1">
+                        Skills:
+                      </span>
                       {lab.skillsPracticed.map((skill) => (
-                        <span key={skill} className="rounded border border-border bg-card px-2 py-0.5 text-[10px] text-muted-foreground">
+                        <span
+                          key={skill}
+                          className="rounded border border-border bg-card px-2 py-0.5 text-[10px] text-muted-foreground"
+                        >
                           {skill}
                         </span>
                       ))}
@@ -269,7 +299,11 @@ function CyberRangePage() {
                 Simulated Controlled Labs vs. Production Environments
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                All Cyber Range activities operate exclusively within strictly isolated virtual network topologies designed for authorized educational simulation. CyberBodha does not engage in, support, or condone unauthorized access to external computer systems. Tools and techniques taught in our laboratories are intended strictly for defensive validation, authorized penetration testing, and enterprise security operations.
+                All Cyber Range activities operate exclusively within strictly isolated virtual
+                network topologies designed for authorized educational simulation. CyberBodha does
+                not engage in, support, or condone unauthorized access to external computer systems.
+                Tools and techniques taught in our laboratories are intended strictly for defensive
+                validation, authorized penetration testing, and enterprise security operations.
               </p>
             </div>
           </div>
