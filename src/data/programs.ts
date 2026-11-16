@@ -12,6 +12,12 @@ export interface Program {
   careerRelevance: string;
   careerRoles: string[];
   recommendedCourseSlugs: string[];
+  duration?: string;
+  investment?: {
+    options: { name: string; price: string; includes: string }[];
+    addon?: { name: string; price: string; note: string };
+    note?: string;
+  };
 }
 
 export const PROGRAMS: Program[] = [
@@ -21,7 +27,8 @@ export const PROGRAMS: Program[] = [
     category: "Blue Team & Defensive Operations",
     badge: "Operations Track",
     subtitle: "From alert triage to enterprise incident containment",
-    overview: "The SOC & Blue Team program prepares learners to step into frontline security operations. Built around authentic threat monitoring pipelines, you will gain fluency in analyzing endpoint telemetry, mapping adversarial movements using MITRE ATT&CK, creating detection rules, and executing triage under simulated operational pressure.",
+    overview:
+      "The SOC & Blue Team program prepares learners to step into frontline security operations. Built around authentic threat monitoring pipelines, you will gain fluency in analyzing endpoint telemetry, mapping adversarial movements using MITRE ATT&CK, creating detection rules, and executing triage under simulated operational pressure.",
     audience: [
       "Aspiring SOC Analysts and Incident Responders",
       "IT Support and Systems Administrators seeking security specialization",
@@ -54,10 +61,21 @@ export const PROGRAMS: Program[] = [
         desc: "Handle simulated phishing, brute force, and lateral movement attacks in real-time.",
       },
     ],
-    labMethodology: "Every student works in an isolated multi-host virtual environment feeding active telemetry into enterprise SIEM instances. Attacks are injected programmatically, giving you real hands-on triage practice.",
-    careerRelevance: "Demand for qualified SOC analysts continues to outpace supply globally. This program focuses strictly on demonstrable operational competencies that hiring managers look for in technical interviews.",
-    careerRoles: ["SOC Analyst (Tier 1 / Tier 2)", "Incident Response Specialist", "Cyber Threat Monitor", "Security Operations Engineer"],
-    recommendedCourseSlugs: ["soc-analyst-professional", "siem-engineering-operations", "linux-networking-cybersecurity"],
+    labMethodology:
+      "Every student works in an isolated multi-host virtual environment feeding active telemetry into enterprise SIEM instances. Attacks are injected programmatically, giving you real hands-on triage practice.",
+    careerRelevance:
+      "Demand for qualified SOC analysts continues to outpace supply globally. This program focuses strictly on demonstrable operational competencies that hiring managers look for in technical interviews.",
+    careerRoles: [
+      "SOC Analyst (Tier 1 / Tier 2)",
+      "Incident Response Specialist",
+      "Cyber Threat Monitor",
+      "Security Operations Engineer",
+    ],
+    recommendedCourseSlugs: [
+      "soc-analyst-professional",
+      "siem-engineering-operations",
+      "linux-networking-cybersecurity",
+    ],
   },
   {
     slug: "ethical-hacking",
@@ -65,7 +83,8 @@ export const PROGRAMS: Program[] = [
     category: "Offensive Security",
     badge: "Offensive Track",
     subtitle: "Learn offensive methodologies to build resilient enterprise defenses",
-    overview: "This track immerses you in the tools, techniques, and mindsets of modern ethical hackers. Understand how adversaries scout, probe, exploit, and establish footholds within enterprise networks so you can design, test, and validate proactive countermeasures.",
+    overview:
+      "This track immerses you in the tools, techniques, and mindsets of modern ethical hackers. Understand how adversaries scout, probe, exploit, and establish footholds within enterprise networks so you can design, test, and validate proactive countermeasures.",
     audience: [
       "Security Analysts aiming to understand the offensive perspective",
       "Network Engineers and System Administrators auditing internal networks",
@@ -98,18 +117,52 @@ export const PROGRAMS: Program[] = [
         desc: "Leverage AI models for payload analysis, script acceleration, and report drafting.",
       },
     ],
-    labMethodology: "100% of testing is conducted inside isolated sandbox networks hosting realistic, vulnerable target hosts and modern web applications.",
-    careerRelevance: "Offensive testing skills are essential for vulnerability management, red teaming, and application security roles across mid-market and enterprise businesses.",
-    careerRoles: ["Ethical Hacker", "Security Assessment Specialist", "Junior Penetration Tester", "Vulnerability Management Analyst"],
-    recommendedCourseSlugs: ["ceh-v13-ai-ethical-hacking", "vapt-professional", "linux-networking-cybersecurity"],
+    labMethodology:
+      "100% of testing is conducted inside isolated sandbox networks hosting realistic, vulnerable target hosts and modern web applications.",
+    careerRelevance:
+      "Offensive testing skills are essential for vulnerability management, red teaming, and application security roles across mid-market and enterprise businesses.",
+    careerRoles: [
+      "Ethical Hacker",
+      "Security Assessment Specialist",
+      "Junior Penetration Tester",
+      "Vulnerability Management Analyst",
+    ],
+    recommendedCourseSlugs: [
+      "ceh-v13-ai-ethical-hacking",
+      "vapt-professional",
+      "linux-networking-cybersecurity",
+    ],
+    duration: "60 hours · live instructor-led",
+    investment: {
+      options: [
+        {
+          name: "Training Only",
+          price: "₹20,000",
+          includes: "60-hour instructor-led CEH v13 training with hands-on labs",
+        },
+        {
+          name: "Training + Certification",
+          price: "₹45,000",
+          includes: "60-hour training, exam preparation and CEH v13 certification pathway",
+        },
+      ],
+      addon: {
+        name: "Cyber Range Labs",
+        price: "₹6,000 extra",
+        note: "6 months lab access validity",
+      },
+      note: "Certification exam voucher is subject to the vendor's separate terms. GST charged where applicable.",
+    },
   },
   {
     slug: "vapt",
     title: "Vulnerability Assessment & Penetration Testing",
     category: "Professional Services & Testing",
     badge: "Testing Specialist",
-    subtitle: "Authorized assessment methodologies, deep verification, and audit-grade deliverables",
-    overview: "The VAPT program bridges technical testing with professional client-facing delivery. Move beyond basic automated scanners to master deep manual testing, business logic flaw identification, risk scoring, and audit-grade reporting that security leaders rely upon.",
+    subtitle:
+      "Authorized assessment methodologies, deep verification, and audit-grade deliverables",
+    overview:
+      "The VAPT program bridges technical testing with professional client-facing delivery. Move beyond basic automated scanners to master deep manual testing, business logic flaw identification, risk scoring, and audit-grade reporting that security leaders rely upon.",
     audience: [
       "Security Testers and Vulnerability Management Specialists",
       "Application Security (AppSec) Engineers",
@@ -142,18 +195,31 @@ export const PROGRAMS: Program[] = [
         desc: "Author comprehensive, professional reports with verifiable remediation instructions.",
       },
     ],
-    labMethodology: "Assess realistic multi-tier corporate architectures and modern API backends, validating automated scanner findings through manual exploitation proof-of-concepts.",
-    careerRelevance: "Regulatory mandates like PCI-DSS, ISO 27001, and SOC 2 require continuous independent penetration testing, making skilled VAPT professionals a cornerstone of security engineering.",
-    careerRoles: ["VAPT Consultant", "Penetration Tester", "AppSec Engineer", "Security Assessment Lead"],
-    recommendedCourseSlugs: ["vapt-professional", "ceh-v13-ai-ethical-hacking", "siem-engineering-operations"],
+    labMethodology:
+      "Assess realistic multi-tier corporate architectures and modern API backends, validating automated scanner findings through manual exploitation proof-of-concepts.",
+    careerRelevance:
+      "Regulatory mandates like PCI-DSS, ISO 27001, and SOC 2 require continuous independent penetration testing, making skilled VAPT professionals a cornerstone of security engineering.",
+    careerRoles: [
+      "VAPT Consultant",
+      "Penetration Tester",
+      "AppSec Engineer",
+      "Security Assessment Lead",
+    ],
+    recommendedCourseSlugs: [
+      "vapt-professional",
+      "ceh-v13-ai-ethical-hacking",
+      "siem-engineering-operations",
+    ],
   },
   {
     slug: "cybersecurity-career",
     title: "Cybersecurity Career Accelerator",
     category: "Career Pathway",
     badge: "Flagship Accelerator",
-    subtitle: "Comprehensive, structured roadmap from technical fundamentals to job-ready capability",
-    overview: "Designed specifically for ambitious learners seeking a career in cybersecurity, this end-to-end program combines Linux, networking, Windows Active Directory defense, SOC operations, ethical hacking, and real cyber range scenarios.",
+    subtitle:
+      "Comprehensive, structured roadmap from technical fundamentals to job-ready capability",
+    overview:
+      "Designed specifically for ambitious learners seeking a career in cybersecurity, this end-to-end program combines Linux, networking, Windows Active Directory defense, SOC operations, ethical hacking, and real cyber range scenarios.",
     audience: [
       "Career changers entering tech and cybersecurity",
       "Graduates in Computer Science, IT, and related fields",
@@ -186,10 +252,21 @@ export const PROGRAMS: Program[] = [
         desc: "Build verified GitHub lab portfolios and practice technical scenario problem-solving.",
       },
     ],
-    labMethodology: "Comprehensive access to all CyberBodha range modules, including individual lab environments, guided scenario walkthroughs, and capstone challenges.",
-    careerRelevance: "Focuses on genuine hands-on capability, demonstrable lab projects, and verified readiness rather than unproven shortcuts.",
-    careerRoles: ["Cybersecurity Analyst", "Junior SOC Analyst", "Information Security Specialist", "Security Operations Associate"],
-    recommendedCourseSlugs: ["cybersecurity-career-accelerator", "soc-analyst-professional", "linux-networking-cybersecurity"],
+    labMethodology:
+      "Comprehensive access to all CyberBodha range modules, including individual lab environments, guided scenario walkthroughs, and capstone challenges.",
+    careerRelevance:
+      "Focuses on genuine hands-on capability, demonstrable lab projects, and verified readiness rather than unproven shortcuts.",
+    careerRoles: [
+      "Cybersecurity Analyst",
+      "Junior SOC Analyst",
+      "Information Security Specialist",
+      "Security Operations Associate",
+    ],
+    recommendedCourseSlugs: [
+      "cybersecurity-career-accelerator",
+      "soc-analyst-professional",
+      "linux-networking-cybersecurity",
+    ],
   },
   {
     slug: "cloud-security",
@@ -197,7 +274,8 @@ export const PROGRAMS: Program[] = [
     category: "Cloud & Infrastructure",
     badge: "Modern Architecture",
     subtitle: "Securing multi-cloud environments, containers, and automated delivery pipelines",
-    overview: "Modern organizations run on the cloud. This program prepares you to secure AWS, Azure, and containerized architectures. Learn Identity and Access Management (IAM) governance, infrastructure-as-code security scanning, container hardening, and cloud detection engineering.",
+    overview:
+      "Modern organizations run on the cloud. This program prepares you to secure AWS, Azure, and containerized architectures. Learn Identity and Access Management (IAM) governance, infrastructure-as-code security scanning, container hardening, and cloud detection engineering.",
     audience: [
       "Cloud Engineers and DevOps professionals expanding into security",
       "Security Analysts shifting to cloud-native monitoring",
@@ -230,10 +308,21 @@ export const PROGRAMS: Program[] = [
         desc: "Implement automated static code analysis (SAST) and dependency vulnerability checks.",
       },
     ],
-    labMethodology: "Deploy real cloud architectures using Terraform and evaluate automated security scanners against misconfigured infrastructure and vulnerable container deployments.",
-    careerRelevance: "As enterprise workloads migrate to the cloud, cloud security and DevSecOps engineers command some of the fastest-growing hiring demands in the industry.",
-    careerRoles: ["Cloud Security Engineer", "DevSecOps Specialist", "Cloud Security Analyst", "Infrastructure Security Architect"],
-    recommendedCourseSlugs: ["siem-engineering-operations", "soc-analyst-professional", "vapt-professional"],
+    labMethodology:
+      "Deploy real cloud architectures using Terraform and evaluate automated security scanners against misconfigured infrastructure and vulnerable container deployments.",
+    careerRelevance:
+      "As enterprise workloads migrate to the cloud, cloud security and DevSecOps engineers command some of the fastest-growing hiring demands in the industry.",
+    careerRoles: [
+      "Cloud Security Engineer",
+      "DevSecOps Specialist",
+      "Cloud Security Analyst",
+      "Infrastructure Security Architect",
+    ],
+    recommendedCourseSlugs: [
+      "siem-engineering-operations",
+      "soc-analyst-professional",
+      "vapt-professional",
+    ],
   },
 ];
 

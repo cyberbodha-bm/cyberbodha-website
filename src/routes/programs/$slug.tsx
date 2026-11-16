@@ -58,7 +58,8 @@ function ProgramNotFound() {
           <ShieldAlert className="mx-auto h-12 w-12 text-destructive" />
           <h1 className="mt-4 text-2xl font-bold">Program Track Not Found</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            The requested career track is currently not active or scheduled for an upcoming cohort release.
+            The requested career track is currently not active or scheduled for an upcoming cohort
+            release.
           </p>
           <div className="mt-6 flex justify-center gap-3">
             <Button asChild>
@@ -91,10 +92,17 @@ function ProgramDetailPage() {
         <section className="border-b border-border bg-gradient-to-b from-card via-card/80 to-background px-4 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
-              <Link to="/" className="hover:text-foreground">Home</Link>
+            <nav
+              aria-label="Breadcrumb"
+              className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6"
+            >
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
               <ChevronRight className="h-3.5 w-3.5" />
-              <Link to="/programs" className="hover:text-foreground">Programs</Link>
+              <Link to="/programs" className="hover:text-foreground">
+                Programs
+              </Link>
               <ChevronRight className="h-3.5 w-3.5" />
               <span className="text-foreground font-medium">{program.title}</span>
             </nav>
@@ -102,7 +110,10 @@ function ProgramDetailPage() {
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
               <div className="lg:col-span-8 space-y-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="outline" className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold">
+                  <Badge
+                    variant="outline"
+                    className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold"
+                  >
                     {program.category}
                   </Badge>
                   <Badge variant="secondary" className="text-xs">
@@ -114,9 +125,7 @@ function ProgramDetailPage() {
                   {program.title}
                 </h1>
 
-                <p className="text-sm font-semibold text-primary">
-                  {program.subtitle}
-                </p>
+                <p className="text-sm font-semibold text-primary">{program.subtitle}</p>
 
                 <p className="text-base text-muted-foreground leading-relaxed pt-1">
                   {program.overview}
@@ -157,7 +166,9 @@ function ProgramDetailPage() {
                       <BookOpen className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-foreground block">Curriculum Alignment</strong>
-                        <span>{program.curriculumHighlights.length} comprehensive technical pillars</span>
+                        <span>
+                          {program.curriculumHighlights.length} comprehensive technical pillars
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-start gap-2.5">
@@ -171,10 +182,63 @@ function ProgramDetailPage() {
                       <Briefcase className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-foreground block">Career Focus</strong>
-                        <span>Prepared for roles: {program.careerRoles.slice(0, 2).join(", ")}</span>
+                        <span>
+                          Prepared for roles: {program.careerRoles.slice(0, 2).join(", ")}
+                        </span>
                       </div>
                     </div>
                   </div>
+
+                  {program.investment && (
+                    <div className="rounded-xl border border-primary/25 bg-primary/5 p-4 space-y-3">
+                      <div className="flex flex-wrap items-center justify-between gap-1">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                          Program Investment
+                        </span>
+                        {program.duration && (
+                          <span className="text-[11px] font-medium text-muted-foreground">
+                            {program.duration}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        {program.investment.options.map((option) => (
+                          <div
+                            key={option.name}
+                            className="flex items-start justify-between gap-3 rounded-lg bg-background/70 px-3 py-2"
+                          >
+                            <div>
+                              <span className="block text-xs font-bold text-foreground">
+                                {option.name}
+                              </span>
+                              <span className="block text-[11px] leading-snug text-muted-foreground">
+                                {option.includes}
+                              </span>
+                            </div>
+                            <span className="whitespace-nowrap text-sm font-extrabold text-primary">
+                              {option.price}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {program.investment.addon && (
+                        <p className="text-[11px] leading-relaxed text-muted-foreground">
+                          <strong className="text-foreground">
+                            {program.investment.addon.name}:
+                          </strong>{" "}
+                          {program.investment.addon.price} — {program.investment.addon.note}
+                        </p>
+                      )}
+
+                      {program.investment.note && (
+                        <p className="border-t border-border/60 pt-2 text-[10px] leading-relaxed text-muted-foreground">
+                          {program.investment.note}
+                        </p>
+                      )}
+                    </div>
+                  )}
 
                   <div className="pt-3 border-t border-border space-y-2.5">
                     <CourseEnquiryModal
@@ -206,10 +270,15 @@ function ProgramDetailPage() {
                   <Layers className="h-4 w-4" />
                   <span>STRUCTURED PHASES</span>
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">Program Pillars & Core Coverage</h2>
+                <h2 className="text-2xl font-bold text-foreground">
+                  Program Pillars & Core Coverage
+                </h2>
                 <div className="grid grid-cols-1 gap-4 pt-2">
                   {program.curriculumHighlights.map((highlight, idx) => (
-                    <div key={idx} className="rounded-xl border border-border bg-card p-5 space-y-2">
+                    <div
+                      key={idx}
+                      className="rounded-xl border border-border bg-card p-5 space-y-2"
+                    >
                       <div className="flex items-center gap-3">
                         <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary/10 text-xs font-bold text-primary">
                           {idx + 1}
@@ -237,15 +306,25 @@ function ProgramDetailPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                   <div className="rounded-lg border border-border bg-background/60 p-3.5 text-center">
                     <span className="text-xs font-bold text-foreground block">Isolated VMs</span>
-                    <span className="text-[11px] text-muted-foreground mt-0.5 block">Safe execution sandboxes</span>
+                    <span className="text-[11px] text-muted-foreground mt-0.5 block">
+                      Safe execution sandboxes
+                    </span>
                   </div>
                   <div className="rounded-lg border border-border bg-background/60 p-3.5 text-center">
-                    <span className="text-xs font-bold text-foreground block">Real Event Feeds</span>
-                    <span className="text-[11px] text-muted-foreground mt-0.5 block">Heterogeneous logs & Sysmon</span>
+                    <span className="text-xs font-bold text-foreground block">
+                      Real Event Feeds
+                    </span>
+                    <span className="text-[11px] text-muted-foreground mt-0.5 block">
+                      Heterogeneous logs & Sysmon
+                    </span>
                   </div>
                   <div className="rounded-lg border border-border bg-background/60 p-3.5 text-center">
-                    <span className="text-xs font-bold text-foreground block">Instructor Feedback</span>
-                    <span className="text-[11px] text-muted-foreground mt-0.5 block">Detailed triage reviews</span>
+                    <span className="text-xs font-bold text-foreground block">
+                      Instructor Feedback
+                    </span>
+                    <span className="text-[11px] text-muted-foreground mt-0.5 block">
+                      Detailed triage reviews
+                    </span>
                   </div>
                 </div>
               </div>
@@ -281,7 +360,9 @@ function ProgramDetailPage() {
               {recommendedCourses.length > 0 && (
                 <div className="space-y-6 pt-6 border-t border-border">
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground">Recommended Courses in this Track</h3>
+                    <h3 className="text-2xl font-bold text-foreground">
+                      Recommended Courses in this Track
+                    </h3>
                     <p className="text-xs text-muted-foreground mt-1">
                       Enroll in specific modular courses or take the complete career program.
                     </p>
@@ -316,7 +397,8 @@ function ProgramDetailPage() {
               <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 space-y-3 text-center">
                 <h4 className="text-base font-bold text-foreground">Have Questions?</h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Our admissions counselors will walk you through prerequisite checks, syllabus details, and batch timelines.
+                  Our admissions counselors will walk you through prerequisite checks, syllabus
+                  details, and batch timelines.
                 </p>
                 <CourseEnquiryModal
                   sourceContext={`Program Sidebar Consultation: ${program.title}`}

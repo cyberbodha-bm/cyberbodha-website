@@ -22,6 +22,7 @@ interface FormState {
   preferredFormat: string;
   message: string;
   websiteHoneypot: string; // Anti-spam honeypot
+  privacyConsent: boolean;
 }
 
 interface FormErrors {
@@ -30,6 +31,7 @@ interface FormErrors {
   phone?: string | undefined;
   courseSlug?: string | undefined;
   form?: string | undefined;
+  privacyConsent?: string | undefined;
 }
 
 export function EnquiryForm({
@@ -47,6 +49,7 @@ export function EnquiryForm({
     preferredFormat: "Live Weekend Cohort",
     message: "",
     websiteHoneypot: "",
+    privacyConsent: false,
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -75,6 +78,10 @@ export function EnquiryForm({
       nextErrors.phone = "Please enter your phone number.";
     } else if (phoneDigits.length < 8) {
       nextErrors.phone = "Please enter a valid phone number with area code.";
+    }
+
+    if (!formData.privacyConsent) {
+      nextErrors.privacyConsent = "Please accept the Privacy Policy so we can contact you.";
     }
 
     setErrors(nextErrors);
@@ -210,6 +217,7 @@ export function EnquiryForm({
               preferredFormat: "Live Weekend Cohort",
               message: "",
               websiteHoneypot: "",
+              privacyConsent: false,
             });
           }}
         >
@@ -410,6 +418,31 @@ export function EnquiryForm({
       </div>
 
       <div className="pt-2">
+        <label className="flex items-start gap-2.5 rounded-lg border border-border bg-secondary/40 p-3 text-[11px] leading-relaxed text-muted-foreground">
+          <input
+            type="checkbox"
+            checked={formData.privacyConsent}
+            onChange={(e) => setFormData({ ...formData, privacyConsent: e.target.checked })}
+            className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[hsl(var(--primary))]"
+            aria-invalid={Boolean(errors.privacyConsent)}
+          />
+          <span>
+            I agree to be contacted about my enquiry and I have read the{" "}
+            <a
+              href="/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary underline underline-offset-2"
+            >
+              Privacy Policy
+            </a>
+            .
+          </span>
+        </label>
+        {errors.privacyConsent && (
+          <p className="-mt-2 text-xs font-medium text-destructive">{errors.privacyConsent}</p>
+        )}
+
         <Button type="submit" disabled={isSubmitting} className="w-full justify-center gap-2">
           {isSubmitting ? (
             <span>Submitting...</span>

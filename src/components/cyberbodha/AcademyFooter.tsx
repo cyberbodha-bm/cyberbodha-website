@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import cyberbodhaLogo from "@/assets/cyberbodha-logo.png";
-import { Mail, MapPin, Shield } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 export function AcademyFooter() {
   return (
@@ -192,15 +192,6 @@ export function AcademyFooter() {
               <li>
                 <Link to="/contact" className="hover:text-primary transition-colors">
                   Contact Admissions
-                </Link>
-              </li>
-              <li className="pt-2 border-t border-border/60">
-                <Link
-                  to="/student"
-                  className="inline-flex items-center gap-1.5 font-medium text-foreground hover:text-primary"
-                >
-                  <Shield className="h-3 w-3 text-primary" />
-                  <span>Learner Workspace</span>
                 </Link>
               </li>
             </ul>
