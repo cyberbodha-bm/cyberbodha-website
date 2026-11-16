@@ -2,7 +2,7 @@
 
 Build specification for a "message us on WhatsApp" campaign, so the poster's *"DM 'CEH' for details"* promise leads to a real conversation instead of an instant form.
 
-Ad account **1503896524973147** · Portfolio **1457794117413274** · Page **CyberBodha 1457789564080396** · WhatsApp Business app **+91 90638 09271** · Prepared 16 November 2026
+Ad account **1503896524973147** · Portfolio **1457794117413274** · Page **CyberBodha 1457789564080396** · WhatsApp Business app **+91 90638 09271** · Updated 16 November 2026 — ad set configured in Ads Manager
 
 ---
 
@@ -37,7 +37,7 @@ CTWA does not replace the lead-form campaign. It captures the buyers who will no
 | Business portfolio verification | **Unverified** | Business info → "Unverified — Start verification" |
 | Payment method on ad account | **None** | Business info → "No payment method found"; billing hub empty |
 | Meta Lead Ads Terms | **Accepted** | Ad set editor: "You've accepted Meta's Lead Ads Terms for this Page" |
-| Media library | No CEH posters | Ads still error "Please specify the media" |
+| Media library | No CEH posters yet | Five posters committed in `marketing/campaigns/ceh-v13/`; ads still error "Please specify the media" until uploaded |
 
 Two items block the campaign outright: **no payment method** and **no media**. The Lead Ads Terms item is now resolved, which also clears error **#1815089** on the existing instant-form campaigns.
 
@@ -48,8 +48,8 @@ Two items block the campaign outright: **no payment method** and **no media**. T
 | Object | ID |
 |---|---|
 | Campaign `CB / WhatsApp / CEH v13 Inbound` | `120249035703480772` |
-| Ad set `CB / WA / HYD +25km / 18-45` | `120249035703460772` |
-| Ad `CB / WA / CEH v13 / Poster A` | `120249035703470772` |
+| Ad set `CB / WA / HYD 25km / 21-40 / CEH` | `120249035703460772` |
+| Ad `CB / WA / CEH v13 / DM details` — Page selector locked, recreate (#1443121) | `120249035703470772` |
 
 **Draft 2 — keep it, never enable it.** An earlier attempt under the *Leads* objective. The conversion-location field there is read-only and stayed on Instant forms, so it can never become a WhatsApp campaign.
 
@@ -59,7 +59,7 @@ Two items block the campaign outright: **no payment method** and **no media**. T
 | Ad set `New Leads ad set` | `120249035559050772` |
 | Ad `New Leads ad` | `120249035559070772` |
 
-It has never delivered and carries no creative. Leave it paused as a record of the attempt rather than deleting it.
+It has never delivered and carries no creative. It is switched off; leave it as a record of the attempt rather than deleting it.
 
 ---
 
@@ -74,31 +74,38 @@ Objective choice matters: **Engagement → Messaging apps → WhatsApp** is the 
 | Campaign name | `CB / WhatsApp / CEH v13 Inbound` |
 | Campaign objective | **Engagement** (manual setup) |
 | Budget mode | **Ad set budget** (campaign budget off) |
-| Ad set name | `CB / WA / HYD +25km / 18-45` |
+| Ad set name | `CB / WA / HYD 25km / 21-40 / CEH` |
 | Conversion location | **Message destinations** |
 | Destinations | **Manual — WhatsApp only**, Messenger and Instagram unticked |
 | WhatsApp number | **+91 90638 09271**, confirmed connected to Page CyberBodha |
 | Performance goal | Maximise number of conversations |
-| Ad name | `CB / WA / CEH v13 / Poster A` |
+| Ad name | `CB / WA / CEH v13 / DM details` (replace with a new ad) |
 | Ad format | Single image or video |
 
-### 3.2 Still to set by hand
+### 3.2 Applied on 16 Nov 2026
 
 | Field | Value | Why |
 |---|---|---|
-| Daily budget | **₹250** | Part of the ₹600/day plan: Leads ₹350 + WhatsApp ₹250 |
+| Daily budget | **₹350** | ₹600/day plan: WhatsApp ₹350 + Leads ₹250 |
 | Schedule | Start on publish, no end date | Kill by hand if quality is poor |
-| Locations | India → **Hyderabad (+25 km)** | Same catchment as the lead campaign |
-| Age | 18–45 | Students through early-career switchers |
+| Locations | **Hyderabad (+25 km)**, "reach more people" off | Was all of India; same catchment as the lead campaign |
+| Age | **21–40**, hard limit; unknown-age WhatsApp users excluded | Working professionals and final-year graduates who can pay |
 | Gender | All | — |
-| Detailed targeting | None | Let the creative qualify |
-| Advantage+ audience | **Off** | Keeps the ₹250/day on the catchment, not on 100M people |
-| Advantage+ placements | **On** | Cheap inventory; Facebook feed, Instagram feed, Reels, Stories |
+| Audience | **Manual** (Advantage+ audience off) | Keeps the budget on the catchment |
+| Detailed targeting | Computer security, Information security (interests); Network security (field of study) | Closest available; Meta has no "Certified Ethical Hacker" or "Ethical hacking" interest |
+| Placements | Facebook + Instagram feeds, Explore, Stories/Reels | Audience Network, WhatsApp Status, Threads, in-stream and search off |
 | Bid strategy | Highest volume | Default; keep it |
-| Ad media | Poster at 1080 × 1350 | Nothing uploaded yet |
-| Ad copy | Section 4 below | Blocked behind the media upload |
 
-Budget note: ₹250/day at Hyderabad CPMs buys roughly 5,000–9,000 impressions a day. Expect **5–12 conversations per week**, not per day, at ₹100–250 per conversation. Judge it after 7 days, on replies that mention budget or batch dates — not on conversation count.
+### 3.3 Still to do by hand
+
+| Field | Value |
+|---|---|
+| New ad | Create a new ad in this ad set; pick Page CyberBodha and Instagram cyberbodha95, then delete the old ad |
+| Ad media | `ceh-v13-dm-details-v2.jpg` at 1080 × 1350, footnote changed to "Exam voucher included in the certification track" |
+| Ad copy | Option B below, the launch offer |
+| Message template | Pre-filled "Hi CyberBodha, I'd like the CEH v13 fees and next batch date." with buttons *Training + Certification* / *Training only* |
+
+Budget note: ₹350/day at Hyderabad CPMs buys roughly 7,000–12,000 impressions a day. Plan for about **10–25 conversations per week** at ₹100–250 each, and judge after 7 days on replies that name a track and a start month — not on conversation count.
 
 ---
 
@@ -116,13 +123,18 @@ Budget note: ₹250/day at Hyderabad CPMs buys roughly 5,000–9,000 impressions
 >
 > Batches run from Hyderabad. Message us and we'll send fees, the next start date and lab access details.
 
-### Option B — fee-qualified (fewer, better chats)
+### Option B — launch offer, fee-qualified (use this first)
 
-> 60 hours of CEH v13 training, starting soon in Hyderabad.
+> **CEH v13 launch offer — Hyderabad**
 >
-> Training only ₹20,000. Training with certification ₹45,000. Cyber range labs ₹6,000 for 6 months.
+> • Training + Certification: ₹45,000, includes the CEH v13 exam voucher, exam prep and practice tests
+> • Training only: ₹20,000, the full 60-hour course
 >
-> Send "CEH" and we'll share the batch calendar and what's included in each track.
+> 60 hours, live and instructor-led, with hands-on labs in authorised environments.
+>
+> DM "CEH" for the next batch date and the seats left.
+
+Headline: `CEH v13 + Exam Voucher · ₹45,000 Launch Offer`.
 
 ### Option C — curiosity, highest volume
 
@@ -132,7 +144,7 @@ Budget note: ₹250/day at Hyderabad CPMs buys roughly 5,000–9,000 impressions
 >
 > Send "CEH" on WhatsApp and we'll answer in minutes: fees, batch dates, and whether certification is worth it for your profile.
 
-Use **A** first. **B** filters out people with no budget but shrinks volume. **C** produces the most chats and the most noise. Test A for 7 days before touching it.
+Use **B** first: the prices are launch offers, and showing them filters out people who were never going to pay. **A** is the fallback if B gets fewer than 5 chats in its first ₹1,050. **C** produces the most chats and the most noise. Test one option for 7 days before touching it.
 
 ---
 
@@ -147,7 +159,7 @@ The campaign only works if someone is on the other end. WhatsApp Business app, a
 > Quick details:
 > • 60 hours, live instructor-led
 > • Training only — ₹20,000
-> • Training + certification — ₹45,000
+> • Training + certification — ₹45,000 (CEH v13 exam voucher included)
 > • Cyber range labs — ₹6,000 (6 months access)
 >
 > To point you to the right batch, tell me: **are you looking at training only, or with certification?** And **when would you like to start?**
@@ -156,10 +168,10 @@ The campaign only works if someone is on the other end. WhatsApp Business app, a
 
 | Shortcut | Text |
 |---|---|
-| `/fees` | Fees: training only ₹20,000 · training + certification ₹45,000 · labs ₹6,000 for 6 months. GST extra where applicable. |
+| `/fees` | Fees: training only ₹20,000 · training + certification ₹45,000 including the CEH v13 exam voucher · labs ₹6,000 for 6 months. GST extra where applicable. |
 | `/batch` | Next batches: weekend (Sat–Sun) and weekday evening. Share your preferred timing and I'll block a seat. |
 | `/syllabus` | 20 CEH v13 modules, reconnaissance → scanning → exploitation → post-exploitation → reporting. Full module list: cyberbodha.com/programs/ethical-hacking |
-| `/cert` | Certification fee is separate from training and follows EC-Council's terms. We handle registration support and exam prep. |
+| `/cert` | The ₹45,000 track includes the CEH v13 exam voucher. We handle registration, exam prep and practice tests; EC-Council's exam terms apply. |
 
 ### Response standard
 
@@ -171,9 +183,9 @@ Reply within **5 minutes** during 9am–9pm IST. Conversation quality and cost p
 
 - [ ] Add a payment method to ad account 1503896524973147
 - [ ] Start business portfolio verification (business info → Start verification)
-- [ ] Upload the CEH posters to the Ads Manager media library at 1080 × 1350
-- [ ] Confirm the stray draft `CB | WhatsApp | CEH v13 Enquiries` stays paused (Leads objective, unusable, kept for reference)
-- [ ] Finish the `CB | WhatsApp | CEH v13 Inbound` draft: budget, audience, placements, media, copy
+- [ ] Upload the CEH posters (re-exported `-v2` files) to the Ads Manager media library at 1080 × 1350
+- [ ] Confirm the stray draft `CB / WhatsApp / CEH v13 Enquiries` stays off (Leads objective, unusable, kept for reference)
+- [ ] Recreate the ad in `CB / WhatsApp / CEH v13 Inbound` (budget, audience and placements are already set): Page, poster, copy, message template
 - [ ] Confirm the ad set still shows +91 90638 09271 and WhatsApp-only destinations
 - [ ] Set the WhatsApp greeting message and the four quick replies
 - [ ] Assign one person to answer chats, with a backup for evenings
@@ -184,8 +196,8 @@ Reply within **5 minutes** during 9am–9pm IST. Conversation quality and cost p
 
 ## 7. Honest expectations
 
-At ₹250/day this campaign will not transform the business. It is a tap that must be turned on to be judged, and it will produce somewhere between 15 and 40 conversations in its first month if the creative is decent and someone answers.
+At ₹350/day this campaign will not transform the business. It is a tap that must be turned on to be judged, and it should produce somewhere between 40 and 100 conversations in its first month if the creative is decent and someone answers.
 
 The number that matters is not conversations. It is **how many people, after two messages, tell you a batch date works for them**. If that is zero after 7 days and 30 conversations, the problem is the offer or the reply script, not the targeting — and no amount of budget fixes it.
 
-The instant-form campaign stays live alongside it. Different people prefer different doors; form leads land in Cloudflare D1 table `leads`, and WhatsApp leads should be copied there by hand until an integration exists.
+The instant-form campaign (₹250/day) runs alongside it. Different people prefer different doors. Instant-form leads stay in Meta Leads Center and WhatsApp leads stay on the business phone; only website-form leads reach Cloudflare D1 `leads`. Log all of them in one sheet until LeadFlow is connected.
