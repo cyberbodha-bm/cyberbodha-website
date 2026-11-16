@@ -3,6 +3,11 @@
   "name": "cyberbodha-learning-academy",
   "compatibility_date": "2026-11-12",
   "compatibility_flags": ["nodejs_compat"],
+  "main": ".output/server/index.mjs",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".output/public"
+  },
 
   // Enquiry leads. The server function reads this as env.DB.
   // Alternative: "kv_namespaces": [{ "binding": "LEADS", "id": "<id>" }]

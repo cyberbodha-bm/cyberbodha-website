@@ -1,6 +1,14 @@
 import { useState, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Search, Filter, SlidersHorizontal, BookOpen, Sparkles, X, ChevronRight } from "lucide-react";
+import {
+  Search,
+  Filter,
+  SlidersHorizontal,
+  BookOpen,
+  Sparkles,
+  X,
+  ChevronRight,
+} from "lucide-react";
 import { AcademyHeader } from "@/components/cyberbodha/AcademyHeader";
 import { AcademyFooter } from "@/components/cyberbodha/AcademyFooter";
 import { CourseCard } from "@/components/cyberbodha/CourseCard";
@@ -13,9 +21,17 @@ export const Route = createFileRoute("/courses/")({
   head: () => ({
     meta: [
       { title: "Cybersecurity Course Catalog | CyberBodha Learning Academy" },
-      { name: "description", content: "Explore practical, lab-driven cybersecurity courses covering SOC Operations, Ethical Hacking, VAPT, SIEM Engineering, and Linux Defense." },
+      {
+        name: "description",
+        content:
+          "Explore practical, lab-driven cybersecurity courses covering SOC Operations, Ethical Hacking, VAPT, SIEM Engineering, and Linux Defense.",
+      },
       { property: "og:title", content: "Cybersecurity Course Catalog | CyberBodha" },
-      { property: "og:description", content: "Explore practical, lab-driven cybersecurity courses covering SOC Operations, Ethical Hacking, VAPT, SIEM Engineering, and Linux Defense." },
+      {
+        property: "og:description",
+        content:
+          "Explore practical, lab-driven cybersecurity courses covering SOC Operations, Ethical Hacking, VAPT, SIEM Engineering, and Linux Defense.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -49,12 +65,10 @@ function CourseCatalogPage() {
         course.technologies.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
 
       // Category filter
-      const matchesCategory =
-        selectedCategory === "all" || course.category === selectedCategory;
+      const matchesCategory = selectedCategory === "all" || course.category === selectedCategory;
 
       // Level filter
-      const matchesLevel =
-        selectedLevel === "all" || course.level === selectedLevel;
+      const matchesLevel = selectedLevel === "all" || course.level === selectedLevel;
 
       return matchesSearch && matchesCategory && matchesLevel;
     }).sort((a, b) => {
@@ -67,7 +81,8 @@ function CourseCatalogPage() {
     });
   }, [searchQuery, selectedCategory, selectedLevel, sortBy]);
 
-  const hasActiveFilters = searchQuery !== "" || selectedCategory !== "all" || selectedLevel !== "all";
+  const hasActiveFilters =
+    searchQuery !== "" || selectedCategory !== "all" || selectedLevel !== "all";
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -85,7 +100,9 @@ function CourseCatalogPage() {
           <div className="mx-auto max-w-7xl">
             {/* Breadcrumb */}
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-              <Link to="/" className="hover:text-foreground">Home</Link>
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
               <ChevronRight className="h-3.5 w-3.5" />
               <span className="text-foreground font-medium">Courses</span>
             </div>
@@ -99,7 +116,9 @@ function CourseCatalogPage() {
                 Explore the Course Catalog
               </h1>
               <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-                Every course is built around authentic security tasks: analyzing logs, hunting anomalies, conducting authorized vulnerability testing, and defending systems in realistic cyber range environments.
+                Every course is built around authentic security tasks: analyzing logs, hunting
+                anomalies, conducting authorized vulnerability testing, and defending systems in
+                realistic cyber range environments.
               </p>
             </div>
 
@@ -150,7 +169,7 @@ function CourseCatalogPage() {
               <div className="md:col-span-3">
                 <select
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as any)}
+                  onChange={(e) => setSortBy(e.target.value as "featured" | "modules" | "title")}
                   aria-label="Sort courses"
                   className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 >
@@ -209,7 +228,8 @@ function CourseCatalogPage() {
           <div className="mx-auto max-w-7xl">
             <div className="flex items-center justify-between mb-6">
               <p className="text-xs text-muted-foreground">
-                Showing <strong>{filteredCourses.length}</strong> {filteredCourses.length === 1 ? "course" : "courses"}
+                Showing <strong>{filteredCourses.length}</strong>{" "}
+                {filteredCourses.length === 1 ? "course" : "courses"}
               </p>
               <div className="text-xs text-muted-foreground flex items-center gap-1.5">
                 <Sparkles className="h-3.5 w-3.5 text-primary" />
@@ -226,9 +246,12 @@ function CourseCatalogPage() {
             ) : (
               <div className="rounded-xl border border-dashed border-border p-12 text-center">
                 <BookOpen className="mx-auto h-12 w-12 text-muted-foreground/60" />
-                <h3 className="mt-4 text-lg font-bold text-foreground">No matching courses found</h3>
+                <h3 className="mt-4 text-lg font-bold text-foreground">
+                  No matching courses found
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
-                  We couldn't find any courses matching your criteria "{searchQuery}". Try adjusting your keywords or clearing the category filters.
+                  We couldn't find any courses matching your criteria "{searchQuery}". Try adjusting
+                  your keywords or clearing the category filters.
                 </p>
                 <div className="mt-6 flex justify-center gap-3">
                   <Button variant="outline" size="sm" onClick={clearFilters}>
@@ -236,11 +259,7 @@ function CourseCatalogPage() {
                   </Button>
                   <CourseEnquiryModal
                     sourceContext="Empty Catalog Search Request"
-                    trigger={
-                      <Button size="sm">
-                        Request a Custom Curriculum
-                      </Button>
-                    }
+                    trigger={<Button size="sm">Request a Custom Curriculum</Button>}
                   />
                 </div>
               </div>
@@ -249,9 +268,12 @@ function CourseCatalogPage() {
             {/* Bottom Consultation Box */}
             <div className="mt-16 rounded-2xl border border-primary/20 bg-gradient-to-r from-card via-card to-primary/5 p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="space-y-2 max-w-xl">
-                <h3 className="text-xl font-bold text-foreground">Unsure which program fits your current skill level?</h3>
+                <h3 className="text-xl font-bold text-foreground">
+                  Unsure which program fits your current skill level?
+                </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Our technical advisors can review your background in systems, networking, or software engineering and recommend the optimal learning sequence.
+                  Our technical advisors can review your background in systems, networking, or
+                  software engineering and recommend the optimal learning sequence.
                 </p>
               </div>
               <div className="flex shrink-0 flex-wrap gap-3">

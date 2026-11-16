@@ -20,6 +20,7 @@ import { AcademyHeader } from "@/components/cyberbodha/AcademyHeader";
 import { AcademyFooter } from "@/components/cyberbodha/AcademyFooter";
 import { CourseCard } from "@/components/cyberbodha/CourseCard";
 import { CourseEnquiryModal } from "@/components/cyberbodha/CourseEnquiryModal";
+import { CehCurriculumWorkspace } from "@/components/cyberbodha/CehCurriculumWorkspace";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -65,7 +66,8 @@ function CourseNotFound() {
           <ShieldAlert className="mx-auto h-12 w-12 text-destructive" />
           <h1 className="mt-4 text-2xl font-bold">Course Not Found</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            The requested course could not be located in our catalog. It may have been renamed or scheduled for an upcoming cohort.
+            The requested course could not be located in our catalog. It may have been renamed or
+            scheduled for an upcoming cohort.
           </p>
           <div className="mt-6 flex justify-center gap-3">
             <Button asChild>
@@ -98,21 +100,33 @@ function CourseDetailPage() {
         <section className="border-b border-border bg-gradient-to-b from-card via-card/80 to-background px-4 py-10 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             {/* Breadcrumb */}
-            <nav aria-label="Breadcrumbs" className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground mb-6">
-              <Link to="/" className="hover:text-foreground">Home</Link>
+            <nav
+              aria-label="Breadcrumbs"
+              className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground mb-6"
+            >
+              <Link to="/" className="hover:text-foreground">
+                Home
+              </Link>
               <ChevronRight className="h-3 w-3" />
-              <Link to="/courses" className="hover:text-foreground">Courses</Link>
+              <Link to="/courses" className="hover:text-foreground">
+                Courses
+              </Link>
               <ChevronRight className="h-3 w-3" />
               <span className="text-muted-foreground">{course.category}</span>
               <ChevronRight className="h-3 w-3" />
-              <span className="text-foreground font-medium truncate max-w-[200px] sm:max-w-none">{course.title}</span>
+              <span className="text-foreground font-medium truncate max-w-[200px] sm:max-w-none">
+                {course.title}
+              </span>
             </nav>
 
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
               {/* Left Column: Title & Key Details */}
               <div className="lg:col-span-8 space-y-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="outline" className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold">
+                  <Badge
+                    variant="outline"
+                    className="border-primary/30 text-primary bg-primary/5 text-xs font-semibold"
+                  >
                     {course.category}
                   </Badge>
                   <Badge variant="secondary" className="text-xs">
@@ -137,20 +151,36 @@ function CourseDetailPage() {
                 {/* Quick stats strip */}
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 border-t border-b border-border/70 py-4 mt-6">
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">Curriculum</span>
-                    <span className="text-sm font-bold text-foreground mt-0.5 block">{course.curriculum.length} Modules</span>
+                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
+                      Curriculum
+                    </span>
+                    <span className="text-sm font-bold text-foreground mt-0.5 block">
+                      {course.curriculum.length} Modules
+                    </span>
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">Delivery</span>
-                    <span className="text-sm font-bold text-foreground mt-0.5 block">Instructor-Led</span>
+                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
+                      Delivery
+                    </span>
+                    <span className="text-sm font-bold text-foreground mt-0.5 block">
+                      Instructor-Led
+                    </span>
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">Practice</span>
-                    <span className="text-sm font-bold text-foreground mt-0.5 block">Cyber Range Labs</span>
+                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
+                      Practice
+                    </span>
+                    <span className="text-sm font-bold text-foreground mt-0.5 block">
+                      Cyber Range Labs
+                    </span>
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">Assessment</span>
-                    <span className="text-sm font-bold text-foreground mt-0.5 block">Practical Exam</span>
+                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground block">
+                      Assessment
+                    </span>
+                    <span className="text-sm font-bold text-foreground mt-0.5 block">
+                      Practical Exam
+                    </span>
                   </div>
                 </div>
 
@@ -189,14 +219,20 @@ function CourseDetailPage() {
                       <BookOpen className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-foreground block">Comprehensive Syllabus</strong>
-                        <span className="text-muted-foreground">{course.curriculum.length} structured modules + practical capstone</span>
+                        <span className="text-muted-foreground">
+                          {course.curriculum.length} structured modules + practical capstone
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 text-xs">
                       <Terminal className="h-4 w-4 text-primary shrink-0 mt-0.5" />
                       <div>
-                        <strong className="text-foreground block">Dedicated Cyber Range Access</strong>
-                        <span className="text-muted-foreground">Virtual labs mirroring enterprise SOC & offensive networks</span>
+                        <strong className="text-foreground block">
+                          Dedicated Cyber Range Access
+                        </strong>
+                        <span className="text-muted-foreground">
+                          Virtual labs mirroring enterprise SOC & offensive networks
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 text-xs">
@@ -225,7 +261,10 @@ function CourseDetailPage() {
                       defaultCourseSlug={course.slug}
                       sourceContext={`Syllabus Download Request: ${course.title}`}
                       trigger={
-                        <Button variant="outline" className="w-full justify-center gap-2 text-xs h-9">
+                        <Button
+                          variant="outline"
+                          className="w-full justify-center gap-2 text-xs h-9"
+                        >
                           <FileText className="h-3.5 w-3.5" />
                           <span>Request Full Curriculum PDF</span>
                         </Button>
@@ -235,7 +274,10 @@ function CourseDetailPage() {
 
                   <p className="mt-4 text-center text-[11px] text-muted-foreground">
                     Have corporate or team requirements?{" "}
-                    <Link to="/corporate-training" className="text-primary hover:underline font-medium">
+                    <Link
+                      to="/corporate-training"
+                      className="text-primary hover:underline font-medium"
+                    >
                       Explore corporate training
                     </Link>
                   </p>
@@ -258,7 +300,10 @@ function CourseDetailPage() {
                 <h2 className="text-2xl font-bold text-foreground">What You Will Learn</h2>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 pt-2">
                   {course.learningOutcomes.map((outcome, i) => (
-                    <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+                    >
                       <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary mt-0.5">
                         <Check className="h-3 w-3" />
                       </div>
@@ -270,55 +315,71 @@ function CourseDetailPage() {
                 </div>
               </div>
 
-              {/* Curriculum Accordion */}
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
-                      <BookOpen className="h-4 w-4" />
-                      <span>COURSE STRUCTURE</span>
+              {/* Curriculum Section */}
+              {course.slug === "ceh-v13-ai-ethical-hacking" ? (
+                <CehCurriculumWorkspace />
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
+                        <BookOpen className="h-4 w-4" />
+                        <span>COURSE STRUCTURE</span>
+                      </div>
+                      <h2 className="text-2xl font-bold text-foreground mt-1">
+                        Detailed Curriculum
+                      </h2>
                     </div>
-                    <h2 className="text-2xl font-bold text-foreground mt-1">Detailed Curriculum</h2>
+                    <Badge variant="outline" className="text-xs">
+                      {course.curriculum.length} Modules
+                    </Badge>
                   </div>
-                  <Badge variant="outline" className="text-xs">
-                    {course.curriculum.length} Modules
-                  </Badge>
+
+                  <p className="text-xs text-muted-foreground">
+                    Each module combines conceptual explanations with hands-on exercises in the
+                    Cyber Range.
+                  </p>
+
+                  <Accordion
+                    type="single"
+                    collapsible
+                    defaultValue="item-0"
+                    className="w-full space-y-3 pt-2"
+                  >
+                    {course.curriculum.map((mod, idx) => (
+                      <AccordionItem
+                        key={idx}
+                        value={`item-${idx}`}
+                        className="rounded-xl border border-border bg-card px-4 py-1"
+                      >
+                        <AccordionTrigger className="text-sm font-bold text-foreground hover:no-underline hover:text-primary py-3">
+                          <div className="flex items-center gap-3 text-left">
+                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-secondary text-[11px] font-bold text-secondary-foreground">
+                              {idx + 1}
+                            </span>
+                            <span>{mod.title}</span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-1 pb-4 text-xs text-muted-foreground space-y-3">
+                          <p className="leading-relaxed text-foreground/90">{mod.description}</p>
+                          <div>
+                            <span className="font-semibold text-foreground text-[11px] block mb-1.5">
+                              Core Topics Covered:
+                            </span>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 list-inside list-disc">
+                              {mod.topics.map((t, tidx) => (
+                                <li key={tidx} className="text-muted-foreground">
+                                  {t}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </div>
-
-                <p className="text-xs text-muted-foreground">
-                  Each module combines conceptual explanations with hands-on exercises in the Cyber Range.
-                </p>
-
-                <Accordion type="single" collapsible defaultValue="item-0" className="w-full space-y-3 pt-2">
-                  {course.curriculum.map((mod, idx) => (
-                    <AccordionItem key={idx} value={`item-${idx}`} className="rounded-xl border border-border bg-card px-4 py-1">
-                      <AccordionTrigger className="text-sm font-bold text-foreground hover:no-underline hover:text-primary py-3">
-                        <div className="flex items-center gap-3 text-left">
-                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-secondary text-[11px] font-bold text-secondary-foreground">
-                            {idx + 1}
-                          </span>
-                          <span>{mod.title}</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-1 pb-4 text-xs text-muted-foreground space-y-3">
-                        <p className="leading-relaxed text-foreground/90">
-                          {mod.description}
-                        </p>
-                        <div>
-                          <span className="font-semibold text-foreground text-[11px] block mb-1.5">Core Topics Covered:</span>
-                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 list-inside list-disc">
-                            {mod.topics.map((t, tidx) => (
-                              <li key={tidx} className="text-muted-foreground">
-                                {t}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
+              )}
 
               {/* Practical Lab Highlights */}
               <div className="space-y-4 rounded-2xl border border-primary/20 bg-card p-6 sm:p-8">
@@ -328,12 +389,16 @@ function CourseDetailPage() {
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">Practical Lab Highlights</h2>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  CyberBodha emphasizes authentic experience over multiple-choice theory. During this course, you will execute exercises in our controlled cyber range:
+                  CyberBodha emphasizes authentic experience over multiple-choice theory. During
+                  this course, you will execute exercises in our controlled cyber range:
                 </p>
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 pt-2">
                   {course.labHighlights.map((lab, i) => (
-                    <div key={i} className="flex items-start gap-3 rounded-lg border border-border/80 bg-background/50 p-4">
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 rounded-lg border border-border/80 bg-background/50 p-4"
+                    >
                       <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
                         <Terminal className="h-3.5 w-3.5" />
                       </div>
@@ -351,9 +416,12 @@ function CourseDetailPage() {
                   <Cpu className="h-4 w-4" />
                   <span>TOOLING ECOSYSTEM</span>
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">Tools & Technologies Mastered</h2>
+                <h2 className="text-2xl font-bold text-foreground">
+                  Tools & Technologies Mastered
+                </h2>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Experience standard tools utilized by enterprise Security Operations Centers, offensive red teams, and infrastructure security teams.
+                  Experience standard tools utilized by enterprise Security Operations Centers,
+                  offensive red teams, and infrastructure security teams.
                 </p>
                 <div className="flex flex-wrap gap-2.5 pt-2">
                   {course.technologies.map((tool) => (
@@ -367,7 +435,8 @@ function CourseDetailPage() {
                   ))}
                 </div>
                 <p className="text-[11px] text-muted-foreground italic">
-                  Note: Specific tool suites depend on cohort track and enterprise licensing; conceptual workflows remain fully transferable.
+                  Note: Specific tool suites depend on cohort track and enterprise licensing;
+                  conceptual workflows remain fully transferable.
                 </p>
               </div>
 
@@ -411,7 +480,11 @@ function CourseDetailPage() {
                 <h2 className="text-2xl font-bold text-foreground">Frequently Asked Questions</h2>
                 <Accordion type="single" collapsible className="w-full space-y-2.5 pt-2">
                   {course.faqs.map((faq, idx) => (
-                    <AccordionItem key={idx} value={`faq-${idx}`} className="rounded-xl border border-border bg-card px-4">
+                    <AccordionItem
+                      key={idx}
+                      value={`faq-${idx}`}
+                      className="rounded-xl border border-border bg-card px-4"
+                    >
                       <AccordionTrigger className="text-xs font-bold text-foreground hover:no-underline hover:text-primary py-3 text-left">
                         {faq.question}
                       </AccordionTrigger>
@@ -446,15 +519,25 @@ function CourseDetailPage() {
                 <div className="space-y-3 text-xs text-muted-foreground">
                   <div className="flex items-start gap-2.5">
                     <div className="mt-0.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                    <p><strong className="text-foreground">Practitioner-Led:</strong> Courses are instructed by active defensive operations and security testing professionals.</p>
+                    <p>
+                      <strong className="text-foreground">Practitioner-Led:</strong> Courses are
+                      instructed by active defensive operations and security testing professionals.
+                    </p>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <div className="mt-0.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                    <p><strong className="text-foreground">Zero Theory Fillers:</strong> Spend over 60% of class and assignment hours inside interactive terminal and SIEM environments.</p>
+                    <p>
+                      <strong className="text-foreground">Zero Theory Fillers:</strong> Spend over
+                      60% of class and assignment hours inside interactive terminal and SIEM
+                      environments.
+                    </p>
                   </div>
                   <div className="flex items-start gap-2.5">
                     <div className="mt-0.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                    <p><strong className="text-foreground">Verified Assessment:</strong> Capstone assessments mirror actual industry shifts and testing engagements.</p>
+                    <p>
+                      <strong className="text-foreground">Verified Assessment:</strong> Capstone
+                      assessments mirror actual industry shifts and testing engagements.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -463,7 +546,8 @@ function CourseDetailPage() {
               <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center space-y-3">
                 <h4 className="text-base font-bold text-foreground">Need Cohort Details?</h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Our admissions office provides complete batch schedules, prerequisite diagnostic checks, and fee structures on request.
+                  Our admissions office provides complete batch schedules, prerequisite diagnostic
+                  checks, and fee structures on request.
                 </p>
                 <CourseEnquiryModal
                   defaultCourseSlug={course.slug}
@@ -482,7 +566,9 @@ function CourseDetailPage() {
         {/* Mobile Sticky Enrollment Footer Bar */}
         <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden border-t border-border bg-background/95 backdrop-blur-md p-3 px-4 flex items-center justify-between gap-3 shadow-2xl">
           <div className="min-w-0">
-            <span className="text-[10px] uppercase font-bold text-primary block">Ready to enroll?</span>
+            <span className="text-[10px] uppercase font-bold text-primary block">
+              Ready to enroll?
+            </span>
             <span className="text-xs font-bold text-foreground truncate block">{course.title}</span>
           </div>
           <CourseEnquiryModal

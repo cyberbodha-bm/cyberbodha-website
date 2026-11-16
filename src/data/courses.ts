@@ -1,3 +1,11 @@
+import {
+  CEH_V13_MODULES,
+  type CehModule,
+  type CehModuleLab,
+  type CehKnowledgeCheck,
+  type ContentClassification,
+} from "./ceh-v13-curriculum";
+
 export type CourseCategory =
   | "SOC & Blue Team"
   | "Offensive Security & VAPT"
@@ -8,12 +16,31 @@ export type CourseCategory =
   | "DevSecOps"
   | "Career Accelerator";
 
-export type CourseLevel = "Foundation" | "Foundation to Professional" | "Foundation to Advanced" | "Intermediate" | "Intermediate to Advanced" | "Foundation to Job Readiness";
+export type CourseLevel =
+  | "Foundation"
+  | "Foundation to Professional"
+  | "Foundation to Advanced"
+  | "Intermediate"
+  | "Intermediate to Advanced"
+  | "Foundation to Job Readiness";
 
 export interface CourseModule {
   title: string;
   description: string;
   topics: string[];
+  number?: number;
+  officialNumber?: string;
+  officialTitle?: string;
+  category?: string;
+  classification?: ContentClassification | string;
+  learningObjectives?: string[];
+  conceptExplanation?: string;
+  aiAssistantFeatures?: string[];
+  guidedLabs?: CehModuleLab[];
+  practiceChallenges?: string[];
+  knowledgeChecks?: CehKnowledgeCheck[];
+  moduleAssessment?: string;
+  summary?: string;
 }
 
 export interface CourseFAQ {
@@ -64,8 +91,10 @@ export const COURSES: Course[] = [
     title: "SOC Analyst Professional Program",
     category: "SOC & Blue Team",
     level: "Foundation to Professional",
-    shortDescription: "Develop practical capabilities for SOC monitoring, alert triage, investigation, escalation, and incident handling in enterprise environments.",
-    overview: "The SOC Analyst Professional Program equips aspiring and transitioning security professionals with rigorous operational readiness. Learn to analyze live event streams, detect malicious indicators, map intrusions to MITRE ATT&CK, investigate endpoint/network telemetry, and execute structured incident triage using leading SIEM and XDR tools.",
+    shortDescription:
+      "Develop practical capabilities for SOC monitoring, alert triage, investigation, escalation, and incident handling in enterprise environments.",
+    overview:
+      "The SOC Analyst Professional Program equips aspiring and transitioning security professionals with rigorous operational readiness. Learn to analyze live event streams, detect malicious indicators, map intrusions to MITRE ATT&CK, investigate endpoint/network telemetry, and execute structured incident triage using leading SIEM and XDR tools.",
     audience: [
       "Aspiring SOC Analysts and Tier 1 / Tier 2 security operations candidates",
       "IT administrators, system administrators, and network engineers transitioning to security",
@@ -96,58 +125,124 @@ export const COURSES: Course[] = [
     curriculum: [
       {
         title: "Module 1: SOC Operations & Analyst Responsibilities",
-        description: "Explore the structure, workflows, metrics (MTTD/MTTR), and analyst responsibilities across Tier 1, 2, and 3 security operations.",
-        topics: ["SOC Architecture & Tier Structure", "Operational Workflows & Playbooks", "SLA & KPI Tracking", "Ticketing & Escalation Standards"],
+        description:
+          "Explore the structure, workflows, metrics (MTTD/MTTR), and analyst responsibilities across Tier 1, 2, and 3 security operations.",
+        topics: [
+          "SOC Architecture & Tier Structure",
+          "Operational Workflows & Playbooks",
+          "SLA & KPI Tracking",
+          "Ticketing & Escalation Standards",
+        ],
       },
       {
         title: "Module 2: SIEM Architecture & Data Ingestion",
-        description: "Understand enterprise SIEM pipelines, log forwarders, agents, and collection architectures.",
-        topics: ["Log Sources & Formats (Syslog, JSON, CEF)", "Agent vs. Agentless Collection", "Indexer & Storage Design", "Data Retention & Compliance"],
+        description:
+          "Understand enterprise SIEM pipelines, log forwarders, agents, and collection architectures.",
+        topics: [
+          "Log Sources & Formats (Syslog, JSON, CEF)",
+          "Agent vs. Agentless Collection",
+          "Indexer & Storage Design",
+          "Data Retention & Compliance",
+        ],
       },
       {
         title: "Module 3: Log Analysis & Investigation",
-        description: "Master querying and forensic breakdown of security logs across heterogeneous systems.",
-        topics: ["Windows Security Event IDs (4624, 4625, 4688, 7045)", "Linux Syslog, Auth.log, and Auditd", "Web Server Logs (Apache, Nginx, IIS)", "Firewall & Proxy Log Analysis"],
+        description:
+          "Master querying and forensic breakdown of security logs across heterogeneous systems.",
+        topics: [
+          "Windows Security Event IDs (4624, 4625, 4688, 7045)",
+          "Linux Syslog, Auth.log, and Auditd",
+          "Web Server Logs (Apache, Nginx, IIS)",
+          "Firewall & Proxy Log Analysis",
+        ],
       },
       {
         title: "Module 4: Alert Triage & Prioritization",
-        description: "Distinguish benign anomalies and false positives from genuine security incidents.",
-        topics: ["Alert Triaging Methodology", "Severity vs. Impact Scoring", "Context Enrichment via Threat Intel", "Suppressing False Positives"],
+        description:
+          "Distinguish benign anomalies and false positives from genuine security incidents.",
+        topics: [
+          "Alert Triaging Methodology",
+          "Severity vs. Impact Scoring",
+          "Context Enrichment via Threat Intel",
+          "Suppressing False Positives",
+        ],
       },
       {
         title: "Module 5: Detection Rules & Correlation",
-        description: "Build robust detection mechanisms that identify attacker techniques before impact.",
-        topics: ["Correlation Logic & Threshold Rules", "Behavioral Anomaly Detection", "Sigma Rules & Rule Conversion", "Testing Detections Against Baselines"],
+        description:
+          "Build robust detection mechanisms that identify attacker techniques before impact.",
+        topics: [
+          "Correlation Logic & Threshold Rules",
+          "Behavioral Anomaly Detection",
+          "Sigma Rules & Rule Conversion",
+          "Testing Detections Against Baselines",
+        ],
       },
       {
         title: "Module 6: MITRE ATT&CK Mapping",
-        description: "Structure security monitoring and coverage against real-world adversarial tactics and techniques.",
-        topics: ["Tactics, Techniques & Sub-techniques", "Mapping Alerts to Attack Phases", "Coverage Heatmaps & Gap Analysis", "Adversary Profiling"],
+        description:
+          "Structure security monitoring and coverage against real-world adversarial tactics and techniques.",
+        topics: [
+          "Tactics, Techniques & Sub-techniques",
+          "Mapping Alerts to Attack Phases",
+          "Coverage Heatmaps & Gap Analysis",
+          "Adversary Profiling",
+        ],
       },
       {
         title: "Module 7: Endpoint & Network Telemetry",
-        description: "Harness rich telemetry from endpoint detection agents and network capture sensors.",
-        topics: ["Sysmon Deep-Dive (Process Creation, Network Connections)", "EDR Telemetry & Process Trees", "Flow Logs & NetFlow Analysis", "DNS & HTTP Telemetry Inspection"],
+        description:
+          "Harness rich telemetry from endpoint detection agents and network capture sensors.",
+        topics: [
+          "Sysmon Deep-Dive (Process Creation, Network Connections)",
+          "EDR Telemetry & Process Trees",
+          "Flow Logs & NetFlow Analysis",
+          "DNS & HTTP Telemetry Inspection",
+        ],
       },
       {
         title: "Module 8: Incident Investigation Workflows",
-        description: "Lead methodical root-cause investigations from initial trigger to scope determination.",
-        topics: ["Reconstructing Attack Timelines", "Identifying Patient Zero & Lateral Movement", "Artifact Preservation & Chain of Custody", "Scope of Compromise Assessment"],
+        description:
+          "Lead methodical root-cause investigations from initial trigger to scope determination.",
+        topics: [
+          "Reconstructing Attack Timelines",
+          "Identifying Patient Zero & Lateral Movement",
+          "Artifact Preservation & Chain of Custody",
+          "Scope of Compromise Assessment",
+        ],
       },
       {
         title: "Module 9: Incident Escalation & Reporting",
-        description: "Communicate technical findings clearly to incident response teams and executive stakeholders.",
-        topics: ["Structured Incident Reporting", "Executive Summaries vs. Technical Details", "Actionable Containment Recommendations", "Post-Incident Reviews"],
+        description:
+          "Communicate technical findings clearly to incident response teams and executive stakeholders.",
+        topics: [
+          "Structured Incident Reporting",
+          "Executive Summaries vs. Technical Details",
+          "Actionable Containment Recommendations",
+          "Post-Incident Reviews",
+        ],
       },
       {
         title: "Module 10: Hands-on SOC Investigation Scenarios",
-        description: "Simulated multi-stage attacks in a controlled environment mirroring real enterprise networks.",
-        topics: ["Scenario: Phishing leading to Credential Theft", "Scenario: Ransomware Pre-Cursor Detection", "Scenario: Insider Data Exfiltration", "Scenario: Web Shell Persistence"],
+        description:
+          "Simulated multi-stage attacks in a controlled environment mirroring real enterprise networks.",
+        topics: [
+          "Scenario: Phishing leading to Credential Theft",
+          "Scenario: Ransomware Pre-Cursor Detection",
+          "Scenario: Insider Data Exfiltration",
+          "Scenario: Web Shell Persistence",
+        ],
       },
       {
         title: "Module 11: Practical SOC Capstone Assessment",
-        description: "Comprehensive timed evaluation simulating a full shift in a live enterprise SOC environment.",
-        topics: ["Live Shift Simulation", "Independent Triage & Ticket Submission", "Investigation Accuracy Review", "Faculty Feedback & Readiness Evaluation"],
+        description:
+          "Comprehensive timed evaluation simulating a full shift in a live enterprise SOC environment.",
+        topics: [
+          "Live Shift Simulation",
+          "Independent Triage & Ticket Submission",
+          "Investigation Accuracy Review",
+          "Faculty Feedback & Readiness Evaluation",
+        ],
       },
     ],
     labHighlights: [
@@ -156,27 +251,44 @@ export const COURSES: Course[] = [
       "Investigating simulated credential dumping (LSASS access) and privilege escalation",
       "Drafting professional incident escalation tickets using industry templates",
     ],
-    technologies: ["Wazuh", "Splunk", "Microsoft Sentinel", "Sysmon", "Windows Event Logs", "Linux Auditd", "MITRE ATT&CK", "Wireshark"],
+    technologies: [
+      "Wazuh",
+      "Splunk",
+      "Microsoft Sentinel",
+      "Sysmon",
+      "Windows Event Logs",
+      "Linux Auditd",
+      "MITRE ATT&CK",
+      "Wireshark",
+    ],
     format: "Instructor-led training with hands-on cyber range labs",
-    certificationNote: "Includes CyberBodha Certified SOC Analyst Practical Readiness Assessment and certificate of completion.",
+    certificationNote:
+      "Includes CyberBodha Certified SOC Analyst Practical Readiness Assessment and certificate of completion.",
     faqs: [
       {
         question: "Is this program suitable for beginners in cybersecurity?",
-        answer: "Yes. While basic familiarity with networking and operating systems is recommended, the program builds step-by-step from foundational monitoring concepts to advanced investigation scenarios.",
+        answer:
+          "Yes. While basic familiarity with networking and operating systems is recommended, the program builds step-by-step from foundational monitoring concepts to advanced investigation scenarios.",
       },
       {
         question: "Which SIEM platforms are used in the lab exercises?",
-        answer: "The program emphasizes transferable analytical skills using open and enterprise platforms including Wazuh, Splunk, and Microsoft Sentinel environments depending on cohort delivery configuration.",
+        answer:
+          "The program emphasizes transferable analytical skills using open and enterprise platforms including Wazuh, Splunk, and Microsoft Sentinel environments depending on cohort delivery configuration.",
       },
       {
         question: "Does the course include live simulated attacks?",
-        answer: "Yes. The capstone modules utilize simulated attack scenarios in our Cyber Range environment where students analyze real telemetry without putting production systems at risk.",
+        answer:
+          "Yes. The capstone modules utilize simulated attack scenarios in our Cyber Range environment where students analyze real telemetry without putting production systems at risk.",
       },
     ],
     featured: true,
     published: true,
     badge: "Flagship Program",
-    relatedCourseSlugs: ["siem-engineering-operations", "linux-networking-cybersecurity", "cybersecurity-career-accelerator"],
+    relatedCourseSlugs: [
+      "siem-engineering-operations",
+      "linux-networking-cybersecurity",
+      "cybersecurity-career-accelerator",
+    ],
   },
   {
     id: "cb-eh-02",
@@ -184,134 +296,136 @@ export const COURSES: Course[] = [
     title: "CEH v13 AI Integrated Ethical Hacking",
     category: "Offensive Security & VAPT",
     level: "Foundation to Advanced",
-    shortDescription: "Master offensive security concepts, penetration testing methodologies, and modern AI-assisted ethical hacking workflows.",
-    overview: "This program delivers an ethical hacking curriculum integrated with AI-driven security workflows. Learn authorized penetration testing techniques, reconnaissance, vulnerability exploitation, and defense strategies while exploring how artificial intelligence is transforming both offensive security assessments and threat countermeasures.",
+    shortDescription:
+      "Official EC-Council CEH v13 aligned 20-module curriculum covering offensive security, penetration testing, and AI-accelerated cyber workflows.",
+    overview:
+      "This program delivers the official 20-module Certified Ethical Hacker (CEH v13 AI) curriculum mapped to EC-Council standards and enhanced with CyberBodha Cyber Range virtual labs. Learn authorized penetration testing, vulnerability exploitation, network attacks, cloud security, and post-exploitation workflows while mastering how artificial intelligence is transforming both offensive security testing and defensive threat countermeasures.",
     audience: [
       "Security specialists, penetration testers, and vulnerability analysts",
       "Network engineers, systems administrators, and IT auditors",
-      "Cybersecurity professionals preparing for ethical hacking roles and knowledge benchmarks",
-      "Engineering students aiming to understand offensive security and system defenses",
+      "Cybersecurity professionals preparing for the EC-Council CEH v13 certification examination",
+      "Engineering students aiming to understand offensive security, system defenses, and AI-assisted testing",
     ],
     prerequisites: [
       "Working knowledge of TCP/IP networking, subnetting, and port services",
-      "Basic command line proficiency in Linux and Windows",
+      "Basic command line proficiency in Linux (Bash) and Windows",
       "Strict commitment to ethical conduct and legal testing boundaries",
     ],
     learningOutcomes: [
-      "Conduct systematic reconnaissance and asset discovery using open-source tools",
-      "Identify, validate, and document security vulnerabilities across network and web assets",
-      "Execute authorized penetration testing methodologies across various attack surfaces",
-      "Leverage AI assistance for script generation, payload analysis, and report drafting",
-      "Deliver actionable remediation plans to harden tested architectures",
+      "Master the official 20-module EC-Council CEH v13 ethical hacking body of knowledge",
+      "Conduct systematic reconnaissance, network scanning, and deep service enumeration",
+      "Execute authorized exploitation across systems, web applications, wireless, mobile, IoT/OT, and cloud architectures",
+      "Leverage modern AI workflows for automated reconnaissance synthesis, exploit tuning, and remediation reporting",
+      "Analyze and detect AI-driven threats including polymorphic malware, deepfakes, and prompt injection vulnerabilities",
+      "Draft audit-grade executive and technical remediation reports to harden enterprise defenses",
     ],
     skills: [
-      "Ethical Hacking Methodologies",
-      "Active & Passive Reconnaissance",
-      "Vulnerability Scanning",
-      "System & Network Exploitation",
-      "Web Application Security",
-      "AI-Assisted Security Workflows",
-      "Remediation Reporting",
+      "Official CEH v13 20-Module Scope",
+      "Active & Passive OSINT Reconnaissance",
+      "Advanced Port & Network Scanning (Nmap/Masscan)",
+      "System Exploitation & Privilege Escalation",
+      "OWASP Top 10 Web Application Pentesting",
+      "SQL Injection & Advanced Database Extraction",
+      "Wireless & WPA2/WPA3 Security Auditing",
+      "Mobile App (Android/iOS) Reverse Engineering",
+      "IoT & OT / SCADA Modbus Interrogation",
+      "AWS & Multi-Cloud IAM Privilege Escalation",
+      "Applied Cryptography & Padding Oracle Attacks",
+      "AI-Assisted Security & Prompt Defense Workflows",
     ],
-    curriculum: [
-      {
-        title: "Module 1: Ethical Hacking Foundations & Legal Frameworks",
-        description: "Understanding ethical boundaries, authorization scopes, computer misuse acts, and compliance guidelines.",
-        topics: ["Ethics & Scope of Authorization", "Legal Considerations & Compliance", "Types of Hackers & Threat Models", "Pentest Standards (PTES, NIST)"],
-      },
-      {
-        title: "Module 2: Reconnaissance & Intelligence Gathering",
-        description: "Uncovering digital footprints through passive OSINT and active reconnaissance.",
-        topics: ["OSINT Tools & Frameworks", "Search Engine Dorking", "DNS & WHOIS Reconnaissance", "Automating OSINT with Python and AI Tools"],
-      },
-      {
-        title: "Module 3: Scanning & Enumeration",
-        description: "Mapping attack surfaces, probing open ports, service versions, and system banners.",
-        topics: ["Port Scanning Techniques with Nmap", "Service Version & OS Fingerprinting", "SNMP, SMB, and LDAP Enumeration", "Vulnerability Scanning with OpenVAS/Nessus"],
-      },
-      {
-        title: "Module 4: Vulnerability Assessment & Validation",
-        description: "Analyzing scan results, triaging false positives, and prioritizing exploitable risks.",
-        topics: ["Vulnerability Categorization (CVE/CWE)", "CVSS Scoring Breakdown", "Manual Verification vs. Automated Scanners", "Risk Prioritization Matrices"],
-      },
-      {
-        title: "Module 5: System Hacking & Privilege Escalation",
-        description: "Gaining initial access and escalating privileges within controlled laboratory systems.",
-        topics: ["Password Cracking & Hash Types", "Buffer Overflows & Memory Concepts", "Windows Privilege Escalation (Privesc)", "Linux SUID & Cron Exploitation"],
-      },
-      {
-        title: "Module 6: Network Security Testing",
-        description: "Evaluating wired and wireless network architectures against common attacks.",
-        topics: ["Man-in-the-Middle (MitM) Concepts", "ARP Spoofing & DNS Poisoning", "Sniffing Traffic & Packet Inspection", "Network Segmentation Testing"],
-      },
-      {
-        title: "Module 7: Web Application Security Fundamentals",
-        description: "Assessing web applications against the OWASP Top 10 vulnerabilities.",
-        topics: ["Injection Flaws (SQLi, Command Injection)", "Cross-Site Scripting (XSS)", "Cross-Site Request Forgery (CSRF)", "Insecure Direct Object References (IDOR)"],
-      },
-      {
-        title: "Module 8: Wireless & IoT Security Overview",
-        description: "Understanding wireless protocols, encryption flaws, and IoT attack vectors.",
-        topics: ["WPA2/WPA3 Handshake Capture & Cracking", "Rogue Access Points & Evil Twins", "Bluetooth & RFID Vectors", "IoT Device Vulnerabilities"],
-      },
-      {
-        title: "Module 9: Social Engineering & Human Factors",
-        description: "Analyzing social engineering tactics and building organizational defenses.",
-        topics: ["Phishing, Spear Phishing & Vishing", "Credential Harvesting Simulations", "Physical Security Assessments", "Human Defense Awareness Training"],
-      },
-      {
-        title: "Module 10: Malware Concepts & Defensive Evasion",
-        description: "Examining malware categories, trojans, backdoors, and analysis methodologies.",
-        topics: ["Malware Classification & Delivery", "Static vs. Dynamic Analysis Basics", "Obfuscation & Evasion Techniques", "Defensive Detection Strategies"],
-      },
-      {
-        title: "Module 11: Cloud Security Fundamentals for Pentesters",
-        description: "Exploring security configurations and common missteps in AWS, Azure, and GCP.",
-        topics: ["Cloud Shared Responsibility Model", "IAM Misconfigurations & Privilege Escalation", "S3 & Storage Bucket Exposures", "Cloud Pentesting Rules of Engagement"],
-      },
-      {
-        title: "Module 12: AI-Assisted Security Workflows",
-        description: "Integrating modern generative AI into ethical hacking, reporting, and defense workflows.",
-        topics: ["Prompt Engineering for Security Testing", "AI-Assisted Code Auditing", "Automated Report Section Generation", "Defending Against Adversarial AI"],
-      },
-      {
-        title: "Module 13: Professional Remediation Reporting",
-        description: "Drafting technical and executive reports that deliver measurable security improvements.",
-        topics: ["Report Structure & Writing Guidelines", "Root Cause Analysis", "Actionable Remediation Guidance", "Client Debrief & Presentation Skills"],
-      },
-      {
-        title: "Module 14: Practical Ethical Hacking Capstone",
-        description: "Comprehensive capture-the-flag (CTF) practical assessment in an isolated network range.",
-        topics: ["Multi-host Target Range", "Reconnaissance to Flag Capture", "Reporting of Vulnerabilities Found", "Faculty Evaluation & Certification"],
-      },
-    ],
+    curriculum: CEH_V13_MODULES.map((m) => ({
+      number: m.number,
+      officialNumber: m.officialNumber,
+      officialTitle: m.officialTitle,
+      title: `${m.officialNumber}: ${m.officialTitle}`,
+      description: m.description,
+      topics: m.officialTopics,
+      category: m.category,
+      classification: m.classification,
+      learningObjectives: m.learningObjectives,
+      conceptExplanation: m.conceptExplanation,
+      aiAssistantFeatures: m.aiAssistantFeatures,
+      guidedLabs: m.guidedLabs,
+      practiceChallenges: m.practiceChallenges,
+      knowledgeChecks: m.knowledgeChecks,
+      moduleAssessment: m.moduleAssessment,
+      summary: m.summary,
+    })),
     labHighlights: [
-      "Performing comprehensive network enumeration on isolated multi-subnet targets",
-      "Identifying and exploiting SQL injection and Cross-Site Scripting in lab web applications",
-      "Escalating privileges in Windows and Linux target machines using misconfigured permissions",
-      "Using AI tools to streamline script automation and generate executive reporting summaries",
+      "Targeted Footprinting & Reconnaissance using OSINT frameworks, Shodan, and automated certificate parsing",
+      "Stealth Network Scanning, timing manipulation, and custom Nmap Scripting Engine (NSE) exploitation",
+      "Active Directory, SMB, and SNMP enumeration in simulated multi-tier enterprise domains",
+      "Windows Token Impersonation, unquoted service path exploitation, and Linux SUID privilege escalation",
+      "Reverse engineering malware in isolated sandboxes and extracting outbound C2 communication IOCs",
+      "Switched network packet sniffing, ARP cache poisoning, and credential stream decoding with Wireshark",
+      "Simulated corporate spear-phishing with GoPhish and AI deepfake defense verification",
+      "Application layer DoS testing, Slowloris mitigation, and WAF rate-limiting configuration",
+      "Session hijacking, JWT signature tampering, and insecure cookie exploitation with Burp Suite",
+      "IDS, WAF, and honeypot evasion using payload mutation, protocol fragmentation, and DNS tunneling",
+      "Exploiting web server misconfigurations and directory traversal flaws on Apache/Nginx",
+      "OWASP Top 10 web exploitation: Reflected/Stored XSS, SSRF to cloud metadata, and IDOR bypasses",
+      "Manual and automated SQL injection with SQLMap to extract schemas and execute system commands",
+      "WPA2 4-way handshake interception and PMKID extraction using Aircrack-ng and Hashcat",
+      "Decompiling Android APKs with JADX, hooking methods with Frida, and bypassing SSL pinning",
+      "Carving IoT firmware images with Binwalk and interrogating unauthenticated Modbus TCP industrial controllers",
+      "AWS cloud penetration testing: IAM role privilege escalation, S3 bucket enumeration, and Terraform auditing",
+      "Padding oracle cryptanalysis, SSL/TLS cipher suite auditing, and post-quantum cryptographic readiness",
     ],
-    technologies: ["Kali Linux", "Nmap", "Burp Suite", "Metasploit", "Wireshark", "John the Ripper", "Hydra", "OWASP ZAP", "Python"],
-    format: "Instructor-led training with hands-on practice labs",
-    certificationNote: "Prepares students for ethical hacking industry benchmarks. Certification exams are independently administered.",
+    technologies: [
+      "Kali Linux 2026",
+      "Nmap & Masscan",
+      "Burp Suite Professional",
+      "Metasploit Framework",
+      "Wireshark & Tcpdump",
+      "Hashcat & John the Ripper",
+      "SQLMap",
+      "Aircrack-ng Suite",
+      "JADX-GUI & Frida",
+      "Binwalk & QEMU",
+      "AWS CLI & Pacu",
+      "OWASP ZAP",
+      "OpenSSL",
+      "Python 3",
+    ],
+    format: "Instructor-led training + dedicated Cyber Range practical lab environments",
+    duration: "40 Hours Structured Curriculum + Unlimited Cyber Range Access",
+    certificationNote:
+      "Fully aligned with EC-Council Certified Ethical Hacker (CEH v13 AI) exam blueprint (125 Questions, 4 Hours) and CEH Practical (6 Hours).",
     faqs: [
       {
-        question: "Does this course require prior coding experience?",
-        answer: "No deep programming background is required, though basic scripting (Bash or Python) and command line familiarity will help you get the most out of the exercises.",
+        question: "Does this course cover all 20 official CEH v13 modules?",
+        answer:
+          "Yes. CyberBodha strictly follows the complete official 20-module sequence established by EC-Council for CEH v13, covering everything from ethical foundations to IoT/OT, cloud platforms, and advanced cryptography.",
       },
       {
-        question: "How is AI integrated into the curriculum?",
-        answer: "We demonstrate how modern security analysts use AI models responsibly for analyzing code, accelerating reconnaissance synthesis, and drafting technical remediation reports.",
+        question: "How is Artificial Intelligence (AI) integrated into this CEH v13 course?",
+        answer:
+          "CEH v13 incorporates AI across two fronts: using AI tools to accelerate ethical hacking tasks (code auditing, recon synthesis, payload variation, report generation) and evaluating threats from adversarial AI (deepfake social engineering, automated scanners, prompt injection vulnerabilities).",
       },
       {
-        question: "Are all testing activities conducted legally?",
-        answer: "Yes. 100% of testing is conducted inside strictly isolated, authorized virtual laboratory networks.",
+        question: "Does CyberBodha provide hands-on lab access for all 20 modules?",
+        answer:
+          "Yes. Every module is paired with virtual Cyber Range exercises hosted in isolated sandbox topologies mirroring enterprise corporate networks, cloud platforms, and industrial control environments.",
+      },
+      {
+        question: "Are certification exams included with this training?",
+        answer:
+          "The course delivers comprehensive curriculum preparation and practical range experience aligned with the official CEH v13 examination. Certification vouchers and proctored exam sessions are administered through official EC-Council testing channels.",
+      },
+      {
+        question: "What are the recommended prerequisites?",
+        answer:
+          "Basic networking fundamentals (TCP/IP, subnetting) and familiarity with Linux/Windows command line navigation. No advanced programming is required.",
       },
     ],
     featured: true,
     published: true,
-    badge: "Most Popular",
-    relatedCourseSlugs: ["vapt-professional", "linux-networking-cybersecurity", "cybersecurity-career-accelerator"],
+    badge: "Official 20 Modules Aligned",
+    relatedCourseSlugs: [
+      "vapt-professional",
+      "linux-networking-cybersecurity",
+      "cybersecurity-career-accelerator",
+    ],
   },
   {
     id: "cb-vapt-03",
@@ -319,8 +433,10 @@ export const COURSES: Course[] = [
     title: "Vulnerability Assessment & Penetration Testing Professional",
     category: "Offensive Security & VAPT",
     level: "Intermediate",
-    shortDescription: "Master end-to-end VAPT methodologies, rigorous vulnerability verification, and client-ready reporting standards.",
-    overview: "The VAPT Professional program focuses on the systematic execution of vulnerability assessments and penetration tests in enterprise environments. Moving beyond basic tool operation, this course teaches deep vulnerability validation, business logic testing, CVSS v3/v4 risk scoring, and the production of audit-grade remediation reports that security leadership relies upon.",
+    shortDescription:
+      "Master end-to-end VAPT methodologies, rigorous vulnerability verification, and client-ready reporting standards.",
+    overview:
+      "The VAPT Professional program focuses on the systematic execution of vulnerability assessments and penetration tests in enterprise environments. Moving beyond basic tool operation, this course teaches deep vulnerability validation, business logic testing, CVSS v3/v4 risk scoring, and the production of audit-grade remediation reports that security leadership relies upon.",
     audience: [
       "Security testers, ethical hackers, and vulnerability assessment engineers",
       "AppSec engineers and software developers seeking defensive validation techniques",
@@ -351,63 +467,135 @@ export const COURSES: Course[] = [
     curriculum: [
       {
         title: "Module 1: VAPT Methodology & Standards",
-        description: "Understanding industry standards: PTES, OWASP Testing Guide, NIST SP 800-115, and CREST methodologies.",
-        topics: ["Testing Frameworks Comparison", "Assessment Phases Breakdown", "Compliance Drivers (PCI-DSS, ISO 27001)", "Testing Frequency & Strategies"],
+        description:
+          "Understanding industry standards: PTES, OWASP Testing Guide, NIST SP 800-115, and CREST methodologies.",
+        topics: [
+          "Testing Frameworks Comparison",
+          "Assessment Phases Breakdown",
+          "Compliance Drivers (PCI-DSS, ISO 27001)",
+          "Testing Frequency & Strategies",
+        ],
       },
       {
         title: "Module 2: Rules of Engagement & Scoping",
-        description: "Defining scope, communication channels, test windows, and liability protection agreements.",
-        topics: ["Scope Documents & Questionnaires", "Third-Party & Cloud Provider Permissions", "Out-of-Scope Asset Identification", "Emergency Stop & Escalation Protocols"],
+        description:
+          "Defining scope, communication channels, test windows, and liability protection agreements.",
+        topics: [
+          "Scope Documents & Questionnaires",
+          "Third-Party & Cloud Provider Permissions",
+          "Out-of-Scope Asset Identification",
+          "Emergency Stop & Escalation Protocols",
+        ],
       },
       {
         title: "Module 3: Scoping & Asset Discovery",
-        description: "Active and passive discovery of live hosts, virtual hosts, API endpoints, and cloud assets.",
-        topics: ["Subdomain Enumeration & Asset Tracking", "Port Mapping & Service Identification", "Hidden Asset & Archive Discovery", "Cloud Asset Footprinting"],
+        description:
+          "Active and passive discovery of live hosts, virtual hosts, API endpoints, and cloud assets.",
+        topics: [
+          "Subdomain Enumeration & Asset Tracking",
+          "Port Mapping & Service Identification",
+          "Hidden Asset & Archive Discovery",
+          "Cloud Asset Footprinting",
+        ],
       },
       {
         title: "Module 4: Vulnerability Validation & Verification",
-        description: "Eliminating scanner noise through manual verification and proof-of-concept testing.",
-        topics: ["Automated Scanner Deployment (Nessus/OpenVAS)", "Analyzing Scanner Outputs", "Crafting Proof-of-Concept (PoC) Checks", "Confirming False Positives"],
+        description:
+          "Eliminating scanner noise through manual verification and proof-of-concept testing.",
+        topics: [
+          "Automated Scanner Deployment (Nessus/OpenVAS)",
+          "Analyzing Scanner Outputs",
+          "Crafting Proof-of-Concept (PoC) Checks",
+          "Confirming False Positives",
+        ],
       },
       {
         title: "Module 5: Advanced Web Application Testing",
-        description: "Deep dive into web application vulnerabilities beyond automated scanner capabilities.",
-        topics: ["Interception Proxies (Burp Suite Pro Features)", "Session Management & JWT Flaws", "Cross-Site Scripting (Stored, Reflected, DOM)", "SQL Injection & Second-Order Exploits"],
+        description:
+          "Deep dive into web application vulnerabilities beyond automated scanner capabilities.",
+        topics: [
+          "Interception Proxies (Burp Suite Pro Features)",
+          "Session Management & JWT Flaws",
+          "Cross-Site Scripting (Stored, Reflected, DOM)",
+          "SQL Injection & Second-Order Exploits",
+        ],
       },
       {
         title: "Module 6: Authentication & Authorization Testing",
-        description: "Evaluating access controls, multi-factor implementations, and privilege boundaries.",
-        topics: ["Bypassing Ineffective 2FA/MFA", "OAuth 2.0 & SAML Flaws", "Horizontal & Vertical Privilege Escalation", "IDOR & Broken Object Level Authorization"],
+        description:
+          "Evaluating access controls, multi-factor implementations, and privilege boundaries.",
+        topics: [
+          "Bypassing Ineffective 2FA/MFA",
+          "OAuth 2.0 & SAML Flaws",
+          "Horizontal & Vertical Privilege Escalation",
+          "IDOR & Broken Object Level Authorization",
+        ],
       },
       {
         title: "Module 7: API Security Testing",
-        description: "Assessing RESTful, GraphQL, and microservice APIs using the OWASP API Security Top 10.",
-        topics: ["API Endpoint Enumeration & Swagger Analysis", "Improper Asset Management", "Mass Assignment Vulnerabilities", "Rate Limiting & Resource Exhaustion"],
+        description:
+          "Assessing RESTful, GraphQL, and microservice APIs using the OWASP API Security Top 10.",
+        topics: [
+          "API Endpoint Enumeration & Swagger Analysis",
+          "Improper Asset Management",
+          "Mass Assignment Vulnerabilities",
+          "Rate Limiting & Resource Exhaustion",
+        ],
       },
       {
         title: "Module 8: Internal Network Penetration Testing",
-        description: "Testing internal enterprise networks, domain controllers, and segmented zones.",
-        topics: ["Active Directory Enumeration", "LLMNR/NBT-NS Poisoning", "Pass-the-Hash & Token Impersonation", "Pivoting Across Segmented Subnets"],
+        description:
+          "Testing internal enterprise networks, domain controllers, and segmented zones.",
+        topics: [
+          "Active Directory Enumeration",
+          "LLMNR/NBT-NS Poisoning",
+          "Pass-the-Hash & Token Impersonation",
+          "Pivoting Across Segmented Subnets",
+        ],
       },
       {
         title: "Module 9: Risk Rating & CVSS Scoring",
-        description: "Standardizing vulnerability severity using the Common Vulnerability Scoring System.",
-        topics: ["CVSS Base, Temporal & Environmental Metrics", "Calculating Exploitability vs. Impact", "Qualitative Risk Adjustments", "Aligning Risk with Business Context"],
+        description:
+          "Standardizing vulnerability severity using the Common Vulnerability Scoring System.",
+        topics: [
+          "CVSS Base, Temporal & Environmental Metrics",
+          "Calculating Exploitability vs. Impact",
+          "Qualitative Risk Adjustments",
+          "Aligning Risk with Business Context",
+        ],
       },
       {
         title: "Module 10: Professional VAPT Reporting",
-        description: "Authoring comprehensive reports containing executive summaries, technical findings, and CVSS scores.",
-        topics: ["Executive Summary Composition", "Detailed Finding Documentation", "Step-by-Step Reproduction Steps", "Strategic vs. Tactical Remediation"],
+        description:
+          "Authoring comprehensive reports containing executive summaries, technical findings, and CVSS scores.",
+        topics: [
+          "Executive Summary Composition",
+          "Detailed Finding Documentation",
+          "Step-by-Step Reproduction Steps",
+          "Strategic vs. Tactical Remediation",
+        ],
       },
       {
         title: "Module 11: Retesting, Validation & Closure",
-        description: "Conducting post-remediation testing, verifying patch efficacy, and issuing final sign-off.",
-        topics: ["Retesting Methodologies", "Verifying Incomplete Patches", "Updating Risk Registers", "Letter of Attestation Issuance"],
+        description:
+          "Conducting post-remediation testing, verifying patch efficacy, and issuing final sign-off.",
+        topics: [
+          "Retesting Methodologies",
+          "Verifying Incomplete Patches",
+          "Updating Risk Registers",
+          "Letter of Attestation Issuance",
+        ],
       },
       {
         title: "Module 12: Comprehensive VAPT Practical Assessment",
-        description: "Hands-on penetration test against a realistic multi-tier corporate staging environment.",
-        topics: ["Full Scope Execution (Web + Network)", "Independent Report Compilation", "Scored Technical Presentation", "Faculty Assessment"],
+        description:
+          "Hands-on penetration test against a realistic multi-tier corporate staging environment.",
+        topics: [
+          "Full Scope Execution (Web + Network)",
+          "Independent Report Compilation",
+          "Scored Technical Presentation",
+          "Faculty Assessment",
+        ],
       },
     ],
     labHighlights: [
@@ -416,23 +604,39 @@ export const COURSES: Course[] = [
       "Pivoting through a multi-homed Linux target to access an internal Active Directory network",
       "Drafting a complete, audit-standard 20-page penetration testing deliverable",
     ],
-    technologies: ["Burp Suite Professional", "Nessus", "Nmap", "OWASP ZAP", "SQLmap", "Postman", "Kali Linux", "Metasploit"],
+    technologies: [
+      "Burp Suite Professional",
+      "Nessus",
+      "Nmap",
+      "OWASP ZAP",
+      "SQLmap",
+      "Postman",
+      "Kali Linux",
+      "Metasploit",
+    ],
     format: "Instructor-led training with dedicated target environments",
-    certificationNote: "Includes CyberBodha Certified VAPT Professional Assessment and Certificate of Completion.",
+    certificationNote:
+      "Includes CyberBodha Certified VAPT Professional Assessment and Certificate of Completion.",
     faqs: [
       {
         question: "How does VAPT differ from general ethical hacking?",
-        answer: "Ethical hacking covers broad offensive concepts, while VAPT focuses on professional, client-contracted testing methodologies, deep vulnerability verification, risk rating, and audit-grade reporting.",
+        answer:
+          "Ethical hacking covers broad offensive concepts, while VAPT focuses on professional, client-contracted testing methodologies, deep vulnerability verification, risk rating, and audit-grade reporting.",
       },
       {
         question: "Do students get access to licensed tools?",
-        answer: "Students work within configured virtual lab environments equipped with industry-standard open and enterprise tools during guided sessions.",
+        answer:
+          "Students work within configured virtual lab environments equipped with industry-standard open and enterprise tools during guided sessions.",
       },
     ],
     featured: true,
     published: true,
     badge: "Industry Advanced",
-    relatedCourseSlugs: ["ceh-v13-ai-ethical-hacking", "siem-engineering-operations", "soc-analyst-professional"],
+    relatedCourseSlugs: [
+      "ceh-v13-ai-ethical-hacking",
+      "siem-engineering-operations",
+      "soc-analyst-professional",
+    ],
   },
   {
     id: "cb-siem-04",
@@ -440,8 +644,10 @@ export const COURSES: Course[] = [
     title: "SIEM Engineering & Detection Operations",
     category: "SIEM Engineering",
     level: "Intermediate to Advanced",
-    shortDescription: "Design, build, and optimize enterprise SIEM architectures, log pipelines, detection rules, and threat hunting workflows.",
-    overview: "SIEM Engineering & Detection Operations focuses on the technical engineering behind security visibility. Learn how to ingest high-volume telemetry from cloud and on-premises sources, write resilient parsers, build high-fidelity correlation rules, optimize search pipelines, and implement detection-as-code using Sigma and leading SIEM platforms.",
+    shortDescription:
+      "Design, build, and optimize enterprise SIEM architectures, log pipelines, detection rules, and threat hunting workflows.",
+    overview:
+      "SIEM Engineering & Detection Operations focuses on the technical engineering behind security visibility. Learn how to ingest high-volume telemetry from cloud and on-premises sources, write resilient parsers, build high-fidelity correlation rules, optimize search pipelines, and implement detection-as-code using Sigma and leading SIEM platforms.",
     audience: [
       "Security engineers, SIEM administrators, and detection engineers",
       "Senior SOC analysts transitioning into detection engineering or engineering roles",
@@ -472,63 +678,133 @@ export const COURSES: Course[] = [
     curriculum: [
       {
         title: "Module 1: Enterprise SIEM Architecture",
-        description: "Architectural models: on-premises, hybrid, and cloud-native SIEM deployments.",
-        topics: ["Architecture Components (Ingestion, Indexing, Search, Storage)", "Sizing & Capacity Planning", "Clustering & High Availability", "Data Lifecycle & Cold Storage"],
+        description:
+          "Architectural models: on-premises, hybrid, and cloud-native SIEM deployments.",
+        topics: [
+          "Architecture Components (Ingestion, Indexing, Search, Storage)",
+          "Sizing & Capacity Planning",
+          "Clustering & High Availability",
+          "Data Lifecycle & Cold Storage",
+        ],
       },
       {
         title: "Module 2: Log Collection & Ingestion Protocols",
         description: "Deploying and managing forwarders, syslog daemons, and cloud collectors.",
-        topics: ["Universal Forwarders & Agents", "Syslog-ng & Rsyslog Configurations", "API-Based Telemetry Ingestion (AWS CloudTrail, MS Graph)", "Kafka & Message Broker Integration"],
+        topics: [
+          "Universal Forwarders & Agents",
+          "Syslog-ng & Rsyslog Configurations",
+          "API-Based Telemetry Ingestion (AWS CloudTrail, MS Graph)",
+          "Kafka & Message Broker Integration",
+        ],
       },
       {
         title: "Module 3: Log Parsing, Extraction & Normalization",
-        description: "Transforming raw, unstructured log strings into clean, queryable key-value pairs.",
-        topics: ["Regular Expressions for Field Extraction", "Grok Patterns & Custom Parsers", "Splunk props.conf & transforms.conf", "Microsoft Sentinel KQL Parsers"],
+        description:
+          "Transforming raw, unstructured log strings into clean, queryable key-value pairs.",
+        topics: [
+          "Regular Expressions for Field Extraction",
+          "Grok Patterns & Custom Parsers",
+          "Splunk props.conf & transforms.conf",
+          "Microsoft Sentinel KQL Parsers",
+        ],
       },
       {
         title: "Module 4: Common Data Models & Standardization",
         description: "Mapping diverse log sources to normalized schemas (CIM, ECS, ASIM).",
-        topics: ["Splunk Common Information Model (CIM)", "Elastic Common Schema (ECS)", "Microsoft Advanced Security Information Model (ASIM)", "Data Validation & Schema Compliance"],
+        topics: [
+          "Splunk Common Information Model (CIM)",
+          "Elastic Common Schema (ECS)",
+          "Microsoft Advanced Security Information Model (ASIM)",
+          "Data Validation & Schema Compliance",
+        ],
       },
       {
         title: "Module 5: Advanced Search & Investigation Queries",
-        description: "Mastering search optimization, subsearches, lookups, and transaction aggregation.",
-        topics: ["Query Performance Best Practices", "Using Subsearches & Macros", "Lookups & External Threat Intelligence Enrichment", "Statistical Aggregations & Time Charts"],
+        description:
+          "Mastering search optimization, subsearches, lookups, and transaction aggregation.",
+        topics: [
+          "Query Performance Best Practices",
+          "Using Subsearches & Macros",
+          "Lookups & External Threat Intelligence Enrichment",
+          "Statistical Aggregations & Time Charts",
+        ],
       },
       {
         title: "Module 6: Correlation Rules & Detection Engineering",
-        description: "Developing robust correlation searches to detect multi-stage adversarial behaviors.",
-        topics: ["Threshold & Frequency Correlation", "Behavioral Anomaly Rules", "Temporal Event Sequencing", "Mapping to MITRE ATT&CK Techniques"],
+        description:
+          "Developing robust correlation searches to detect multi-stage adversarial behaviors.",
+        topics: [
+          "Threshold & Frequency Correlation",
+          "Behavioral Anomaly Rules",
+          "Temporal Event Sequencing",
+          "Mapping to MITRE ATT&CK Techniques",
+        ],
       },
       {
         title: "Module 7: Sigma Rules & Detection-as-Code",
-        description: "Authoring platform-agnostic detection signatures and automated CI/CD deployments.",
-        topics: ["Sigma Rule Syntax & Specifications", "Converting Sigma to SPL, KQL, and Wazuh XML", "Version Control for Detections (Git)", "Automated Rule Validation Testing"],
+        description:
+          "Authoring platform-agnostic detection signatures and automated CI/CD deployments.",
+        topics: [
+          "Sigma Rule Syntax & Specifications",
+          "Converting Sigma to SPL, KQL, and Wazuh XML",
+          "Version Control for Detections (Git)",
+          "Automated Rule Validation Testing",
+        ],
       },
       {
         title: "Module 8: Alert Tuning & Noise Reduction",
-        description: "Systematically reducing alert fatigue through baseline tuning and context filtering.",
-        topics: ["Analyzing False Positive Root Causes", "Exception Handling & Suppression Logic", "Dynamic Thresholding", "Measuring Alert Fidelity & True Positive Rates"],
+        description:
+          "Systematically reducing alert fatigue through baseline tuning and context filtering.",
+        topics: [
+          "Analyzing False Positive Root Causes",
+          "Exception Handling & Suppression Logic",
+          "Dynamic Thresholding",
+          "Measuring Alert Fidelity & True Positive Rates",
+        ],
       },
       {
         title: "Module 9: Operations & Executive Dashboards",
-        description: "Designing high-impact visualizations for SOC operators, engineering teams, and CISOs.",
-        topics: ["Real-time SOC Wallboard Design", "Threat Trend & KPI Visualizations", "Asset Risk & Vulnerability Overlays", "User Experience & Dashboard Performance"],
+        description:
+          "Designing high-impact visualizations for SOC operators, engineering teams, and CISOs.",
+        topics: [
+          "Real-time SOC Wallboard Design",
+          "Threat Trend & KPI Visualizations",
+          "Asset Risk & Vulnerability Overlays",
+          "User Experience & Dashboard Performance",
+        ],
       },
       {
         title: "Module 10: Proactive Threat Hunting with SIEM",
-        description: "Executing hypothesis-driven threat hunting exercises across historical event stores.",
-        topics: ["Hypothesis Formulation from Threat Intel", "Hunting for Living-off-the-Land (LotL) Binaries", "Detecting Beaconing Patterns in Proxy/DNS Logs", "Documenting Hunt Findings"],
+        description:
+          "Executing hypothesis-driven threat hunting exercises across historical event stores.",
+        topics: [
+          "Hypothesis Formulation from Threat Intel",
+          "Hunting for Living-off-the-Land (LotL) Binaries",
+          "Detecting Beaconing Patterns in Proxy/DNS Logs",
+          "Documenting Hunt Findings",
+        ],
       },
       {
         title: "Module 11: Pipeline Health & Troubleshooting",
-        description: "Monitoring SIEM infrastructure, diagnosing data loss, and optimizing indexing throughput.",
-        topics: ["Diagnosing Log Ingestion Delays", "Troubleshooting Network Forwarder Outages", "Index Corruption & Recovery Procedures", "Resource Utilization Optimization"],
+        description:
+          "Monitoring SIEM infrastructure, diagnosing data loss, and optimizing indexing throughput.",
+        topics: [
+          "Diagnosing Log Ingestion Delays",
+          "Troubleshooting Network Forwarder Outages",
+          "Index Corruption & Recovery Procedures",
+          "Resource Utilization Optimization",
+        ],
       },
       {
         title: "Module 12: Capstone Engineering Assessment",
-        description: "End-to-end pipeline implementation: ingest, parse, correlate, and build dashboards for a simulated enterprise.",
-        topics: ["Multi-source Pipeline Setup", "Custom Parser & Detection Rule Creation", "Alert Validation Testing", "Engineering Defense Presentation"],
+        description:
+          "End-to-end pipeline implementation: ingest, parse, correlate, and build dashboards for a simulated enterprise.",
+        topics: [
+          "Multi-source Pipeline Setup",
+          "Custom Parser & Detection Rule Creation",
+          "Alert Validation Testing",
+          "Engineering Defense Presentation",
+        ],
       },
     ],
     labHighlights: [
@@ -537,23 +813,39 @@ export const COURSES: Course[] = [
       "Troubleshooting dropped syslog telemetry and indexing lag in Splunk",
       "Constructing an executive threat visibility dashboard tracking MITRE ATT&CK coverage",
     ],
-    technologies: ["Splunk Enterprise", "Microsoft Sentinel", "Wazuh SIEM/XDR", "Elasticsearch", "Logstash", "Kibana", "Sigma", "Sysmon"],
+    technologies: [
+      "Splunk Enterprise",
+      "Microsoft Sentinel",
+      "Wazuh SIEM/XDR",
+      "Elasticsearch",
+      "Logstash",
+      "Kibana",
+      "Sigma",
+      "Sysmon",
+    ],
     format: "Instructor-led engineering sessions with dedicated virtual lab nodes",
-    certificationNote: "Includes CyberBodha Certified SIEM Engineer Assessment and Certificate of Completion.",
+    certificationNote:
+      "Includes CyberBodha Certified SIEM Engineer Assessment and Certificate of Completion.",
     faqs: [
       {
         question: "Is this course focused on a single SIEM vendor?",
-        answer: "No. The course emphasizes architectural concepts and principles applicable across Splunk, Microsoft Sentinel, Wazuh, and Elastic, highlighting vendor-specific syntax where relevant.",
+        answer:
+          "No. The course emphasizes architectural concepts and principles applicable across Splunk, Microsoft Sentinel, Wazuh, and Elastic, highlighting vendor-specific syntax where relevant.",
       },
       {
         question: "Do we learn to write Sigma rules?",
-        answer: "Yes. An entire module is dedicated to authoring platform-neutral Sigma rules and converting them to SPL, KQL, and Elasticsearch queries.",
+        answer:
+          "Yes. An entire module is dedicated to authoring platform-neutral Sigma rules and converting them to SPL, KQL, and Elasticsearch queries.",
       },
     ],
     featured: true,
     published: true,
     badge: "Specialized Track",
-    relatedCourseSlugs: ["soc-analyst-professional", "linux-networking-cybersecurity", "cybersecurity-career-accelerator"],
+    relatedCourseSlugs: [
+      "soc-analyst-professional",
+      "linux-networking-cybersecurity",
+      "cybersecurity-career-accelerator",
+    ],
   },
   {
     id: "cb-lnx-05",
@@ -561,8 +853,10 @@ export const COURSES: Course[] = [
     title: "Linux & Networking for Cybersecurity",
     category: "Networking & Linux",
     level: "Foundation",
-    shortDescription: "Build the foundational technical skills essential for all cybersecurity disciplines: command line mastery, Linux administration, and packet-level networking.",
-    overview: "Linux and networking are the bedrock of modern cybersecurity. This course provides comprehensive, hands-on instruction in Linux system administration, bash shell operations, TCP/IP networking, packet dissection with Wireshark, and host-level defense configuration. Ideal for anyone entering cybersecurity or strengthening their technical core.",
+    shortDescription:
+      "Build the foundational technical skills essential for all cybersecurity disciplines: command line mastery, Linux administration, and packet-level networking.",
+    overview:
+      "Linux and networking are the bedrock of modern cybersecurity. This course provides comprehensive, hands-on instruction in Linux system administration, bash shell operations, TCP/IP networking, packet dissection with Wireshark, and host-level defense configuration. Ideal for anyone entering cybersecurity or strengthening their technical core.",
     audience: [
       "Complete newcomers seeking a solid technical foundation for cybersecurity",
       "Students in computer science, IT, or engineering wanting hands-on systems experience",
@@ -593,63 +887,129 @@ export const COURSES: Course[] = [
     curriculum: [
       {
         title: "Module 1: Linux Architecture & Terminal Basics",
-        description: "Introduction to the Linux kernel, distributions, and essential navigation commands.",
-        topics: ["Kernel vs. User Space", "Directory Hierarchy (FHS)", "Navigation (cd, ls, pwd, find)", "Viewing & Manipulating Files (cat, less, grep, head)"],
+        description:
+          "Introduction to the Linux kernel, distributions, and essential navigation commands.",
+        topics: [
+          "Kernel vs. User Space",
+          "Directory Hierarchy (FHS)",
+          "Navigation (cd, ls, pwd, find)",
+          "Viewing & Manipulating Files (cat, less, grep, head)",
+        ],
       },
       {
         title: "Module 2: Filesystem Permissions & Security",
         description: "Mastering chmod, chown, SUID, SGID, and Sticky Bit security controls.",
-        topics: ["Read, Write, Execute (rwx) Permissions", "Numeric vs. Symbolic Modes", "Special Permissions (SUID, SGID, Sticky Bit)", "Access Control Lists (ACLs)"],
+        topics: [
+          "Read, Write, Execute (rwx) Permissions",
+          "Numeric vs. Symbolic Modes",
+          "Special Permissions (SUID, SGID, Sticky Bit)",
+          "Access Control Lists (ACLs)",
+        ],
       },
       {
         title: "Module 3: User & Group Administration",
         description: "Managing local user accounts, sudo privileges, and authentication files.",
-        topics: ["User Management (/etc/passwd, /etc/shadow)", "Group Creation & Assignment", "Configuring Sudoers Privileges Safely", "Securing Root Access"],
+        topics: [
+          "User Management (/etc/passwd, /etc/shadow)",
+          "Group Creation & Assignment",
+          "Configuring Sudoers Privileges Safely",
+          "Securing Root Access",
+        ],
       },
       {
         title: "Module 4: Process Management & Daemons",
-        description: "Monitoring system activity, managing background jobs, and inspecting services.",
-        topics: ["Process Viewing (ps, top, htop)", "Signals & Process Termination (kill, killall)", "Systemd Service Management (systemctl)", "Scheduled Tasks (Cron & Anacron)"],
+        description:
+          "Monitoring system activity, managing background jobs, and inspecting services.",
+        topics: [
+          "Process Viewing (ps, top, htop)",
+          "Signals & Process Termination (kill, killall)",
+          "Systemd Service Management (systemctl)",
+          "Scheduled Tasks (Cron & Anacron)",
+        ],
       },
       {
         title: "Module 5: Shell Scripting for Automation",
-        description: "Writing practical Bash scripts to automate administrative and security checks.",
-        topics: ["Variables, Loops & Conditionals in Bash", "Handling User Input & Exit Codes", "Automating System Health Checks", "Parsing Log Files with awk and sed"],
+        description:
+          "Writing practical Bash scripts to automate administrative and security checks.",
+        topics: [
+          "Variables, Loops & Conditionals in Bash",
+          "Handling User Input & Exit Codes",
+          "Automating System Health Checks",
+          "Parsing Log Files with awk and sed",
+        ],
       },
       {
         title: "Module 6: Fundamentals of Computer Networking",
-        description: "Understanding network models, topologies, physical media, and data transmission.",
-        topics: ["OSI 7-Layer Model vs. TCP/IP Model", "Encapsulation & Decapsulation", "MAC Addresses & Ethernet Frames", "Address Resolution Protocol (ARP)"],
+        description:
+          "Understanding network models, topologies, physical media, and data transmission.",
+        topics: [
+          "OSI 7-Layer Model vs. TCP/IP Model",
+          "Encapsulation & Decapsulation",
+          "MAC Addresses & Ethernet Frames",
+          "Address Resolution Protocol (ARP)",
+        ],
       },
       {
         title: "Module 7: The TCP/IP Protocol Suite",
         description: "Deep dive into IP addressing, CIDR subnetting, TCP handshakes, and UDP.",
-        topics: ["IPv4 Addressing & CIDR Subnetting", "TCP 3-Way Handshake & Connection Teardown", "TCP Flags (SYN, ACK, FIN, RST)", "UDP Characteristics & Common Use Cases"],
+        topics: [
+          "IPv4 Addressing & CIDR Subnetting",
+          "TCP 3-Way Handshake & Connection Teardown",
+          "TCP Flags (SYN, ACK, FIN, RST)",
+          "UDP Characteristics & Common Use Cases",
+        ],
       },
       {
         title: "Module 8: Core Infrastructure Services",
         description: "How DNS, DHCP, HTTP, and TLS power internet communication.",
-        topics: ["DNS Resolution Process & Record Types", "DHCP DORA Process", "HTTP/HTTPS Request-Response Lifecycle", "SSL/TLS Handshake & Certificates"],
+        topics: [
+          "DNS Resolution Process & Record Types",
+          "DHCP DORA Process",
+          "HTTP/HTTPS Request-Response Lifecycle",
+          "SSL/TLS Handshake & Certificates",
+        ],
       },
       {
         title: "Module 9: Routing & Switching Concepts",
         description: "How packets travel across local networks and enterprise internetworks.",
-        topics: ["VLANs & Trunking Fundamentals", "Default Gateways & Routing Tables", "Static Routing vs. Dynamic Protocols", "NAT & PAT Explained"],
+        topics: [
+          "VLANs & Trunking Fundamentals",
+          "Default Gateways & Routing Tables",
+          "Static Routing vs. Dynamic Protocols",
+          "NAT & PAT Explained",
+        ],
       },
       {
         title: "Module 10: Packet Analysis with Wireshark & tcpdump",
         description: "Capturing, filtering, and dissecting live network traffic.",
-        topics: ["Capturing Packets with tcpdump", "Wireshark Display & Capture Filters", "Following TCP Streams", "Identifying Port Scans & Cleartext Credentials"],
+        topics: [
+          "Capturing Packets with tcpdump",
+          "Wireshark Display & Capture Filters",
+          "Following TCP Streams",
+          "Identifying Port Scans & Cleartext Credentials",
+        ],
       },
       {
         title: "Module 11: Linux Firewalls & Network Hardening",
-        description: "Protecting systems with stateful packet filtering and secure service configurations.",
-        topics: ["Configuring UFW (Uncomplicated Firewall)", "iptables / nftables Packet Filtering Chains", "SSH Hardening (Key Authentication, Root Disallow)", "Disabling Unnecessary Services"],
+        description:
+          "Protecting systems with stateful packet filtering and secure service configurations.",
+        topics: [
+          "Configuring UFW (Uncomplicated Firewall)",
+          "iptables / nftables Packet Filtering Chains",
+          "SSH Hardening (Key Authentication, Root Disallow)",
+          "Disabling Unnecessary Services",
+        ],
       },
       {
         title: "Module 12: Hands-on Practical Lab & Final Project",
-        description: "Configuring and auditing a secure dual-homed Linux gateway inside a simulated network.",
-        topics: ["Setting Up Network Interfaces", "Configuring Local DNS & DHCP", "Enforcing Firewall Restrictions", "Conducting a Traffic Capture Audit"],
+        description:
+          "Configuring and auditing a secure dual-homed Linux gateway inside a simulated network.",
+        topics: [
+          "Setting Up Network Interfaces",
+          "Configuring Local DNS & DHCP",
+          "Enforcing Firewall Restrictions",
+          "Conducting a Traffic Capture Audit",
+        ],
       },
     ],
     labHighlights: [
@@ -658,23 +1018,39 @@ export const COURSES: Course[] = [
       "Writing a Bash script that audits open network ports and emails alert logs",
       "Building a custom iptables firewall policy blocking unauthorized external scans",
     ],
-    technologies: ["Debian/Ubuntu", "Kali Linux", "Bash", "Wireshark", "tcpdump", "Nmap", "iptables/UFW", "systemd"],
+    technologies: [
+      "Debian/Ubuntu",
+      "Kali Linux",
+      "Bash",
+      "Wireshark",
+      "tcpdump",
+      "Nmap",
+      "iptables/UFW",
+      "systemd",
+    ],
     format: "Instructor-led with guided hands-on lab environments",
-    certificationNote: "Includes CyberBodha Certified Foundations Assessment and Certificate of Completion.",
+    certificationNote:
+      "Includes CyberBodha Certified Foundations Assessment and Certificate of Completion.",
     faqs: [
       {
         question: "Is this course necessary before taking SOC Analyst or Ethical Hacking?",
-        answer: "If you are new to Linux or networking, taking this course first will significantly accelerate your progress in specialized offensive or defensive programs.",
+        answer:
+          "If you are new to Linux or networking, taking this course first will significantly accelerate your progress in specialized offensive or defensive programs.",
       },
       {
         question: "Do I need to install Linux on my personal computer?",
-        answer: "No. You will work in cloud-hosted browser virtual labs, though we also teach how to set up free local virtual machines in VirtualBox or VMware.",
+        answer:
+          "No. You will work in cloud-hosted browser virtual labs, though we also teach how to set up free local virtual machines in VirtualBox or VMware.",
       },
     ],
     featured: true,
     published: true,
     badge: "Foundation Pillar",
-    relatedCourseSlugs: ["soc-analyst-professional", "ceh-v13-ai-ethical-hacking", "cybersecurity-career-accelerator"],
+    relatedCourseSlugs: [
+      "soc-analyst-professional",
+      "ceh-v13-ai-ethical-hacking",
+      "cybersecurity-career-accelerator",
+    ],
   },
   {
     id: "cb-car-06",
@@ -682,8 +1058,10 @@ export const COURSES: Course[] = [
     title: "Cybersecurity Career Accelerator",
     category: "Career Accelerator",
     level: "Foundation to Job Readiness",
-    shortDescription: "A comprehensive, intensive program designed to take you from foundational knowledge to job-ready capability across blue team and offensive disciplines.",
-    overview: "The Cybersecurity Career Accelerator is CyberBodha’s flagship career transformation pathway. Blending systems engineering, network defense, SOC operations, ethical hacking, and practical cyber range scenarios, this curriculum is tailored for candidates aiming to build demonstrable skills, build an authentic technical portfolio, and prepare for industry interviews.",
+    shortDescription:
+      "A comprehensive, intensive program designed to take you from foundational knowledge to job-ready capability across blue team and offensive disciplines.",
+    overview:
+      "The Cybersecurity Career Accelerator is CyberBodha’s flagship career transformation pathway. Blending systems engineering, network defense, SOC operations, ethical hacking, and practical cyber range scenarios, this curriculum is tailored for candidates aiming to build demonstrable skills, build an authentic technical portfolio, and prepare for industry interviews.",
     audience: [
       "Career changers transitioning into cybersecurity from other technical or non-technical fields",
       "College graduates and final-year students seeking job-ready practical capabilities",
@@ -714,63 +1092,130 @@ export const COURSES: Course[] = [
     curriculum: [
       {
         title: "Module 1: Cybersecurity Foundations & Industry Landscape",
-        description: "Understanding the modern threat landscape, security principles (CIA triad), and security career roles.",
-        topics: ["The CIA Triad & Defense-in-Depth", "Threat Actors & Attack Motivations", "Security Frameworks (NIST CSF, ISO 27001)", "Career Roles: SOC, VAPT, GRC, Engineering"],
+        description:
+          "Understanding the modern threat landscape, security principles (CIA triad), and security career roles.",
+        topics: [
+          "The CIA Triad & Defense-in-Depth",
+          "Threat Actors & Attack Motivations",
+          "Security Frameworks (NIST CSF, ISO 27001)",
+          "Career Roles: SOC, VAPT, GRC, Engineering",
+        ],
       },
       {
         title: "Module 2: Linux & Networking for Security Professionals",
-        description: "Mastering the command line, core networking protocols, and packet inspection.",
-        topics: ["Linux Navigation & Administration", "TCP/IP & Protocol Fundamentals", "Wireshark Traffic Analysis", "Basic Network Troubleshooting"],
+        description:
+          "Mastering the command line, core networking protocols, and packet inspection.",
+        topics: [
+          "Linux Navigation & Administration",
+          "TCP/IP & Protocol Fundamentals",
+          "Wireshark Traffic Analysis",
+          "Basic Network Troubleshooting",
+        ],
       },
       {
         title: "Module 3: Windows Architecture & Active Directory Security",
-        description: "Understanding Windows domains, Active Directory structures, and authentication protocols.",
-        topics: ["Active Directory Objects, OUs & Trees", "Kerberos & NTLM Authentication", "Group Policy Objects (GPOs)", "Auditing Windows Security Logs"],
+        description:
+          "Understanding Windows domains, Active Directory structures, and authentication protocols.",
+        topics: [
+          "Active Directory Objects, OUs & Trees",
+          "Kerberos & NTLM Authentication",
+          "Group Policy Objects (GPOs)",
+          "Auditing Windows Security Logs",
+        ],
       },
       {
         title: "Module 4: Security Operations (SOC) Fundamentals",
-        description: "Learning the day-to-day operations, tools, and processes of a Security Operations Center.",
-        topics: ["SOC Roles & Incident Lifecycles", "Alert Queues & Triage Methodologies", "Threat Intelligence Enrichment", "Ticketing & Case Management"],
+        description:
+          "Learning the day-to-day operations, tools, and processes of a Security Operations Center.",
+        topics: [
+          "SOC Roles & Incident Lifecycles",
+          "Alert Queues & Triage Methodologies",
+          "Threat Intelligence Enrichment",
+          "Ticketing & Case Management",
+        ],
       },
       {
         title: "Module 5: SIEM Investigation & Telemetry Analysis",
         description: "Hands-on log investigation in Wazuh and Splunk.",
-        topics: ["Ingesting Host & Network Telemetry", "Querying & Searching Event Stores", "Correlating Endpoint Events with Sysmon", "Identifying Malicious Indicators (IoCs)"],
+        topics: [
+          "Ingesting Host & Network Telemetry",
+          "Querying & Searching Event Stores",
+          "Correlating Endpoint Events with Sysmon",
+          "Identifying Malicious Indicators (IoCs)",
+        ],
       },
       {
         title: "Module 6: Incident Response & Containment Strategies",
         description: "Responding to active incidents following structured playbooks.",
-        topics: ["Incident Handling Steps (Preparation to Lessons Learned)", "Host Isolation & Containment Techniques", "Malware Artifact Identification", "Drafting Post-Incident Reports"],
+        topics: [
+          "Incident Handling Steps (Preparation to Lessons Learned)",
+          "Host Isolation & Containment Techniques",
+          "Malware Artifact Identification",
+          "Drafting Post-Incident Reports",
+        ],
       },
       {
         title: "Module 7: Ethical Hacking & Defensive Mindset",
         description: "Understanding adversarial tactics to strengthen defensive posture.",
-        topics: ["Vulnerability Assessment Methodologies", "OWASP Top 10 Web Vulnerabilities", "Common Network Attack Vectors", "Remediation & Patch Verification"],
+        topics: [
+          "Vulnerability Assessment Methodologies",
+          "OWASP Top 10 Web Vulnerabilities",
+          "Common Network Attack Vectors",
+          "Remediation & Patch Verification",
+        ],
       },
       {
         title: "Module 8: Essential Security Tools Mastery",
         description: "Working fluently with the staple tools of the cybersecurity trade.",
-        topics: ["Nmap, Wireshark, Burp Suite Community", "Wazuh Agent & Server Management", "Sysinternals Suite for Windows Diagnostics", "GitHub for Security Project Portfolios"],
+        topics: [
+          "Nmap, Wireshark, Burp Suite Community",
+          "Wazuh Agent & Server Management",
+          "Sysinternals Suite for Windows Diagnostics",
+          "GitHub for Security Project Portfolios",
+        ],
       },
       {
         title: "Module 9: Cyber Range Practical Scenarios",
-        description: "Tackling realistic incident investigation and defense scenarios in simulated networks.",
-        topics: ["Scenario: Investigating a Compromised Domain User", "Scenario: Detecting a Web Application Defacement", "Scenario: Isolating Lateral Movement via SMB", "Scenario: Ransomware Defense & Recovery"],
+        description:
+          "Tackling realistic incident investigation and defense scenarios in simulated networks.",
+        topics: [
+          "Scenario: Investigating a Compromised Domain User",
+          "Scenario: Detecting a Web Application Defacement",
+          "Scenario: Isolating Lateral Movement via SMB",
+          "Scenario: Ransomware Defense & Recovery",
+        ],
       },
       {
         title: "Module 10: Technical Assessments & Capstone Project",
         description: "Completing a comprehensive, multifaceted practical defense capstone project.",
-        topics: ["Independent Target Analysis", "Comprehensive Documentation", "Capstone Presentation & Code Walkthrough", "Faculty Assessment"],
+        topics: [
+          "Independent Target Analysis",
+          "Comprehensive Documentation",
+          "Capstone Presentation & Code Walkthrough",
+          "Faculty Assessment",
+        ],
       },
       {
         title: "Module 11: Professional Portfolio Development",
-        description: "Documenting hands-on projects, lab write-ups, and building a public GitHub portfolio.",
-        topics: ["Structuring Technical Lab Reports", "Building a Security Project GitHub Repository", "LinkedIn Profile Optimization for Security Roles", "Showcasing Practical Readiness"],
+        description:
+          "Documenting hands-on projects, lab write-ups, and building a public GitHub portfolio.",
+        topics: [
+          "Structuring Technical Lab Reports",
+          "Building a Security Project GitHub Repository",
+          "LinkedIn Profile Optimization for Security Roles",
+          "Showcasing Practical Readiness",
+        ],
       },
       {
         title: "Module 12: Technical Interview Preparation & Mentorship",
-        description: "Practicing technical interview scenarios, behavioral questions, and case studies.",
-        topics: ["Common Technical Interview Questions Demystified", "Whiteboard & Scenario-based Problem Solving", "Mock Interview Sessions with Mentors", "Continuing Education & Career Planning"],
+        description:
+          "Practicing technical interview scenarios, behavioral questions, and case studies.",
+        topics: [
+          "Common Technical Interview Questions Demystified",
+          "Whiteboard & Scenario-based Problem Solving",
+          "Mock Interview Sessions with Mentors",
+          "Continuing Education & Career Planning",
+        ],
       },
     ],
     labHighlights: [
@@ -779,23 +1224,40 @@ export const COURSES: Course[] = [
       "Completing 5 hands-on Cyber Range attack-and-defend scenario modules",
       "Publishing a verified GitHub technical portfolio with detailed incident investigation reports",
     ],
-    technologies: ["Wazuh", "Splunk", "Sysmon", "Wireshark", "Active Directory", "Kali Linux", "Burp Suite", "Nmap"],
-    format: "Cohort-based instructor-led program with personal lab environments and 1-on-1 mentorship",
-    certificationNote: "Includes CyberBodha Certified Career Accelerator Diploma and verified skill transcript.",
+    technologies: [
+      "Wazuh",
+      "Splunk",
+      "Sysmon",
+      "Wireshark",
+      "Active Directory",
+      "Kali Linux",
+      "Burp Suite",
+      "Nmap",
+    ],
+    format:
+      "Cohort-based instructor-led program with personal lab environments and 1-on-1 mentorship",
+    certificationNote:
+      "Includes CyberBodha Certified Career Accelerator Diploma and verified skill transcript.",
     faqs: [
       {
         question: "Does CyberBodha guarantee job placement?",
-        answer: "We do not promise guaranteed jobs or fabricated placement statistics. We provide rigorous, practical training, verified lab scenarios, portfolio building, and interview preparation to position you strongly for real industry opportunities.",
+        answer:
+          "We do not promise guaranteed jobs or fabricated placement statistics. We provide rigorous, practical training, verified lab scenarios, portfolio building, and interview preparation to position you strongly for real industry opportunities.",
       },
       {
         question: "How much time is required per week?",
-        answer: "Learners typically spend 8 to 12 hours per week, balancing live mentor sessions, guided readings, and hands-on cyber range lab assignments.",
+        answer:
+          "Learners typically spend 8 to 12 hours per week, balancing live mentor sessions, guided readings, and hands-on cyber range lab assignments.",
       },
     ],
     featured: true,
     published: true,
     badge: "Career Track",
-    relatedCourseSlugs: ["soc-analyst-professional", "ceh-v13-ai-ethical-hacking", "linux-networking-cybersecurity"],
+    relatedCourseSlugs: [
+      "soc-analyst-professional",
+      "ceh-v13-ai-ethical-hacking",
+      "linux-networking-cybersecurity",
+    ],
   },
 ];
 
