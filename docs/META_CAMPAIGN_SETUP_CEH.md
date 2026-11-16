@@ -88,9 +88,9 @@ or Retarget spend until the two launch campaigns have run for 14 days.
    - Business tools → **Quick replies** `/fees`, `/batch`, `/syllabus`, `/cert` — section 6.
    - Name the person on chat duty from 9 am to 9 pm, plus an evening backup.
 
-## 2. Delete what will not run
+## 2. Switch off what will not run
 
-1. Campaigns tab → tick `CB | WhatsApp | CEH v13 Enquiries` → **Delete** (it is a draft; nothing is lost).
+1. Campaigns tab → `CB | WhatsApp | CEH v13 Enquiries` → toggle **off**. Do not delete it: it records why the Leads objective cannot host a WhatsApp ad (playbook section 4.5).
 2. Tick `CB | Warm-Up | Page + Video` and `CB | Retarget | Engaged 30d` → toggle **off**. Keep them as
    drafts. Retargeting is rebuilt in step 8.
 

@@ -37,7 +37,7 @@ Landing page: <https://cyberbodha.com/programs/ethical-hacking>
 | `CB \| Leads \| Career Aspirants HYD` | Leads — instant form    | ad set `120248978478070772`, ad `120248978478080772` | Launch — creatives #1 + #2               |
 | `CB \| Retarget \| Engaged 30d`       | Leads — instant form    | —                                                    | Keep off until the warm audience ≈ 2,000 |
 | `CB \| Warm-Up \| Page + Video`       | Awareness — Page visits | ad set `120248978329810772`                          | Do not publish                           |
-| `CB \| WhatsApp \| CEH v13 Enquiries` | Leads (stray)           | campaign `120249035559060772`                        | Delete                                   |
+| `CB \| WhatsApp \| CEH v13 Enquiries` | Leads (stray)           | campaign `120249035559060772`                        | Off, keep — never enable                 |
 
 Step-by-step setup: `docs/META_CAMPAIGN_SETUP_CEH.md`.
 
