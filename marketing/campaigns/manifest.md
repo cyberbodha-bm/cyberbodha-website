@@ -16,7 +16,15 @@ Landing page: <https://cyberbodha.com/programs/ethical-hacking>
 | 4   | Light/white, minimal, two track buttons                                                                             | `ceh-v13/ceh-v13-tracks-light.jpg`        | 1199 × 1312 (≈11:12) | Retarget (later)               | Committed; not used at launch                              |
 | 5   | Red/cyan circular emblem, hooded figure, `www.cyberbodha.com`                                                       | `ceh-v13/ceh-v13-brand-poster-legacy.jpg` | 1086 × 1448 (3:4)    | —                              | **Do not run** — old logo and palette, hooded-hacker image |
 
-### Fixes before upload
+### Launch files (-v2, 1080 × 1350)
+
+| File                                       | Built from                      | Change                                                                                                                  | Ad             |
+| ------------------------------------------ | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `ceh-v13/ceh-v13-dm-details-v2.jpg`        | `ceh-v13-dm-details.jpg`        | Footnote now "* Exam voucher included in the certification track. EC-Council exam terms apply."; resized to 1080 × 1350 | WhatsApp       |
+| `ceh-v13/ceh-v13-tracks-detailed-v2.jpg`   | `ceh-v13-tracks-detailed.jpg`   | Fitted to 1080 wide, top and bottom filled with a blurred copy; no crop                                                 | Leads, image 1 |
+| `ceh-v13/ceh-v13-tracks-comparison-v2.jpg` | `ceh-v13-tracks-comparison.jpg` | Same 4:5 fit                                                                                                            | Leads, image 2 |
+
+### Fixes before upload (done in the -v2 files)
 
 - **#3 footnote** reads "Certification exam/voucher subject to separate terms". The ₹45,000 track
   includes the voucher, so this tells buyers the opposite. Change it to
