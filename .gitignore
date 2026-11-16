@@ -30,3 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# python build artifacts
+__pycache__/
+*.pyc
