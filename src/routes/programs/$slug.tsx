@@ -20,10 +20,11 @@ import { CourseCard } from "@/components/cyberbodha/CourseCard";
 import { CourseEnquiryModal } from "@/components/cyberbodha/CourseEnquiryModal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getProgramBySlug, type Program } from "@/data/programs";
+import { getProgramBySlug, programWhatsappMessage, type Program } from "@/data/programs";
 import { getCourseBySlug, type Course } from "@/data/courses";
 import { ProgramSchema } from "@/components/seo/ProgramSchema";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, whatsappLink } from "@/lib/site";
+import { trackContact } from "@/lib/analytics";
 
 export const Route = createFileRoute("/programs/$slug")({
   loader: ({ params }) => {
@@ -262,7 +263,20 @@ function ProgramDetailPage() {
                         </Button>
                       }
                     />
-                    <Button asChild variant="outline" className="w-full justify-center text-xs">
+                    <Button asChild variant="outline" className="w-full justify-center gap-2">
+                      <a
+                        href={whatsappLink(programWhatsappMessage(program))}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackContact({ course: program.slug, source: "program_sidebar" })
+                        }
+                      >
+                        <MessageSquare className="h-4 w-4" />
+                        <span>Chat on WhatsApp</span>
+                      </a>
+                    </Button>
+                    <Button asChild variant="ghost" className="w-full justify-center text-xs">
                       <Link to="/cyber-range">Explore Range Labs</Link>
                     </Button>
                   </div>
@@ -316,28 +330,17 @@ function ProgramDetailPage() {
                   {program.labMethodology}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                  <div className="rounded-lg border border-border bg-background/60 p-3.5 text-center">
-                    <span className="text-xs font-bold text-foreground block">Isolated VMs</span>
-                    <span className="text-[11px] text-muted-foreground mt-0.5 block">
-                      Safe execution sandboxes
-                    </span>
-                  </div>
-                  <div className="rounded-lg border border-border bg-background/60 p-3.5 text-center">
-                    <span className="text-xs font-bold text-foreground block">
-                      Real Event Feeds
-                    </span>
-                    <span className="text-[11px] text-muted-foreground mt-0.5 block">
-                      Heterogeneous logs & Sysmon
-                    </span>
-                  </div>
-                  <div className="rounded-lg border border-border bg-background/60 p-3.5 text-center">
-                    <span className="text-xs font-bold text-foreground block">
-                      Instructor Feedback
-                    </span>
-                    <span className="text-[11px] text-muted-foreground mt-0.5 block">
-                      Detailed triage reviews
-                    </span>
-                  </div>
+                  {program.labHighlights.map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-lg border border-border bg-background/60 p-3.5 text-center"
+                    >
+                      <span className="text-xs font-bold text-foreground block">{item.title}</span>
+                      <span className="text-[11px] text-muted-foreground mt-0.5 block">
+                        {item.note}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
 

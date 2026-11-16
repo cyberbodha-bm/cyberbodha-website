@@ -9,6 +9,8 @@ export interface Program {
   skills: string[];
   curriculumHighlights: { title: string; desc: string }[];
   labMethodology: string;
+  /** Three short lab facts shown under the methodology paragraph. */
+  labHighlights: { title: string; note: string }[];
   careerRelevance: string;
   careerRoles: string[];
   recommendedCourseSlugs: string[];
@@ -63,6 +65,11 @@ export const PROGRAMS: Program[] = [
     ],
     labMethodology:
       "Every student works in an isolated multi-host virtual environment feeding active telemetry into enterprise SIEM instances. Attacks are injected programmatically, giving you real hands-on triage practice.",
+    labHighlights: [
+      { title: "Isolated VMs", note: "Safe execution sandboxes" },
+      { title: "Real Event Feeds", note: "Heterogeneous logs & Sysmon" },
+      { title: "Instructor Feedback", note: "Detailed triage reviews" },
+    ],
     careerRelevance:
       "Demand for qualified SOC analysts continues to outpace supply globally. This program focuses strictly on demonstrable operational competencies that hiring managers look for in technical interviews.",
     careerRoles: [
@@ -79,13 +86,15 @@ export const PROGRAMS: Program[] = [
   },
   {
     slug: "ethical-hacking",
-    title: "Ethical Hacking & Offensive Security",
+    title: "CEH v13 Ethical Hacking Training",
     category: "Offensive Security",
     badge: "Offensive Track",
-    subtitle: "Learn offensive methodologies to build resilient enterprise defenses",
+    subtitle:
+      "60 hours of live, instructor-led CEH v13 training in Hyderabad — take the training alone or with the certification pathway",
     overview:
-      "This track immerses you in the tools, techniques, and mindsets of modern ethical hackers. Understand how adversaries scout, probe, exploit, and establish footholds within enterprise networks so you can design, test, and validate proactive countermeasures.",
+      "A 60-hour instructor-led programme built on the 20-module CEH v13 syllabus. Learn how attackers scout, probe, exploit and hold a foothold in enterprise networks — inside isolated labs — so you can test and fix those weaknesses, and prepare for the CEH v13 exam on the certification track.",
     audience: [
+      "IT professionals and graduates preparing for the CEH v13 certification",
       "Security Analysts aiming to understand the offensive perspective",
       "Network Engineers and System Administrators auditing internal networks",
       "Software Developers wanting to identify code-level vulnerabilities",
@@ -119,6 +128,11 @@ export const PROGRAMS: Program[] = [
     ],
     labMethodology:
       "100% of testing is conducted inside isolated sandbox networks hosting realistic, vulnerable target hosts and modern web applications.",
+    labHighlights: [
+      { title: "Vulnerable Targets", note: "Linux, Windows and web apps built to be attacked" },
+      { title: "Full Attack Chains", note: "Recon → exploitation → reporting" },
+      { title: "Instructor Feedback", note: "Review of every lab write-up" },
+    ],
     careerRelevance:
       "Offensive testing skills are essential for vulnerability management, red teaming, and application security roles across mid-market and enterprise businesses.",
     careerRoles: [
@@ -143,7 +157,7 @@ export const PROGRAMS: Program[] = [
         {
           name: "Training + Certification",
           price: "₹45,000",
-          includes: "60-hour training, exam preparation and CEH v13 certification pathway",
+          includes: "60-hour training, exam preparation and the CEH v13 exam voucher",
         },
       ],
       addon: {
@@ -151,7 +165,7 @@ export const PROGRAMS: Program[] = [
         price: "₹6,000 extra",
         note: "6 months lab access validity",
       },
-      note: "Certification exam voucher is subject to the vendor's separate terms. GST charged where applicable.",
+      note: "The Training + Certification fee includes the CEH v13 exam voucher; EC-Council's exam terms apply. GST charged where applicable.",
     },
   },
   {
@@ -197,6 +211,11 @@ export const PROGRAMS: Program[] = [
     ],
     labMethodology:
       "Assess realistic multi-tier corporate architectures and modern API backends, validating automated scanner findings through manual exploitation proof-of-concepts.",
+    labHighlights: [
+      { title: "Multi-tier Targets", note: "Corporate networks and API backends" },
+      { title: "Manual Verification", note: "Proof of concept for every finding" },
+      { title: "Report Reviews", note: "Instructor feedback on deliverables" },
+    ],
     careerRelevance:
       "Regulatory mandates like PCI-DSS, ISO 27001, and SOC 2 require continuous independent penetration testing, making skilled VAPT professionals a cornerstone of security engineering.",
     careerRoles: [
@@ -254,6 +273,11 @@ export const PROGRAMS: Program[] = [
     ],
     labMethodology:
       "Comprehensive access to all CyberBodha range modules, including individual lab environments, guided scenario walkthroughs, and capstone challenges.",
+    labHighlights: [
+      { title: "Isolated VMs", note: "Safe execution sandboxes" },
+      { title: "Attack & Defend", note: "Both sides of every scenario" },
+      { title: "Lab Portfolio", note: "Write-ups you keep after the course" },
+    ],
     careerRelevance:
       "Focuses on genuine hands-on capability, demonstrable lab projects, and verified readiness rather than unproven shortcuts.",
     careerRoles: [
@@ -310,6 +334,11 @@ export const PROGRAMS: Program[] = [
     ],
     labMethodology:
       "Deploy real cloud architectures using Terraform and evaluate automated security scanners against misconfigured infrastructure and vulnerable container deployments.",
+    labHighlights: [
+      { title: "Real Cloud Stacks", note: "Terraform-built AWS & Azure labs" },
+      { title: "Misconfigured Targets", note: "IAM, storage and containers" },
+      { title: "Instructor Feedback", note: "Review of every finding" },
+    ],
     careerRelevance:
       "As enterprise workloads migrate to the cloud, cloud security and DevSecOps engineers command some of the fastest-growing hiring demands in the industry.",
     careerRoles: [
@@ -328,4 +357,9 @@ export const PROGRAMS: Program[] = [
 
 export function getProgramBySlug(slug: string): Program | undefined {
   return PROGRAMS.find((program) => program.slug === slug);
+}
+
+/** First message of a WhatsApp enquiry started from a programme page. */
+export function programWhatsappMessage(program: Pick<Program, "title">): string {
+  return `Hi CyberBodha, I'd like details of the ${program.title} programme — fees and next batch.`;
 }

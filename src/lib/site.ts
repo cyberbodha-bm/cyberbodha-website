@@ -13,6 +13,11 @@ export const CONTACT_PHONE = "+91 90638 09271";
 export const CONTACT_PHONE_E164 = "+919063809271";
 export const WHATSAPP_URL = "https://wa.me/919063809271";
 
+/** WhatsApp chat link with a pre-filled first message, so the enquiry says what it is about. */
+export function whatsappLink(message: string): string {
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
+}
+
 export const SOCIAL_LINKS = {
   facebook: "https://www.facebook.com/profile.php?id=61596319388118",
   instagram: "https://www.instagram.com/cyberbodha95",
